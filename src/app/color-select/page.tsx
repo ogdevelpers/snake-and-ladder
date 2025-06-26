@@ -8,7 +8,7 @@ const ColorSelectPage = () => {
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default to red
 
     const colors = [
-        { name: 'Red', hex: '#EF4444' },
+        { name: 'Red', hex: '#EF4444' }, 
         { name: 'Green', hex: '#22C55E' },
         { name: 'Yellow', hex: '#EAB308' },
         { name: 'Blue', hex: '#3B82F6' },
