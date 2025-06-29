@@ -2,15 +2,25 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation'; // Changed import for App Router
+import Logo from '@/components/ui/Logo/Logo';
+import Banner from '@/components/ui/Banner/Banner';
+import Button from '@/components/ui/Button/Button';
 
 const HomePage = () => {
     const router = useRouter();
 
     return (
         <div className="screen home-screen">
-            <h1 className="home-title">
-                Cvent <br /> Snakes & Ladders
-            </h1>
+            <section className="home-title">
+                <div className="home-logo">
+                    <Logo />
+                </div>
+                <div className="home-banner">
+                    <Banner />
+                </div>
+            </section>
+
+            <section className="home-hero">
             <div className="home-image-container">
                 <img
                     src="https://placehold.co/300x200/ADD8E6/000000?text=Game+Graphics"
@@ -18,12 +28,13 @@ const HomePage = () => {
                     className="home-image"
                 />
             </div>
-            <button
+            <Button
                 onClick={() => router.push('/gameid')}
-                className="start-game-button"
+                className=""
             >
-                Start Game
-            </button>
+                Let's Go
+            </Button>
+            </section>
         </div>
     );
 };
