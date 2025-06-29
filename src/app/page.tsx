@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'; // Changed import for App Router
 import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
+import Footer from '@/components/ui/Footer/Footer';
 
 const HomePage = () => {
     const router = useRouter();
@@ -21,19 +22,22 @@ const HomePage = () => {
             </section>
 
             <section className="home-hero">
-            <div className="home-image-container">
-                <img
-                    src="https://placehold.co/300x200/ADD8E6/000000?text=Game+Graphics"
-                    alt="Snakes and Ladders Graphics"
-                    className="home-image"
-                />
-            </div>
-            <Button
-                onClick={() => router.push('/gameid')}
-                className=""
-            >
-                Let's Go
-            </Button>
+                <div className="home-image-container">
+                    <img
+                        src="/snake_landing_banner.png"
+                        alt="Snakes and Ladders Graphics"
+                        className="home-image"
+                    />
+                </div>
+                <Button
+                    onClick={() => router.push('/gameid')}
+                    className=""
+                >
+                    Let's Go
+                </Button>
+            </section>
+            <section className="home-footer">
+                <Footer variant="default" />
             </section>
         </div>
     );

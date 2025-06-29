@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // Changed import for App Router
 import { Modal, GameIdNotFoundModal } from '../../components/Modal'; // Adjust path for App Router structure
+import Logo from '@/components/ui/Logo/Logo';
+import Banner from '@/components/ui/Banner/Banner';
 
 const GameIdPage = () => {
     const router = useRouter();
@@ -67,9 +69,14 @@ const GameIdPage = () => {
 
     return (
         <div className="screen game-id-screen">
-            <h2 className="game-id-title">
-                INSERT YOUR GAME ID*
-            </h2>
+                        <section className="home-title">
+                            <div className="home-logo">
+                                <Logo />
+                            </div>
+                            <div className="home-banner">
+                                <Banner />
+                            </div>
+                        </section> 
             <div className="game-id-input-container">
                 <input
                     type="text"

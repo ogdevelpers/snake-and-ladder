@@ -15,19 +15,13 @@ body {
 .app-container {
     position: relative;
     min-height: 100dvh;
-    background-image: url('/board-snake.png');
-    background-size: contain;           /* Ensures the image covers the container */
-    background-repeat: no-repeat;      /* Prevents tiling */
-    background-position: top center;   /* Always starts from the top */
-    background-color: #f9fafb; /* bg-gray-50 */
     max-height: 100dvh; 
-    background-color: #f9fafb; /* bg-gray-50 */
+    background-color: #1268B3; /* bg-gray-50 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 1rem; /* Added global padding for consistency */
     width: 100%; /* Ensure it takes full width */
     box-sizing: border-box; /* Include padding in width */
 }
@@ -42,10 +36,26 @@ body {
     padding: 1rem;
     text-align: center;
     width: 100%;
-    box-sizing: border-box;
-    outline:4px solid red;
+    box-sizing: border-box; 
+    height:100dvh;
+    max-height:100%;
+    min-height:100%;
+    /* Use this to set the inner board in most pages except game screen */
+    background-image: url('/board-snake.png');
+    background-size: contain;           /* Ensures the image covers the container */
+    background-repeat: no-repeat;      /* Prevents tiling */
+    background-position: top center;   /* Always starts from the top */
+
 }
 
+.home-hero{
+    display:flex;
+    flex-direction:column;
+}
+
+.home-footer{
+    outline:19px solid green; 
+}
 
 /* Modal Styles - common to all pages that use modals */
 .modal-overlay {
@@ -222,18 +232,6 @@ body {
 }
 
 /* Game ID Screen Styles */
-.game-id-title {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 1.5rem;
-}
-@media (min-width: 768px) {
-    .game-id-title {
-        font-size: 2.25rem;
-    }
-}
 .game-id-input-container {
     width: 100%;
     max-width: 90%;
