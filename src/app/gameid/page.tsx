@@ -7,10 +7,12 @@ import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
 
+type GameProfileTypes = 'Marketing Professional' | 'Others' | 'Event Planner';
+
 const GameIdPage = () => {
     const router = useRouter();
     const [gameIdInput, setGameIdInput] = useState('');
-    const [gameProfile, setGameProfile] = useState(null);
+    const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState('');
     const [showGameIdNotFoundModal, setShowGameIdNotFoundModal] = useState(false);
@@ -86,7 +88,7 @@ const GameIdPage = () => {
                             type="text"
                             value={gameIdInput}
                             onChange={(e) => setGameIdInput(e.target.value)}
-                            placeholder="Enter Game ID"
+                            placeholder="E.g. 12345"
                             className="game-id-input"
                         />
                         {/* <button
@@ -99,9 +101,9 @@ const GameIdPage = () => {
                     <div className="game-id-input-container">
                         <input
                             type="select"
-                            value={gameIdInput}
-                            onChange={(e) => setGameIdInput(e.target.value)}
-                            placeholder="Enter Game ID"
+                            value={gameProfile}
+                            onChange={(e) => setGameProfile(e.target.value)}
+                            placeholder="Select"
                             className="game-id-input"
                         />
                     </div>
