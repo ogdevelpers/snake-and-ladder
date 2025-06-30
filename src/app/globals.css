@@ -5,19 +5,23 @@ body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden; /* Prevent horizontal scrolling */
+  max-height: 100dvh;
 }
+
+*{
+    box-sizing: border-box; /* Ensures padding and borders are included in element's total width and height */
+}
+
 .app-container {
     position: relative;
     min-height: 100dvh;
-    /* max-height: 100dvh;  TODO:  Restrict this to 
-    100dvh so user doesn't have to scroll    */  
-    background-color: #f9fafb; /* bg-gray-50 */
+    max-height: 100dvh; 
+    background-color: #1268B3; /* bg-gray-50 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 1rem; /* Added global padding for consistency */
     width: 100%; /* Ensure it takes full width */
     box-sizing: border-box; /* Include padding in width */
 }
@@ -27,14 +31,31 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: calc(100vh - 2rem); /* Adjusted for app-container padding */
     padding: 1rem;
     text-align: center;
     width: 100%;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    height:100dvh;
+    max-height:100%;
+    min-height:100%;
+    /* Use this to set the inner board in most pages except game screen */
+    background-image: url('/board-snake.png');
+    background-size: contain;           /* Ensures the image covers the container */
+    background-repeat: no-repeat;      /* Prevents tiling */
+    background-position: top center;   /* Always starts from the top */
+
 }
 
+.home-hero{
+    display:flex;
+    flex-direction:column;
+}
+
+.home-footer{
+    outline:19px solid green; 
+}
 
 /* Modal Styles - common to all pages that use modals */
 .modal-overlay {
@@ -211,21 +232,30 @@ body {
 }
 
 /* Game ID Screen Styles */
-.game-id-title {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 1.5rem;
+.game-id-form-section{
+    display:flex;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding:2rem;
+    
+    border-radius:16px;
 }
-@media (min-width: 768px) {
-    .game-id-title {
-        font-size: 2.25rem;
-    }
+.game-id-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+.game-id-register-button{
+    width:100%;
+}
+
 .game-id-input-container {
     width: 100%;
-    max-width: 90%;
+    max-width: 100%;
     margin-bottom: 1.5rem;
     position: relative; 
     display:flex;
@@ -237,7 +267,7 @@ body {
     padding-right: 3rem;
     font-size: 1.125rem;
     border: 2px solid #60a5fa;
-    border-radius: 9999px;
+    border-radius: 6px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     outline: transparent;
 }
