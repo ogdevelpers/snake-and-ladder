@@ -33,7 +33,7 @@ const HomePage = () => {
                     onClick={() => router.push('/gameid')}
                     className=""
                 >
-                    Let's Go
+                    Let&apos;s Go
                 </Button>
             </section>
             <section className="home-footer">

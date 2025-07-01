@@ -43,7 +43,7 @@ const HowToPlayPage = () => {
                 onClick={handlePlayGame}
                 className="play-game-button"
             >
-                Let's Play
+                Let&apos;s Play
             </Button>
         </div>
     );
