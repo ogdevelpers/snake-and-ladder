@@ -6,8 +6,14 @@ import { Modal, GameIdNotFoundModal } from '../../components/Modal'; // Adjust p
 import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
+import { GameProfileTypes } from '@/types/GameComponentTypes';
 
-type GameProfileTypes = 'Marketing Professional' | 'Others' | 'Event Planner';
+const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
+    'Marketing Professional',
+    'Event Planner',
+    'Others',
+];
+
 
 const GameIdPage = () => {
     const router = useRouter();
@@ -16,7 +22,7 @@ const GameIdPage = () => {
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState('');
     const [showGameIdNotFoundModal, setShowGameIdNotFoundModal] = useState(false);
-    const [modalConfirmAction, setModalConfirmAction] = useState(null);
+    const [modalConfirmAction, setModalConfirmAction] = useState<any>(null);
 
     useEffect(() => {
         const storedGameId = localStorage.getItem('snakesAndLaddersGameId');
@@ -28,6 +34,12 @@ const GameIdPage = () => {
     const handleEnterGameId = () => {
         if (!gameIdInput.trim()) {
             setResultModalMessage("Please enter a Game ID.");
+            setShowResultModal(true);
+            setModalConfirmAction((): any => setShowResultModal(false));
+            return;
+        }
+        if (!gameProfile) {
+            setResultModalMessage("Please select a profile type.");
             setShowResultModal(true);
             setModalConfirmAction((): any => setShowResultModal(false));
             return;
@@ -63,14 +75,6 @@ const GameIdPage = () => {
         }
     };
 
-    // const handleCreateNewGameId = () => {
-    //     const newGameId = Math.random().toString(36).substring(2, 10);
-    //     setGameIdInput(newGameId);
-    //     setResultModalMessage(`A new Game ID "${newGameId}" has been generated. Press Enter to use it, or change it.`);
-    //     setShowResultModal(true);
-    //     setModalConfirmAction(():any => setShowResultModal(false));
-    // };
-
     return (
         <div className="screen game-id-screen">
             <section className="home-title">
@@ -91,21 +95,20 @@ const GameIdPage = () => {
                             placeholder="E.g. 12345"
                             className="game-id-input"
                         />
-                        {/* <button
-                            onClick={handleEnterGameId}
-                            className="game-id-enter-button"
-                        >
-                            ➡️
-                        </button> */}
                     </div>
                     <div className="game-id-input-container">
-                        <input
-                            type="select"
+                        <select
                             value={gameProfile}
-                            onChange={(e) => setGameProfile(e.target.value)}
-                            placeholder="Select"
+                            onChange={(e) => setGameProfile(e.target.value as GameProfileTypes)}
                             className="game-id-input"
-                        />
+                        >
+                            <option value="">Select Profile Type</option>
+                            {GAME_PROFILE_OPTIONS.map((option) => (
+                                <option key={option} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div className="game-id-register-button">
                         <Button onClick={handleEnterGameId}>
@@ -113,7 +116,6 @@ const GameIdPage = () => {
                         </Button>
                     </div>
                 </div>
-
             </section>
             {/* <p className="game-id-info-text">
                 *You can find your unique game ID in the profile section of the Cvent mobile app.
