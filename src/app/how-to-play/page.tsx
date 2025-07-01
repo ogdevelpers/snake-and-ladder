@@ -3,6 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Changed import for App Router
 import { formatTime } from '../../lib/gameConfig'; // Adjust path for App Router structure
+import Logo from '@/components/ui/Logo/Logo';
+import Banner from '@/components/ui/Banner/Banner';
+import Button from '@/components/ui/Button/Button';
 
 const HowToPlayPage = () => {
     const router = useRouter();
@@ -14,6 +17,14 @@ const HowToPlayPage = () => {
 
     return (
         <div className="screen how-to-play-screen">
+            <section className="home-title">
+                <div className="home-logo">
+                    <Logo />
+                </div>
+                <div className="home-banner">
+                    <Banner />
+                </div>
+            </section>
             <h2 className="how-to-play-title">
                 HOW TO PLAY
             </h2>
@@ -28,12 +39,12 @@ const HowToPlayPage = () => {
                     REACH 100 WITHIN {formatTime(timer)}!
                 </p>
             </div>
-            <button
+            <Button
                 onClick={handlePlayGame}
                 className="play-game-button"
             >
-                Play Game ▶️
-            </button>
+                Let's Play
+            </Button>
         </div>
     );
 };

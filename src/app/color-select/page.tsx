@@ -2,18 +2,19 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Changed import for App Router
+import Logo from '@/components/ui/Logo/Logo';
+import Banner from '@/components/ui/Banner/Banner';
+import Button from '@/components/ui/Button/Button';
 
 const ColorSelectPage = () => {
     const router = useRouter();
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default to red
 
     const colors = [
-        { name: 'Red', hex: '#EF4444' }, 
+        { name: 'Red', hex: '#EF4444' },
         { name: 'Green', hex: '#22C55E' },
         { name: 'Yellow', hex: '#EAB308' },
         { name: 'Blue', hex: '#3B82F6' },
-        { name: 'Orange', hex: '#F97316' },
-        { name: 'Purple', hex: '#A855F7' },
     ];
 
     const handleNext = () => {
@@ -23,9 +24,17 @@ const ColorSelectPage = () => {
 
     return (
         <div className="screen color-select-screen">
-            <h2 className="color-select-title">
-                SELECT YOUR COLOUR
-            </h2>
+            <section className="home-title">
+                <div className="home-logo">
+                    <Logo />
+                </div>
+                <div className="home-banner">
+                    <Banner />
+                </div>
+            </section>
+            <span className="color-select-title">
+                Select Your Token Colour
+            </span>
             <div className="color-grid">
                 {colors.map((color) => (
                     <button
@@ -38,12 +47,12 @@ const ColorSelectPage = () => {
                     </button>
                 ))}
             </div>
-            <button
+            <Button
                 onClick={handleNext}
                 className="next-button"
             >
-                Next ▶️
-            </button>
+                Continue
+            </Button>
         </div>
     );
 };
