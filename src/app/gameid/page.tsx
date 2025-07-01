@@ -8,12 +8,12 @@ import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
 import { GameProfileTypes } from '@/types/GameComponentTypes';
 
+
 const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
     'Marketing Professional',
     'Event Planner',
     'Others',
 ];
-
 
 const GameIdPage = () => {
     const router = useRouter();
@@ -22,7 +22,7 @@ const GameIdPage = () => {
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState('');
     const [showGameIdNotFoundModal, setShowGameIdNotFoundModal] = useState(false);
-    const [modalConfirmAction, setModalConfirmAction] = useState<any>(null);
+    const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
 
     useEffect(() => {
         const storedGameId = localStorage.getItem('snakesAndLaddersGameId');
@@ -31,47 +31,57 @@ const GameIdPage = () => {
         }
     }, []);
 
+    const proceedToColorSelect = () => {
+        console.log("Proceeding with Game ID:", gameIdInput);
+        router.push('/color-select');
+    };
+
+    const createNewGameId = () => {
+        localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
+        console.log("Game ID created:", gameIdInput);
+        setShowGameIdNotFoundModal(false);
+        proceedToColorSelect();
+    };
+
+    const replaceExistingGameId = () => {
+        localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
+        console.log("Game ID replaced:", gameIdInput);
+        setShowGameIdNotFoundModal(false);
+        proceedToColorSelect();
+    };
+
     const handleEnterGameId = () => {
+        // Validation checks
         if (!gameIdInput.trim()) {
             setResultModalMessage("Please enter a Game ID.");
             setShowResultModal(true);
-            setModalConfirmAction((): any => setShowResultModal(false));
+            setModalConfirmAction(() => () => setShowResultModal(false));
             return;
         }
+        
         if (!gameProfile) {
             setResultModalMessage("Please select a profile type.");
             setShowResultModal(true);
-            setModalConfirmAction((): any => setShowResultModal(false));
+            setModalConfirmAction(() => () => setShowResultModal(false));
             return;
         }
 
         const storedId = localStorage.getItem('snakesAndLaddersGameId');
 
+        // Game ID logic
         if (storedId === gameIdInput) {
-            console.log("Game ID found:", gameIdInput);
-            router.push('/color-select');
+            // Exact match - proceed directly
+            proceedToColorSelect();
         } else if (!storedId) {
+            // No stored ID - ask to create new one
             setResultModalMessage(`Game ID "${gameIdInput}" not found. Do you want to create it?`);
             setShowGameIdNotFoundModal(true);
-            setModalConfirmAction((): any => {
-                return () => {
-                    setShowGameIdNotFoundModal(false);
-                    localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
-                    console.log("Game ID created:", gameIdInput);
-                    router.push('/color-select');
-                };
-            });
+            setModalConfirmAction(() => createNewGameId);
         } else {
+            // Different ID exists - ask to replace
             setResultModalMessage(`A different Game ID "${storedId}" is stored. Do you want to replace it with "${gameIdInput}"?`);
             setShowGameIdNotFoundModal(true);
-            setModalConfirmAction((): any => {
-                return () => {
-                    setShowGameIdNotFoundModal(false);
-                    localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
-                    console.log("Game ID overwritten:", gameIdInput);
-                    router.push('/color-select');
-                };
-            });
+            setModalConfirmAction(() => replaceExistingGameId);
         }
     };
 
@@ -117,15 +127,6 @@ const GameIdPage = () => {
                     </div>
                 </div>
             </section>
-            {/* <p className="game-id-info-text">
-                *You can find your unique game ID in the profile section of the Cvent mobile app.
-            </p> */}
-            {/* <button
-                onClick={handleCreateNewGameId}
-                className="generate-id-button"
-            >
-                Generate New Game ID
-            </button> */}
 
             {showResultModal && (
                 <Modal
