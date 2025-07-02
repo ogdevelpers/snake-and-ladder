@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // Changed import for App Router
-import { Modal, GameIdNotFoundModal } from '../../components/Modal'; // Adjust path for App Router structure
 import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
@@ -18,11 +17,7 @@ const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
 const GameIdPage = () => {
     const router = useRouter();
     const [gameIdInput, setGameIdInput] = useState('');
-    const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');
-    const [showResultModal, setShowResultModal] = useState(false);
-    const [resultModalMessage, setResultModalMessage] = useState('');
-    const [showGameIdNotFoundModal, setShowGameIdNotFoundModal] = useState(false);
-    const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
+    const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');   
 
     useEffect(() => {
         const storedGameId = localStorage.getItem('snakesAndLaddersGameId');
@@ -38,31 +33,23 @@ const GameIdPage = () => {
 
     const createNewGameId = () => {
         localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
-        console.log("Game ID created:", gameIdInput);
-        setShowGameIdNotFoundModal(false);
+        console.log("Game ID created:", gameIdInput); 
         proceedToColorSelect();
     };
 
     const replaceExistingGameId = () => {
         localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
-        console.log("Game ID replaced:", gameIdInput);
-        setShowGameIdNotFoundModal(false);
+        console.log("Game ID replaced:", gameIdInput); 
         proceedToColorSelect();
     };
 
     const handleEnterGameId = () => {
         // Validation checks
-        if (!gameIdInput.trim()) {
-            setResultModalMessage("Please enter a Game ID.");
-            setShowResultModal(true);
-            setModalConfirmAction(() => () => setShowResultModal(false));
+        if (!gameIdInput.trim()) { 
             return;
         }
         
-        if (!gameProfile) {
-            setResultModalMessage("Please select a profile type.");
-            setShowResultModal(true);
-            setModalConfirmAction(() => () => setShowResultModal(false));
+        if (!gameProfile) { 
             return;
         }
 
@@ -73,15 +60,9 @@ const GameIdPage = () => {
             // Exact match - proceed directly
             proceedToColorSelect();
         } else if (!storedId) {
-            // No stored ID - ask to create new one
-            setResultModalMessage(`Game ID "${gameIdInput}" not found. Do you want to create it?`);
-            setShowGameIdNotFoundModal(true);
-            setModalConfirmAction(() => createNewGameId);
+            // No stored ID - ask to create new one 
         } else {
-            // Different ID exists - ask to replace
-            setResultModalMessage(`A different Game ID "${storedId}" is stored. Do you want to replace it with "${gameIdInput}"?`);
-            setShowGameIdNotFoundModal(true);
-            setModalConfirmAction(() => replaceExistingGameId);
+            // Different ID exists - ask to replace 
         }
     };
 
@@ -98,15 +79,21 @@ const GameIdPage = () => {
             <section className="game-id-form-section">
                 <div className="game-id-form">
                     <div className="game-id-input-container">
+                        <label className="game-id-label">
+                            <span className="game-id-label-text">Game ID</span>
                         <input
                             type="text"
                             value={gameIdInput}
                             onChange={(e) => setGameIdInput(e.target.value)}
                             placeholder="E.g. 12345"
                             className="game-id-input"
+                            name='gameIdInput'
                         />
+                        </label>
                     </div>
                     <div className="game-id-input-container">
+                        <label className="game-id-label">
+                            <span className="game-id-label-text">Select Your Profile</span>
                         <select
                             value={gameProfile}
                             onChange={(e) => setGameProfile(e.target.value as GameProfileTypes)}
@@ -119,6 +106,7 @@ const GameIdPage = () => {
                                 </option>
                             ))}
                         </select>
+                        </label>
                     </div>
                     <div className="game-id-register-button">
                         <Button onClick={handleEnterGameId}>
@@ -128,20 +116,7 @@ const GameIdPage = () => {
                 </div>
             </section>
 
-            {showResultModal && (
-                <Modal
-                    message={resultModalMessage}
-                    onConfirm={modalConfirmAction}
-                />
-            )}
-
-            {showGameIdNotFoundModal && (
-                <GameIdNotFoundModal
-                    message={resultModalMessage}
-                    onConfirm={modalConfirmAction}
-                    onCancel={() => setShowGameIdNotFoundModal(false)}
-                />
-            )}
+ 
         </div>
     );
 };
