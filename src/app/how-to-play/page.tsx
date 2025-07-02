@@ -27,31 +27,31 @@ const HowToPlayPage = () => {
             </section>
 
             <section className="how-to-play-section">
-                
 
-            <h2 className="how-to-play-title">
-                HOW TO PLAY
-            </h2>
-            <div className="how-to-play-content">
-                <article className="how-to-play-article">
-                    <ul>
-                        <li><span className="how-to-play-text">Roll dice to start game.</span></li>
-                        <li><span className="how-to-play-text">On cells with a       , a question will pop up. </span></li>
-                        <li><span className="how-to-play-text">Choose the right option to go up the ladder.</span></li>
-                        <li><span className="how-to-play-text">If you selectthe wrong option, you go downthe snake.</span></li>
-                    </ul>
-                </article> 
-                <p className="how-to-play-timer-text">
-                    REACH 100 WITHIN 5 MINUTES!
-                </p>
-            </div>
-            <Button
-                onClick={handlePlayGame}
-                className="play-game-button"
-            >
-                Let&apos;s Play
-            </Button>
-                        </section>
+
+                <div className="how-to-play-content">
+                    <h2 className="how-to-play-title">
+                        How To Play
+                    </h2>
+                    <article className="how-to-play-article">
+                        <ul>
+                            <li><span className="how-to-play-text">Roll dice to start game.</span></li>
+                            <li><span className="how-to-play-text">On cells with a       , a question will pop up. </span></li>
+                            <li><span className="how-to-play-text">Choose the right option to go up the ladder.</span></li>
+                            <li><span className="how-to-play-text">If you selectthe wrong option, you go downthe snake.</span></li>
+                        </ul>
+                    </article>
+                    <p className="how-to-play-timer-text">
+                        REACH 100 WITHIN 5 MINUTES!
+                    </p>
+                </div>
+                <Button
+                    onClick={handlePlayGame}
+                    className="play-game-button"
+                >
+                    Let&apos;s Play
+                </Button>
+            </section>
         </div>
     );
 };

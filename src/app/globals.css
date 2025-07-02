@@ -377,8 +377,8 @@ body {
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-
 }
+
 @media (min-width: 768px) {
     .color-select-title {
         font-size: 2.25rem;
@@ -399,7 +399,6 @@ body {
     max-width: 28rem;
     justify-items: center;
     align-items: stretch; /* Maintains current vertical behavior */
-
 }
 
 .color-button-box{
@@ -458,19 +457,6 @@ body {
     transform: scale(1.05);
 }
 
-/* How To Play Screen Styles */
-.how-to-play-title {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-    font-weight: 800;
-    color: #1d4ed8;
-    margin-bottom: 1.5rem;
-}
-@media (min-width: 768px) {
-    .how-to-play-title {
-        font-size: 3rem;
-    }
-}
 
 .how-to-play-section {
     display:flex; 
@@ -490,8 +476,34 @@ body {
     margin-bottom: 2rem;
     line-height: 1.5;
     border: 1px solid white; 
-
+    position: relative;
 }
+
+/* How To Play Screen Styles */
+.how-to-play-title {
+    color: #006AE1;
+    font-family: 'Brandon Text';
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    width:70%; 
+    background-color: white;
+    border-radius: 0.6rem; 
+    padding: 0.5rem 1rem;
+    position:absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -100%); /* Center horizontally, lift above top */
+    z-index: 1; /* Ensure it's above the border */
+}
+@media (min-width: 768px) {
+    .how-to-play-title {
+        font-size: 2rem;
+    }
+}
+
 .how-to-play-text {
     font-family: 'Brandon Text';
     font-weight: 390;
