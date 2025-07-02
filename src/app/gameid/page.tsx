@@ -6,6 +6,7 @@ import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
 import { GameProfileTypes } from '@/types/GameComponentTypes';
+import { create } from 'domain';
 
 
 const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
@@ -36,9 +37,13 @@ const GameIdPage = () => {
 
     const createNewGameId = () => {
         localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
-        console.log("Game ID created:", gameIdInput); 
-        proceedToColorSelect();
+        console.log("Game ID created:", gameIdInput);  
     };
+
+    const createNewGameProfile = () => {
+        localStorage.setItem('snakesAndLaddersGameProfile', gameProfile);
+        console.log("Game Profile created:", gameProfile);
+    }
  
     const handleEnterGameId = () => {
         // Validation checks
@@ -52,6 +57,10 @@ const GameIdPage = () => {
         
         // gameId and profile have been selected. 
         createNewGameId();
+        createNewGameProfile();
+
+        // All set, let's go 
+        proceedToColorSelect();
     };
 
     return (

@@ -5,19 +5,24 @@ import { useRouter } from 'next/navigation'; // Changed import for App Router
 import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
+const colors = [
+        { name: 'Red', hex: '#870303' },
+        { name: 'Green', hex: '#23992E' },
+        { name: 'Yellow', hex: '#FCDE63' },
+        { name: 'Blue', hex: '#16759E' },
+    ];
 
 const ColorSelectPage = () => {
     const router = useRouter();
-    const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default to red
+    const [selectedColor, setSelectedColor] = useState<string | null>(null); // Default to no color selected
 
-    const colors = [
-        { name: 'Red', hex: '#EF4444' },
-        { name: 'Green', hex: '#22C55E' },
-        { name: 'Yellow', hex: '#EAB308' },
-        { name: 'Blue', hex: '#3B82F6' },
-    ];
+
 
     const handleNext = () => {
+        if (!selectedColor) {
+            alert('Please select a color before proceeding.');
+            return;
+        }
         localStorage.setItem('selectedPlayerColor', selectedColor);
         router.push('/how-to-play');
     };
@@ -35,26 +40,45 @@ const ColorSelectPage = () => {
             <span className="color-select-title">
                 Select Your Token Colour
             </span>
-            <div className="color-grid">
+            <div className="color-grid-outer">
+                            <div className="color-grid">
                 {colors.map((color) => (
-                    <button
+                    <ColorOption
                         key={color.name}
+                        color={color.name}
+                        isSelected={selectedColor === color.hex}
                         onClick={() => setSelectedColor(color.hex)}
-                        className={`color-button ${selectedColor === color.hex ? 'color-button-selected' : ''}`}
-                        style={{ backgroundColor: color.hex }}
-                    >
-                        <span className="color-name">{color.name}</span>
-                    </button>
+                    />
                 ))}
             </div>
-            <Button
+            {
+                selectedColor && 
+                (
+                <Button
                 onClick={handleNext}
                 className="next-button"
             >
                 Continue
-            </Button>
+            </Button>)
+            }
+            </div>
+
         </div>
     );
 };
+
+const ColorOption = ({ color, isSelected, onClick }: { color: string; isSelected: boolean; onClick: () => void }) => {
+    const colorKey = color.toLowerCase();
+    return (
+        <div className="color-button-box">
+        <button
+            onClick={onClick}
+            className={`color-button ${isSelected ? 'selected' : ''}`}
+        >
+            <img src={`/pawns/svg/${colorKey}.svg`} alt={`${color} token`} className="color-token" />
+        </button>
+        </div>
+    );
+}
 
 export default ColorSelectPage;
