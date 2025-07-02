@@ -9,7 +9,7 @@ import Button from '@/components/ui/Button/Button';
 
 const HowToPlayPage = () => {
     const router = useRouter();
-    const [timer] = useState(180); // Display the 3-minute limit
+    const [timer] = useState(300); // Display the 3-minute limit
 
     const handlePlayGame = () => {
         router.push('/game'); // Navigate to the game page
@@ -25,18 +25,24 @@ const HowToPlayPage = () => {
                     <Banner />
                 </div>
             </section>
+
+            <section className="how-to-play-section">
+                
+
             <h2 className="how-to-play-title">
                 HOW TO PLAY
             </h2>
             <div className="how-to-play-content">
-                <p className="how-to-play-text">
-                    <span className="how-to-play-highlight">🎲 Roll dice</span> to start game.
-                </p>
-                <p className="how-to-play-text">
-                    <span className="how-to-play-highlight-purple">❓ On cells with a ‘?’</span>, a question will pop up. Choose the right option to go up the ladder. If you select the wrong option, you go down the snake.
-                </p>
+                <article className="how-to-play-article">
+                    <ul>
+                        <li><span className="how-to-play-text">Roll dice to start game.</span></li>
+                        <li><span className="how-to-play-text">On cells with a       , a question will pop up. </span></li>
+                        <li><span className="how-to-play-text">Choose the right option to go up the ladder.</span></li>
+                        <li><span className="how-to-play-text">If you selectthe wrong option, you go downthe snake.</span></li>
+                    </ul>
+                </article> 
                 <p className="how-to-play-timer-text">
-                    REACH 100 WITHIN {formatTime(timer)}!
+                    REACH 100 WITHIN 5 MINUTES!
                 </p>
             </div>
             <Button
@@ -45,6 +51,7 @@ const HowToPlayPage = () => {
             >
                 Let&apos;s Play
             </Button>
+                        </section>
         </div>
     );
 };

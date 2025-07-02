@@ -70,14 +70,14 @@ const ColorSelectPage = () => {
 const ColorOption = ({ color, isSelected, onClick }: { color: string; isSelected: boolean; onClick: () => void }) => {
     const colorKey = color.toLowerCase();
     return (
-        <div className="color-button-box">
+        // <div className="color-button-box">
         <button
             onClick={onClick}
             className={`color-button ${isSelected ? 'selected' : ''}`}
         >
             <img src={`/pawns/svg/${colorKey}.svg`} alt={`${color} token`} className="color-token" />
         </button>
-        </div>
+        // </div>
     );
 }
 
