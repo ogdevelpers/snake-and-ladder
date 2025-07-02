@@ -17,7 +17,10 @@ const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
 const GameIdPage = () => {
     const router = useRouter();
     const [gameIdInput, setGameIdInput] = useState('');
-    const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');   
+    const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');
+    const [inputError, setInputError] = useState<boolean>(true); 
+    const [gameIdError, setGameIdError] = useState<boolean>(false);
+    const [gameProfileError, setGameProfileError] = useState<boolean>(false);
 
     useEffect(() => {
         const storedGameId = localStorage.getItem('snakesAndLaddersGameId');
@@ -36,34 +39,19 @@ const GameIdPage = () => {
         console.log("Game ID created:", gameIdInput); 
         proceedToColorSelect();
     };
-
-    const replaceExistingGameId = () => {
-        localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
-        console.log("Game ID replaced:", gameIdInput); 
-        proceedToColorSelect();
-    };
-
+ 
     const handleEnterGameId = () => {
         // Validation checks
-        if (!gameIdInput.trim()) { 
-            return;
-        }
+        const isGameIdValid = gameIdInput.trim() !== ''; 
+        const isProfileSelected = gameProfile !== '';
         
-        if (!gameProfile) { 
-            return;
-        }
+        setGameIdError(!isGameIdValid);
+        setGameProfileError(!isProfileSelected);
 
-        const storedId = localStorage.getItem('snakesAndLaddersGameId');
-
-        // Game ID logic
-        if (storedId === gameIdInput) {
-            // Exact match - proceed directly
-            proceedToColorSelect();
-        } else if (!storedId) {
-            // No stored ID - ask to create new one 
-        } else {
-            // Different ID exists - ask to replace 
-        }
+        if (!isGameIdValid || !isProfileSelected) return;
+        
+        // gameId and profile have been selected. 
+        createNewGameId();
     };
 
     return (
@@ -90,6 +78,11 @@ const GameIdPage = () => {
                             name='gameIdInput'
                         />
                         </label>
+                        {
+                            gameIdError && <span className="game-id-error-text">
+                                Please enter game ID
+                            </span>
+                        }
                     </div>
                     <div className="game-id-input-container">
                         <label className="game-id-label">
@@ -107,6 +100,11 @@ const GameIdPage = () => {
                             ))}
                         </select>
                         </label>
+                        { 
+                            gameProfileError && <span className="game-id-error-text">
+                                Please select your profile
+                            </span>
+                        }
                     </div>
                     <div className="game-id-register-button">
                         <Button onClick={handleEnterGameId}>

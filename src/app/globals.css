@@ -266,7 +266,9 @@ body {
     max-width: 100%; 
     position: relative; 
     display:flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap:0.5rem;
 }
 
 .game-id-label{
@@ -283,6 +285,16 @@ body {
     line-height: 100%;
     letter-spacing: 0%;
     align-self: flex-start;
+}
+
+.game-id-error-text {
+    color: #E90000;
+    font-family: Helvetica Neue;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-left:20px;
 }
 
 .game-id-input {
