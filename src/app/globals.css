@@ -662,13 +662,42 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
+    border: 1px solid #d1d5db; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     font-size: 0.875rem;
-    font-weight: 600;
-    box-sizing: border-box;
+    font-weight: 600; 
+    background: linear-gradient(135deg, #f8f6ff 0%, #e6d7ff 15%, #c084fc 50%, #8b5cf6 100%);
+    box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
+    border: 0.51px solid #00369A
 }
+
+/* Pink gradient board-cell */
+.board-cell-pink {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f0f1 15%, #e8c1c8 30%, #D68B96 100%);
+}
+
+/* Purple gradient board-cell */
+.board-cell-purple {
+    background: linear-gradient(135deg, #ffffff 0%, #f3f0f8 15%, #c9b0e6 30%, #9E6DD9 100%);
+    box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
+
+}
+
+/* Teal gradient board-cell */
+.board-cell-teal {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7f7 15%, #b7d8d9 30%, #6FBEC1 100%);
+}
+
+/* Plain blue gradient board-cell */
+.board-cell-plain {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f3f6 15%, #bbc5d4 30%, #7791B5 100%);
+}
+
+/* White/Light blue gradient board-cell */
+.board-cell-white {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f7fc 15%, #d0dcf7 30%, #A1BBEF 100%);
+}
+
 /* Re-evaluate fixed sizes, preferring fluid ones */
 @media (min-width: 640px) {
     .board-cell {
