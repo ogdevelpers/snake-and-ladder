@@ -4,14 +4,19 @@ import { Modal, QuestionModal } from '@/components/Modal';
 import { formatTime, questionCells, questions, starClimbs } from '@/lib/gameConfig';
 import React, { useState, useEffect, useCallback } from 'react';
 
-const colorResolver = (cellNumber: number): string => {
-    const idx = (cellNumber) % 5;
+const colorResolver = (cellNumber: number): string => { 
+    const idx = (cellNumber) % 5; 
+    const isOddRow = Math.floor(cellNumber / 10) % 2 === 1;
+
+    if (idx === 0) return 'white';
     if (idx === 1) return 'plain'; 
     if (idx === 2) return 'pink' ;
-    if (idx === 3) return 'purple';
-    if (idx === 4) return 'teal' 
-    if (idx === 0) return 'white';
-    return 'plain';
+    if(  isOddRow) { 
+        if (idx === 3) return 'teal';
+        if (idx === 4) return 'purple';
+    }
+    if (idx === 3) return 'purple'; 
+    return 'teal';
 };
  
 
@@ -99,7 +104,7 @@ const GamePage = () => {
                     key={num}
                     className={`board-cell board-cell-${colorResolver(num)}  ${isQuestionCell ? 'board-cell-question' : (num % 2 === 0 ? 'board-cell-even' : 'board-cell-odd')}`}
                 >
-                    {num}
+                    {!starInfo && num}
                     {starInfo && <span className="game-icon-star" role="img" aria-label="star">⭐</span>}
                     {isPlayerHere && (
                         <div className="player-token" style={{ backgroundColor: selectedColor }}>

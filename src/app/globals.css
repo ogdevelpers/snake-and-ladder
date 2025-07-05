@@ -659,8 +659,7 @@ body {
 
 /* Individual board cells */
 .board-cell {
-  aspect-ratio: 1 / 1;
-  width: 100%;
+  aspect-ratio: 1 / 1; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -729,8 +728,7 @@ body {
 /* Laptops / Desktops (1025px - 1200px) */
 @media (min-width: 1025px) {
   .board-grid {
-    gap: 0.7vw;
-    width: 75vw;
+    gap: 0.7vw; 
     max-width: 850px;
   }
   
@@ -739,44 +737,7 @@ body {
   }
 }
 
-/* Large desktops (1201px - 1440px) */
-@media (min-width: 1201px) {
-  .board-grid {
-    gap: 12px; /* Fixed gap instead of vw */
-    width: 100%;
-    max-width: 700px; /* Set to 700px as requested */
-  }
-  
-  .board-cell {
-    width:100%;
-    font-size: clamp(0.9rem, 1.5rem, 1.3rem); /* Adjusted for fixed width */
-  }
-}
-/* Extra large desktops (1441px - 1680px) */
-@media (min-width: 1441px) {
-  .board-grid {
-    gap: 1vw;
-    width: 65vw;
-    max-width: 1000px;
-  }
-  
-  .board-cell {
-    font-size: clamp(1rem, 2.8vw, 1.4rem);
-  }
-}
 
-/* Ultra-wide screens (1681px+) */
-@media (min-width: 1681px) {
-  .board-grid {
-    gap: 1.2vw;
-    width: 60vw;
-    max-width: 1100px;
-  }
-  
-  .board-cell {
-    font-size: clamp(1.1rem, 3vw, 1.5rem);
-  }
-}
 
 /* Viewport height constraint - never exceed 70% of screen height */
 @media (max-height: 600px) {
