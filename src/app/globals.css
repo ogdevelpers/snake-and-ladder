@@ -642,11 +642,19 @@ body {
 /* Mobile First - Base styles */
 .board-grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+    grid-template: repeat(10, minmax(0, 1fr)) / repeat(10, minmax(0, 1fr));
   gap: 0.5vw;
   width: 95vw; /* Use almost full viewport width */
   max-width: 100%;
   margin: 0 auto;
+  min-height: 0;  /* NEW */
+  min-width: 0;   /* NEW; needed for Firefox */
+}
+
+@media(max-width:1200px){
+    .board-grid {
+        max-height: 70dvh;
+    }
 }
 
 /* Individual board cells */
@@ -662,6 +670,9 @@ body {
   box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
   border: 0.51px solid #00369A; 
   transition: transform 0.2s ease;
+  overflow: hidden;
+  min-width: 0;
+  min-height:0;
 }
 
 .board-cell:hover {
@@ -676,7 +687,7 @@ body {
   }
   
   .board-cell {
-    font-size: clamp(0.8rem, 1.2vw, 1.8rem);
+    font-size: clamp(0.8rem, 1.2vw, 1.5rem);
   }
 }
 
