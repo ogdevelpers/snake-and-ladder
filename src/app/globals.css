@@ -630,45 +630,151 @@ body {
     }
 }
 
+/*
+  Base styles for the grid container.
+  - It's a 10x10 grid that maintains a square aspect ratio.
+  - Its size is constrained by both the viewport width and 70% of the viewport height.
+*/
+/* Board Grid */
+/* Mobile First - Base styles */
 .board-grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 0.25rem;
-    max-width: 100%;
-    aspect-ratio: 1 / 1;
-    width: calc(100vw - 32px); /* Adjusted for layout padding on mobile */
-}
-@media (min-width: 640px) {
-    .board-grid {
-        gap: 0.5rem;
-        width: 550px;
-    }
-}
-@media (min-width: 768px) {
-    .board-grid {
-        width: 650px;
-    }
-}
-@media (min-width: 1024px) {
-    .board-grid {
-        width: 750px;
-    }
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.5vw;
+  width: 95vw; /* Use almost full viewport width */
+  max-width: 100%;
+  margin: 0 auto;
 }
 
+/* Individual board cells */
 .board-cell {
-    position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.5rem, 1.5vw, 1.2rem); /* Responsive font size */
+  font-weight: 600;
+  background: linear-gradient(135deg, #f8f6ff 0%, #e6d7ff 15%, #c084fc 50%, #8b5cf6 100%);
+  box-shadow: 1.01px 1.01px 7.1px 1.01px rgba(0, 54, 154, 0.2);
+  border: 0.51px solid #00369A;
+  border-radius: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+.board-cell:hover {
+  transform: scale(1.05);
+}
+
+/* Small phones (320px - 480px) */
+@media (max-width: 480px) {
+  .board-grid {
+    gap: 0.3vw;
+    width: 98vw;
+  }
+  
+  .board-cell {
+    font-size: clamp(0.8rem, 1.2vw, 1.8rem);
+  }
+}
+
+/* Large phones / Small tablets (481px - 640px) */
+@media (min-width: 481px) {
+  .board-grid {
+    gap: 0.4vw;
+    width: 90vw;
+    max-width: 600px;
+  }
+}
+
+/* Tablets (641px - 768px) */
+@media (min-width: 641px) {
+  .board-grid {
+    gap: 0.5vw;
+    width: 85vw;
+    max-width: 650px;
+  }
+  
+  .board-cell {
+    font-size: clamp(0.6rem, 1.8vw, 1rem);
+  }
+}
+
+/* Small laptops (769px - 1024px) */
+@media (min-width: 769px) {
+  .board-grid {
+    gap: 0.6vw;
+    width: 80vw;
+    max-width: 750px;
+  }
+  
+  .board-cell {
+    font-size: clamp(0.7rem, 2vw, 1.1rem);
+  }
+}
+
+/* Laptops / Desktops (1025px - 1200px) */
+@media (min-width: 1025px) {
+  .board-grid {
+    gap: 0.7vw;
+    width: 75vw;
+    max-width: 850px;
+  }
+  
+  .board-cell {
+    font-size: clamp(0.8rem, 2.2vw, 1.2rem);
+  }
+}
+
+/* Large desktops (1201px - 1440px) */
+@media (min-width: 1201px) {
+  .board-grid {
+    gap: 12px; /* Fixed gap instead of vw */
     width: 100%;
-    height: 10vw; /* Keep 10vw for responsiveness relative to viewport width for square cells */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #d1d5db; 
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    font-size: 0.875rem;
-    font-weight: 600; 
-    background: linear-gradient(135deg, #f8f6ff 0%, #e6d7ff 15%, #c084fc 50%, #8b5cf6 100%);
-    box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
-    border: 0.51px solid #00369A
+    max-width: 1000px; /* Set to 1200px as requested */
+  }
+  
+  .board-cell {
+    font-size: clamp(0.9rem, 1.5rem, 1.3rem); /* Adjusted for fixed width */
+  }
+}
+/* Extra large desktops (1441px - 1680px) */
+@media (min-width: 1441px) {
+  .board-grid {
+    gap: 1vw;
+    width: 65vw;
+    max-width: 1000px;
+  }
+  
+  .board-cell {
+    font-size: clamp(1rem, 2.8vw, 1.4rem);
+  }
+}
+
+/* Ultra-wide screens (1681px+) */
+@media (min-width: 1681px) {
+  .board-grid {
+    gap: 1.2vw;
+    width: 60vw;
+    max-width: 1100px;
+  }
+  
+  .board-cell {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+  }
+}
+
+/* Viewport height constraint - never exceed 70% of screen height */
+@media (max-height: 600px) {
+  .board-grid {
+    width: min(95vw, 70vh);
+  }
+}
+
+@media (max-height: 800px) and (min-width: 768px) {
+  .board-grid {
+    width: min(80vw, 70vh);
+  }
 }
 
 /* Pink gradient board-cell */

@@ -13,13 +13,7 @@ const colorResolver = (cellNumber: number): string => {
     if (idx === 0) return 'white';
     return 'plain';
 };
-
-// pink: background: #D68B96;
-// plain : background: #7791B5;
-// purple: background: #9E6DD9;
-// teal : background: #6FBEC1;
-// white: background: #A1BBEF;
-
+ 
 
 
 const GamePage = () => {
