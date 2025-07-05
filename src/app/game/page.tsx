@@ -4,6 +4,23 @@ import { Modal, QuestionModal } from '@/components/Modal';
 import { formatTime, questionCells, questions, starClimbs } from '@/lib/gameConfig';
 import React, { useState, useEffect, useCallback } from 'react';
 
+const colorResolver = (cellNumber: number): string => { 
+    const idx = (cellNumber) % 5; 
+    const isOddRow = Math.floor(cellNumber / 10) % 2 === 1;
+
+    if (idx === 0) return 'white';
+    if (idx === 1) return 'plain'; 
+    if (idx === 2) return 'pink' ;
+    if(  isOddRow) { 
+        if (idx === 3) return 'teal';
+        if (idx === 4) return 'purple';
+    }
+    if (idx === 3) return 'purple'; 
+    return 'teal';
+};
+ 
+
+
 const GamePage = () => {
     const [playerPosition, setPlayerPosition] = useState(1);
     const [diceValue, setDiceValue] = useState(0);
@@ -12,7 +29,7 @@ const GamePage = () => {
     const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState('');
-    const [timer, setTimer] = useState(180); // 3 minutes in seconds
+    const [timer, setTimer] = useState(180000); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
@@ -76,12 +93,7 @@ const GamePage = () => {
             }
             // Add the completed row to the reorderedBoard
             reorderedBoard.push(...row);
-        }
-        // Removed: reorderedBoard.reverse();
-        // This ensures that the board starts with the top row (100, 99, ..., 91)
-        // and ends with the bottom row (1, 2, ..., 10),
-        // achieving 100 at top-left and 1 at bottom-left with S-shape.
-
+        } 
         return reorderedBoard.map((num) => {
             const isQuestionCell = questionCells.includes(num);
             const isPlayerHere = playerPosition === num;
@@ -90,9 +102,9 @@ const GamePage = () => {
             return (
                 <div
                     key={num}
-                    className={`board-cell ${isQuestionCell ? 'board-cell-question' : (num % 2 === 0 ? 'board-cell-even' : 'board-cell-odd')}`}
+                    className={`board-cell board-cell-${colorResolver(num)}  ${isQuestionCell ? 'board-cell-question' : (num % 2 === 0 ? 'board-cell-even' : 'board-cell-odd')}`}
                 >
-                    {num}
+                    {!starInfo && num}
                     {starInfo && <span className="game-icon-star" role="img" aria-label="star">⭐</span>}
                     {isPlayerHere && (
                         <div className="player-token" style={{ backgroundColor: selectedColor }}>

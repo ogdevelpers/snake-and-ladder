@@ -16,7 +16,9 @@ body {
     position: relative;
     min-height: 100dvh;
     max-height: 100dvh; 
-    background-color: #1268B3; /* bg-gray-50 */
+    background: linear-gradient(white 10%, #006AE1 50%);
+
+ /* bg-gray-50 */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -560,6 +562,7 @@ body {
     font-family: 'Inter', sans-serif;
     width: 100%;
     box-sizing: border-box;
+    background: linear-gradient(white 10%, #006AE1 50%);
 }
 @media (min-width: 640px) {
     .game-screen-main {
@@ -630,45 +633,152 @@ body {
     }
 }
 
+/*
+  Base styles for the grid container.
+  - It's a 10x10 grid that maintains a square aspect ratio.
+  - Its size is constrained by both the viewport width and 70% of the viewport height.
+*/
+/* Board Grid */
+/* Mobile First - Base styles */
 .board-grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 0.25rem;
-    max-width: 100%;
-    aspect-ratio: 1 / 1;
-    width: calc(100vw - 32px); /* Adjusted for layout padding on mobile */
+  display: grid;
+    grid-template: repeat(10, minmax(0, 1fr)) / repeat(10, minmax(0, 1fr));
+  gap: 0.5vw;
+  width: 95vw; /* Use almost full viewport width */
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 0;  /* NEW */
+  min-width: 0;   /* NEW; needed for Firefox */
 }
-@media (min-width: 640px) {
+
+@media(max-width:1200px){
     .board-grid {
-        gap: 0.5rem;
-        width: 550px;
-    }
-}
-@media (min-width: 768px) {
-    .board-grid {
-        width: 650px;
-    }
-}
-@media (min-width: 1024px) {
-    .board-grid {
-        width: 750px;
+        max-height: 70dvh;
     }
 }
 
+/* Individual board cells */
 .board-cell {
-    position: relative;
-    width: 100%;
-    height: 10vw; /* Keep 10vw for responsiveness relative to viewport width for square cells */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    font-size: 0.875rem;
-    font-weight: 600;
-    box-sizing: border-box;
+  aspect-ratio: 1 / 1; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.5rem, 1.5vw, 1.2rem); /* Responsive font size */
+  font-weight: 600;
+  background: linear-gradient(135deg, #f8f6ff 0%, #e6d7ff 15%, #c084fc 50%, #8b5cf6 100%);
+  box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
+  border: 0.51px solid #00369A; 
+  transition: transform 0.2s ease;
+  overflow: hidden;
+  min-width: 0;
+  min-height:0;
 }
+
+.board-cell:hover {
+  transform: scale(1.05);
+}
+
+/* Small phones (320px - 480px) */
+@media (max-width: 480px) {
+  .board-grid {
+    gap: 0.3vw;
+    width: 98vw;
+  }
+  
+  .board-cell {
+    font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+  }
+}
+
+/* Large phones / Small tablets (481px - 640px) */
+@media (min-width: 481px) {
+  .board-grid {
+    gap: 0.4vw;
+    width: 90vw;
+    max-width: 600px;
+  }
+}
+
+/* Tablets (641px - 768px) */
+@media (min-width: 641px) {
+  .board-grid {
+    gap: 0.5vw;
+    width: 85vw;
+    max-width: 650px;
+  }
+  
+  .board-cell {
+    font-size: clamp(0.6rem, 1.8vw, 1rem);
+  }
+}
+
+/* Small laptops (769px - 1024px) */
+@media (min-width: 769px) {
+  .board-grid {
+    gap: 0.6vw;
+    width: 80vw;
+    max-width: 750px;
+  }
+  
+  .board-cell {
+    font-size: clamp(0.7rem, 2vw, 1.1rem);
+  }
+}
+
+/* Laptops / Desktops (1025px - 1200px) */
+@media (min-width: 1025px) {
+  .board-grid {
+    gap: 0.7vw; 
+    max-width: 850px;
+  }
+  
+  .board-cell {
+    font-size: clamp(0.8rem, 2.2vw, 1.2rem);
+  }
+}
+
+
+
+/* Viewport height constraint - never exceed 70% of screen height */
+@media (max-height: 600px) {
+  .board-grid {
+    width: min(95vw, 70vh);
+  }
+}
+
+@media (max-height: 800px) and (min-width: 768px) {
+  .board-grid {
+    width: min(80vw, 70vh);
+  }
+}
+
+/* Pink gradient board-cell */
+.board-cell-pink {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f0f1 15%, #e8c1c8 30%, #D68B96 35%);
+}
+
+/* Purple gradient board-cell */
+.board-cell-purple {
+    background: linear-gradient(135deg, #ffffff 0%, #f3f0f8 15%, #c9b0e6 30%, #9E6DD9 35%);
+    box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
+
+}
+
+/* Teal gradient board-cell */
+.board-cell-teal {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7f7 15%, #b7d8d9 30%, #6FBEC1 35%);
+}
+
+/* Plain blue gradient board-cell */
+.board-cell-plain {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f3f6 15%, #bbc5d4 30%, #7791B5 35%);
+}
+
+/* White/Light blue gradient board-cell */
+.board-cell-white {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f7fc 15%, #d0dcf7 30%, #A1BBEF 35%);
+}
+
 /* Re-evaluate fixed sizes, preferring fluid ones */
 @media (min-width: 640px) {
     .board-cell {
