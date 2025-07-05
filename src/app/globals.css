@@ -16,7 +16,8 @@ body {
     position: relative;
     min-height: 100dvh;
     max-height: 100dvh; 
-    background-color: #1268B3; /* bg-gray-50 */
+    background: #006AE1;
+ /* bg-gray-50 */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -560,6 +561,7 @@ body {
     font-family: 'Inter', sans-serif;
     width: 100%;
     box-sizing: border-box;
+    background: linear-gradient(white 10%, #006AE1 50%);
 }
 @media (min-width: 640px) {
     .game-screen-main {
@@ -656,9 +658,8 @@ body {
   font-size: clamp(0.5rem, 1.5vw, 1.2rem); /* Responsive font size */
   font-weight: 600;
   background: linear-gradient(135deg, #f8f6ff 0%, #e6d7ff 15%, #c084fc 50%, #8b5cf6 100%);
-  box-shadow: 1.01px 1.01px 7.1px 1.01px rgba(0, 54, 154, 0.2);
-  border: 0.51px solid #00369A;
-  border-radius: 0.25rem;
+  box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
+  border: 0.51px solid #00369A; 
   transition: transform 0.2s ease;
 }
 
@@ -779,29 +780,29 @@ body {
 
 /* Pink gradient board-cell */
 .board-cell-pink {
-    background: linear-gradient(135deg, #ffffff 0%, #f5f0f1 15%, #e8c1c8 30%, #D68B96 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f5f0f1 15%, #e8c1c8 30%, #D68B96 35%);
 }
 
 /* Purple gradient board-cell */
 .board-cell-purple {
-    background: linear-gradient(135deg, #ffffff 0%, #f3f0f8 15%, #c9b0e6 30%, #9E6DD9 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f3f0f8 15%, #c9b0e6 30%, #9E6DD9 35%);
     box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
 
 }
 
 /* Teal gradient board-cell */
 .board-cell-teal {
-    background: linear-gradient(135deg, #ffffff 0%, #f0f7f7 15%, #b7d8d9 30%, #6FBEC1 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7f7 15%, #b7d8d9 30%, #6FBEC1 35%);
 }
 
 /* Plain blue gradient board-cell */
 .board-cell-plain {
-    background: linear-gradient(135deg, #ffffff 0%, #f1f3f6 15%, #bbc5d4 30%, #7791B5 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f3f6 15%, #bbc5d4 30%, #7791B5 35%);
 }
 
 /* White/Light blue gradient board-cell */
 .board-cell-white {
-    background: linear-gradient(135deg, #ffffff 0%, #f5f7fc 15%, #d0dcf7 30%, #A1BBEF 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f5f7fc 15%, #d0dcf7 30%, #A1BBEF 35%);
 }
 
 /* Re-evaluate fixed sizes, preferring fluid ones */
