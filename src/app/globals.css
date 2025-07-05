@@ -16,7 +16,8 @@ body {
     position: relative;
     min-height: 100dvh;
     max-height: 100dvh; 
-    background: #006AE1;
+    background: linear-gradient(white 10%, #006AE1 50%);
+
  /* bg-gray-50 */
     display: flex;
     flex-direction: column;
@@ -732,10 +733,11 @@ body {
   .board-grid {
     gap: 12px; /* Fixed gap instead of vw */
     width: 100%;
-    max-width: 1000px; /* Set to 1200px as requested */
+    max-width: 700px; /* Set to 700px as requested */
   }
   
   .board-cell {
+    width:100%;
     font-size: clamp(0.9rem, 1.5rem, 1.3rem); /* Adjusted for fixed width */
   }
 }
