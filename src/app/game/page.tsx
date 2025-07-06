@@ -161,10 +161,10 @@ const GamePage = () => {
     }, [timer, resetGame]);
 
     // Handles the dice roll and player movement
-    const rollDice = useCallback(() => {
+    const rollDice = useCallback((diceNumber:number) => {
         if (!gameStarted || !showDiceRollButton) return;
 
-        const roll = Math.floor(Math.random() * 6) + 1;
+        const roll = diceNumber;
         setDiceValue(roll);
         setShowDiceRollButton(false);
 
