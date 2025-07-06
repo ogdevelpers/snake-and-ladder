@@ -170,7 +170,7 @@ const GamePage = () => {
 
         let newPosition = playerPosition + roll;
         if (newPosition > 100) {
-            newPosition = 100; // Player stops at 100, no bouncing back
+            newPosition = playerPosition; // If overshoot, stay in place
         }
 
         setTimeout(() => {
