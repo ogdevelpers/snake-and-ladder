@@ -581,6 +581,8 @@ body {
     width: 100%;
     box-sizing: border-box;
     background: linear-gradient(white 10%, #006AE1 50%);
+    height:100dvh;
+    max-height:100dvh;
 }
 @media (min-width: 640px) {
     .game-screen-main {

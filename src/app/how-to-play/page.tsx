@@ -6,6 +6,7 @@ import { formatTime } from '../../lib/gameConfig'; // Adjust path for App Router
 import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
+import Footer from '@/components/ui/Footer/Footer';
 
 const HowToPlayPage = () => {
     const router = useRouter();
@@ -51,6 +52,9 @@ const HowToPlayPage = () => {
                 >
                     Let&apos;s Play
                 </Button>
+            </section>
+            <section className="home-footer">
+                <Footer variant="choice" />
             </section>
         </div>
     );

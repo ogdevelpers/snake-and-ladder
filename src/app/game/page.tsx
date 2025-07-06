@@ -1,6 +1,7 @@
 'use client'; // This directive marks the component for client-side rendering
 
 import { Modal, QuestionModal } from '@/components/Modal';
+import Footer from '@/components/ui/Footer/Footer';
 import Logo from '@/components/ui/Logo/Logo';
 import { formatTime, questionCells, questions, starClimbs } from '@/lib/gameConfig';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
@@ -252,6 +253,10 @@ const GamePage = () => {
                     Roll Dice!
                 </button>
             </div>
+
+            <section className="home-footer">
+                <Footer variant="game" />
+            </section>
 
             {showQuestionModal && currentQuestion && (
                 <QuestionModal

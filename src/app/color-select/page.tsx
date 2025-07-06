@@ -5,12 +5,13 @@ import { useRouter } from 'next/navigation'; // Changed import for App Router
 import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
+import Footer from '@/components/ui/Footer/Footer';
 const colors = [
-        { name: 'Red', hex: '#870303' },
-        { name: 'Green', hex: '#23992E' },
-        { name: 'Yellow', hex: '#FCDE63' },
-        { name: 'Blue', hex: '#16759E' },
-    ];
+    { name: 'Red', hex: '#870303' },
+    { name: 'Green', hex: '#23992E' },
+    { name: 'Yellow', hex: '#FCDE63' },
+    { name: 'Blue', hex: '#16759E' },
+];
 
 const ColorSelectPage = () => {
     const router = useRouter();
@@ -41,27 +42,30 @@ const ColorSelectPage = () => {
                 Select Your Token Colour
             </span>
             <div className="color-grid-outer">
-                            <div className="color-grid">
-                {colors.map((color) => (
-                    <ColorOption
-                        key={color.name}
-                        color={color.name}
-                        isSelected={selectedColor === color.hex}
-                        onClick={() => setSelectedColor(color.hex)}
-                    />
-                ))}
+                <div className="color-grid">
+                    {colors.map((color) => (
+                        <ColorOption
+                            key={color.name}
+                            color={color.name}
+                            isSelected={selectedColor === color.hex}
+                            onClick={() => setSelectedColor(color.hex)}
+                        />
+                    ))}
+                </div>
+                {
+                    selectedColor &&
+                    (
+                        <Button
+                            onClick={handleNext}
+                            className="next-button"
+                        >
+                            Continue
+                        </Button>)
+                }
             </div>
-            {
-                selectedColor && 
-                (
-                <Button
-                onClick={handleNext}
-                className="next-button"
-            >
-                Continue
-            </Button>)
-            }
-            </div>
+            <section className="home-footer">
+                <Footer variant="choice" />
+            </section>
 
         </div>
     );
