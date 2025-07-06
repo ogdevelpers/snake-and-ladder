@@ -1,6 +1,7 @@
 'use client'; // This directive marks the component for client-side rendering
 
 import { Modal, QuestionModal } from '@/components/Modal';
+import DiceRoller from '@/components/ui/DiceComponent/DiceComponent';
 import Footer from '@/components/ui/Footer/Footer';
 import Logo from '@/components/ui/Logo/Logo';
 import { formatTime, questionCells, questions, starClimbs } from '@/lib/gameConfig';
@@ -29,7 +30,7 @@ const GamePage = () => {
     const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState('');
-    const [timer, setTimer] = useState(180); // 3 minutes in seconds
+    const [timer, setTimer] = useState(1800); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
@@ -241,18 +242,19 @@ const GamePage = () => {
                 {boardCells}
             </div>
 
-            <div className="game-controls">
-                <div className="dice-value-display">
-                    Dice: {diceValue > 0 ? diceValue : '🎲'}
+            <section className="game-controls">
+                <div className="dice-reveal">
+
                 </div>
-                <button
-                    onClick={rollDice}
-                    disabled={!showDiceRollButton || !gameStarted}
-                    className={`roll-dice-button ${!showDiceRollButton || !gameStarted ? 'roll-dice-button-disabled' : ''}`}
-                >
-                    Roll Dice!
-                </button>
-            </div>
+                <div className="timer-display">
+                    <span className="timer-label">Time:</span>
+                    <span className="timer-value">{formattedTime}</span>
+                </div>
+            <DiceRoller
+                onRoll={rollDice} // Pass your rollDice function
+                disabled={!showDiceRollButton || !gameStarted} // Pass your disabled logic
+            />
+            </section>
 
             <section className="home-footer">
                 <Footer variant="game" />

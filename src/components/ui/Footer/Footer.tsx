@@ -15,7 +15,7 @@ export default function Footer({ variant = 'default' }: FooterProps) {
       
       {/* Decorative image at the bottom */}
       <img
-        src="/footer/landing_footer.png"
+        src={imgSrc}
         alt="Bottom Decoration"
         className={styles.footerBottomImage}
       />

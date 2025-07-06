@@ -866,19 +866,39 @@ body {
 
 .game-controls {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    display: flex; 
     align-items: center;
-    background-color: white;
+    background-color: transparent;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     margin-top: 1rem;
+    outline: 20px solid red;
 }
 @media (min-width: 640px) {
     .game-controls {
         margin-top: 1.5rem;
     }
+}
+
+.timer-display{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+}
+
+.timer-display span {
+    font-family: 'Brandon Text';
+    font-weight: 450;
+    font-style: Bold;
+    font-size: 16px; 
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+
 }
 .dice-value-display {
     font-size: 1.875rem;
