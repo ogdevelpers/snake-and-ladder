@@ -5,15 +5,16 @@ interface FooterProps {
 }
 
 export default function Footer({ variant = 'default' }: FooterProps) {
-    const footerClass = variant === 'default' 
-        ? `${styles.footer} ${styles.footerDefault}` 
-        : `${styles.footer} ${styles.footerGame}`;
-
-    return (
-        <div className={styles.footerClass}>
-            <div className={styles.footerContainer}>
-                {/* Content can go here if needed */}
-            </div>
-        </div>
-    )
+ return (
+    <div className={styles.footer}>
+      {/* Your existing footer content here */}
+      
+      {/* Decorative image at the bottom */}
+      <img
+        src="/footer/landing_footer.png"
+        alt="Bottom Decoration"
+        className={styles.footerBottomImage}
+      />
+    </div>
+  );
 }
