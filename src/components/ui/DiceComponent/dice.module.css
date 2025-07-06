@@ -4,7 +4,7 @@
     /* Basic button styling */
     background: #00369A;
     color: white;
-    padding: 15px 30px;
+    padding: 15px 20px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -48,8 +48,8 @@
 }
 
 .dice-face {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 72px;
     background-color: #f0f0f0; /* Light grey for dice face */
     border: 3px solid #333;
     border-radius: 10px;

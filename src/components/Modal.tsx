@@ -51,7 +51,7 @@ export const GameIdNotFoundModal = ({ message, onConfirm, onCancel }: any) => (
 export const QuestionModal = ({ question, options, onAnswer }: any) => (
     <div className="modal-overlay modal-question">
         <div className="modal-content modal-question-content">
-            <h3 className="modal-question-title">{question.question}</h3>
+            <h3 className="modal-question-title">{question}</h3>
             <div className="modal-question-options">
                 {options.map((option: any, index: number) => (
                     <button

@@ -141,9 +141,9 @@ const GamePage = () => {
                 </div>
             );
         });
-    }, [playerPosition, selectedColor]); // Only re-compute when these change
+    }, [playerPosition, selectedColor]);
 
-    // Handles the game win condition
+
     const handleGameWin = useCallback(() => {
         setGameStarted(false);
         const timeTaken = 180 - timer;
