@@ -1,47 +1,19 @@
-/* Base footer styles */
-.footerClass{
-    width:100%; 
-    outline:3px solid red;
-}
-
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
-    pointer-events: none; /* Allows clicks to pass through */
-    z-index: -1; /* Keeps footer behind other content */
-    background-size: cover; /* Covers entire width, maintains aspect ratio */
-    background-position: bottom center; /* Anchors to bottom, centers horizontally */
-    background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  height:100%;
+  z-index: 2;
 }
 
-.footerContainer {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-/* Default variant background */
-.footerDefault {
-    background-image: url('/landing_footer.png');
-    background-size: 100% auto; /* Full width, auto height */
-}
-
-/* Game variant background */
-.footerGame {
-    background-image: url('/game_footer.png');
-}
-
-/* Alternative: If you want the image to stretch to fill exactly */
-.footerStretch {
-    background-size: 100% auto; /* Full width, auto height */
-    background-position: bottom center;
-}
-
-/* Alternative: If you want to contain the entire image */
-.footerContain {
-    background-size: contain;
-    background-position: bottom center;
+/* Image at the bottom of the screen */
+.footerBottomImage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right:0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
+  width:100%;
 }

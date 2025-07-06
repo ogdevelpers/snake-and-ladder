@@ -7,6 +7,7 @@ import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
 import { GameProfileTypes } from '@/types/GameComponentTypes';
 import { create } from 'domain';
+import Footer from '@/components/ui/Footer/Footer';
 
 
 const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
@@ -19,7 +20,7 @@ const GameIdPage = () => {
     const router = useRouter();
     const [gameIdInput, setGameIdInput] = useState('');
     const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');
-    const [inputError, setInputError] = useState<boolean>(true); 
+    const [inputError, setInputError] = useState<boolean>(true);
     const [gameIdError, setGameIdError] = useState<boolean>(false);
     const [gameProfileError, setGameProfileError] = useState<boolean>(false);
 
@@ -37,24 +38,24 @@ const GameIdPage = () => {
 
     const createNewGameId = () => {
         localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
-        console.log("Game ID created:", gameIdInput);  
+        console.log("Game ID created:", gameIdInput);
     };
 
     const createNewGameProfile = () => {
         localStorage.setItem('snakesAndLaddersGameProfile', gameProfile);
         console.log("Game Profile created:", gameProfile);
     }
- 
+
     const handleEnterGameId = () => {
         // Validation checks
-        const isGameIdValid = gameIdInput.trim() !== ''; 
+        const isGameIdValid = gameIdInput.trim() !== '';
         const isProfileSelected = gameProfile !== '';
-        
+
         setGameIdError(!isGameIdValid);
         setGameProfileError(!isProfileSelected);
 
         if (!isGameIdValid || !isProfileSelected) return;
-        
+
         // gameId and profile have been selected. 
         createNewGameId();
         createNewGameProfile();
@@ -78,14 +79,14 @@ const GameIdPage = () => {
                     <div className="game-id-input-container">
                         <label className="game-id-label">
                             <span className="game-id-label-text">Game ID</span>
-                        <input
-                            type="text"
-                            value={gameIdInput}
-                            onChange={(e) => setGameIdInput(e.target.value)}
-                            placeholder="E.g. 12345"
-                            className="game-id-input"
-                            name='gameIdInput'
-                        />
+                            <input
+                                type="text"
+                                value={gameIdInput}
+                                onChange={(e) => setGameIdInput(e.target.value)}
+                                placeholder="E.g. 12345"
+                                className="game-id-input"
+                                name='gameIdInput'
+                            />
                         </label>
                         {
                             gameIdError && <span className="game-id-error-text">
@@ -96,20 +97,20 @@ const GameIdPage = () => {
                     <div className="game-id-input-container">
                         <label className="game-id-label">
                             <span className="game-id-label-text">Select Your Profile</span>
-                        <select
-                            value={gameProfile}
-                            onChange={(e) => setGameProfile(e.target.value as GameProfileTypes)}
-                            className="game-id-input"
-                        >
-                            <option value="">Select Profile Type</option>
-                            {GAME_PROFILE_OPTIONS.map((option) => (
-                                <option key={option} value={option}>
-                                    {option}
-                                </option>
-                            ))}
-                        </select>
+                            <select
+                                value={gameProfile}
+                                onChange={(e) => setGameProfile(e.target.value as GameProfileTypes)}
+                                className="game-id-input"
+                            >
+                                <option value="">Select Profile Type</option>
+                                {GAME_PROFILE_OPTIONS.map((option) => (
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
                         </label>
-                        { 
+                        {
                             gameProfileError && <span className="game-id-error-text">
                                 Please select your profile
                             </span>
@@ -122,8 +123,11 @@ const GameIdPage = () => {
                     </div>
                 </div>
             </section>
+            <section className="home-footer">
+                <Footer variant="default" />
+            </section>
 
- 
+
         </div>
     );
 };

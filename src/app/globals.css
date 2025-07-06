@@ -6,6 +6,7 @@ body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden; /* Prevent horizontal scrolling */
   max-height: 100dvh;
+  padding: 0;
 }
 
 *{
@@ -17,12 +18,10 @@ body {
     min-height: 100dvh;
     max-height: 100dvh; 
     background: linear-gradient(white 10%, #006AE1 50%);
-
- /* bg-gray-50 */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
     width: 100%; /* Ensure it takes full width */
     box-sizing: border-box; /* Include padding in width */
@@ -35,7 +34,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     min-height: calc(100vh - 2rem); /* Adjusted for app-container padding */
-    padding: 1rem;
+    padding: 0;
     text-align: center;
     width: 100%;
     box-sizing: border-box; 
@@ -61,7 +60,8 @@ body {
 }
 
 .home-footer{
-    outline:19px solid green; 
+    width:100%;
+    flex-grow:1;
 }
 
 /* Modal Styles - common to all pages that use modals */
@@ -212,6 +212,25 @@ body {
         font-size: 3.75rem;
     }
 }
+
+.game-home-title {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 800; 
+    letter-spacing: -0.025em;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    height:100%;
+    overflow:hidden;
+}
+
+.game-home-logo{
+    width:fit-content;
+    margin:0 auto;
+}
+
 .home-image-container {
     margin-bottom: 2rem;
 }
@@ -557,12 +576,13 @@ body {
     align-items: center;
     justify-content: space-between;
     min-height: calc(100vh - 2rem); /* Adjusted for app-container padding */
-    background-color: #f3f4f6;
-    padding: 0.5rem;
+    background-color: #f3f4f6; 
     font-family: 'Inter', sans-serif;
     width: 100%;
     box-sizing: border-box;
     background: linear-gradient(white 10%, #006AE1 50%);
+    height:100dvh;
+    max-height:100dvh;
 }
 @media (min-width: 640px) {
     .game-screen-main {
@@ -573,14 +593,15 @@ body {
 .game-header {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; 
     align-items: center;
-    background-color: white;
-    padding: 0.75rem;
+    background-color:transparent;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     margin-bottom: 0.75rem;
+    max-height:15dvh;
 }
+
 @media (min-width: 640px) {
     .game-header {
         margin-bottom: 1rem;
@@ -845,19 +866,39 @@ body {
 
 .game-controls {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    display: flex; 
     align-items: center;
-    background-color: white;
+    background-color: transparent;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     margin-top: 1rem;
+    outline: 20px solid red;
 }
 @media (min-width: 640px) {
     .game-controls {
         margin-top: 1.5rem;
     }
+}
+
+.timer-display{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+}
+
+.timer-display span {
+    font-family: 'Brandon Text';
+    font-weight: 450;
+    font-style: Bold;
+    font-size: 16px; 
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+
 }
 .dice-value-display {
     font-size: 1.875rem;

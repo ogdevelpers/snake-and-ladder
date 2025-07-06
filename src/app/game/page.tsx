@@ -1,25 +1,26 @@
 'use client'; // This directive marks the component for client-side rendering
 
 import { Modal, QuestionModal } from '@/components/Modal';
+import DiceRoller from '@/components/ui/DiceComponent/DiceComponent';
+import Footer from '@/components/ui/Footer/Footer';
+import Logo from '@/components/ui/Logo/Logo';
 import { formatTime, questionCells, questions, starClimbs } from '@/lib/gameConfig';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 
-const colorResolver = (cellNumber: number): string => { 
-    const idx = (cellNumber) % 5; 
+const colorResolver = (cellNumber: number): string => {
+    const idx = (cellNumber) % 5;
     const isOddRow = Math.floor(cellNumber / 10) % 2 === 1;
 
     if (idx === 0) return 'white';
-    if (idx === 1) return 'plain'; 
-    if (idx === 2) return 'pink' ;
-    if(  isOddRow) { 
+    if (idx === 1) return 'plain';
+    if (idx === 2) return 'pink';
+    if (isOddRow) {
         if (idx === 3) return 'teal';
         if (idx === 4) return 'purple';
     }
-    if (idx === 3) return 'purple'; 
+    if (idx === 3) return 'purple';
     return 'teal';
 };
- 
-
 
 const GamePage = () => {
     const [playerPosition, setPlayerPosition] = useState(1);
@@ -29,11 +30,14 @@ const GamePage = () => {
     const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState('');
-    const [timer, setTimer] = useState(180000); // 3 minutes in seconds
+    const [timer, setTimer] = useState(1800); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
+
+    // Use useRef to store the timer interval ID
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     // Load selected color from localStorage and start the game on mount
     useEffect(() => {
@@ -44,25 +48,48 @@ const GamePage = () => {
         setGameStarted(true);
     }, []);
 
-    // Game Timer Effect
+    // Optimized Game Timer Effect - only runs when gameStarted changes
     useEffect(() => {
-        let timerId: NodeJS.Timeout;
-        if (gameStarted && timer > 0) {
-            timerId = setInterval(() => {
-                setTimer((prev) => prev - 1);
+        if (gameStarted) {
+            // Clear any existing timer
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+            }
+
+            // Start new timer
+            timerRef.current = setInterval(() => {
+                setTimer((prev) => {
+                    if (prev <= 1) {
+                        // Time's up
+                        setGameStarted(false);
+                        setResultModalMessage("Time's up! Better luck next time!");
+                        setShowResultModal(true);
+                        setShowDiceRollButton(false);
+                        setModalConfirmAction(() => () => {
+                            setShowResultModal(false);
+                            resetGame();
+                        });
+                        return 0;
+                    }
+                    return prev - 1;
+                });
             }, 1000);
-        } else if (gameStarted && timer === 0) {
-            setGameStarted(false);
-            setResultModalMessage("Time's up! Better luck next time!");
-            setShowResultModal(true);
-            setShowDiceRollButton(false);
-            setModalConfirmAction(() => () => {
-                setShowResultModal(false);
-                resetGame();
-            });
+        } else {
+            // Clear timer when game stops
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+                timerRef.current = null;
+            }
         }
-        return () => clearInterval(timerId);
-    }, [gameStarted, timer]);
+
+        // Cleanup on unmount
+        return () => {
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+                timerRef.current = null;
+            }
+        };
+    }, [gameStarted]); // Only depends on gameStarted
 
     // Resets the game state and navigates home
     const resetGame = useCallback(() => {
@@ -76,8 +103,8 @@ const GamePage = () => {
         window.location.href = '/';
     }, []);
 
-    // Generates the board cells (1-100)
-    const generateBoard = useCallback(() => {
+    // Memoized board generation - only re-renders when playerPosition or selectedColor changes
+    const boardCells = useMemo(() => {
         const reorderedBoard = [];
         // Iterate from the top row (index 9) down to the bottom row (index 0)
         for (let r = 9; r >= 0; r--) {
@@ -93,7 +120,7 @@ const GamePage = () => {
             }
             // Add the completed row to the reorderedBoard
             reorderedBoard.push(...row);
-        } 
+        }
         return reorderedBoard.map((num) => {
             const isQuestionCell = questionCells.includes(num);
             const isPlayerHere = playerPosition === num;
@@ -114,7 +141,7 @@ const GamePage = () => {
                 </div>
             );
         });
-    }, [playerPosition, selectedColor]);
+    }, [playerPosition, selectedColor]); // Only re-compute when these change
 
     // Handles the game win condition
     const handleGameWin = useCallback(() => {
@@ -159,7 +186,7 @@ const GamePage = () => {
             }
         }, 1000);
     }, [gameStarted, showDiceRollButton, playerPosition, handleGameWin]);
-    
+
     // Handles the outcome of answering a question
     const handleAnswer = useCallback((selectedOption: string) => {
         setShowQuestionModal(false);
@@ -197,37 +224,41 @@ const GamePage = () => {
         });
     }, [currentQuestion, playerPosition, handleGameWin]);
 
+    // Memoized formatted time to avoid recalculation
+    const formattedTime = useMemo(() => formatTime(timer), [timer]);
+
     return (
         <div className="game-screen-main">
-
-            
             <div className="game-header">
-                <div>Time: {formatTime(timer)}</div>
-                <div>Player Position: {playerPosition}</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div className="player-token" style={{ position: 'static', width: '30px', height: '30px', fontSize: '14px' }}>
-                        P
+                <section className="game-home-title">
+                    <div className="game-home-logo">
+                        <Logo src={"/game_logo.png"} />
                     </div>
-                    <span>You</span>
-                </div>
+                </section>
+
             </div>
 
             <div className="board-grid">
-                {generateBoard()}
+                {boardCells}
             </div>
 
-            <div className="game-controls">
-                <div className="dice-value-display">
-                    Dice: {diceValue > 0 ? diceValue : '🎲'}
+            <section className="game-controls">
+                <div className="dice-reveal">
+
                 </div>
-                <button
-                    onClick={rollDice}
-                    disabled={!showDiceRollButton || !gameStarted}
-                    className={`roll-dice-button ${!showDiceRollButton || !gameStarted ? 'roll-dice-button-disabled' : ''}`}
-                >
-                    Roll Dice!
-                </button>
-            </div>
+                <div className="timer-display">
+                    <span className="timer-label">Time:</span>
+                    <span className="timer-value">{formattedTime}</span>
+                </div>
+            <DiceRoller
+                onRoll={rollDice} // Pass your rollDice function
+                disabled={!showDiceRollButton || !gameStarted} // Pass your disabled logic
+            />
+            </section>
+
+            <section className="home-footer">
+                <Footer variant="game" />
+            </section>
 
             {showQuestionModal && currentQuestion && (
                 <QuestionModal
