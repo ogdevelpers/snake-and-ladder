@@ -1,6 +1,6 @@
 'use client'; // This directive marks the component for client-side rendering
 
-import { Modal, QuestionModal } from '@/components/Modal';
+import { Modal, QuestionModal, ResultModal } from '@/components/Modal';
 import DiceRoller from '@/components/ui/DiceComponent/DiceComponent';
 import Footer from '@/components/ui/Footer/Footer';
 import Katora from '@/components/ui/Katora/Katora';
@@ -28,9 +28,9 @@ const GamePage = () => {
     const [diceValue, setDiceValue] = useState(0);
     const [showDiceRollButton, setShowDiceRollButton] = useState(true);
     const [showQuestionModal, setShowQuestionModal] = useState(false);
-    const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string } | null>(null);
+    const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string, number:number, start:number } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
-    const [resultModalMessage, setResultModalMessage] = useState('');
+    const [resultModalMessage, setResultModalMessage] = useState({message:'', type:'success'});
     const [timer, setTimer] = useState(1800); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
@@ -70,7 +70,7 @@ const GamePage = () => {
                     if (prev <= 1) {
                         // Time's up
                         setGameStarted(false);
-                        setResultModalMessage("Time's up! Better luck next time!");
+                        setResultModalMessage({message: "Time's up! Better luck next time!", type: "drop"});
                         setShowResultModal(true);
                         setShowDiceRollButton(false);
                         setModalConfirmAction(() => () => {
@@ -154,7 +154,7 @@ const GamePage = () => {
         const timeTaken = 180 - timer;
         const minutes = Math.floor(timeTaken / 60);
         const seconds = timeTaken % 60;
-        setResultModalMessage(`Congratulations! You reached 100 in ${minutes}m ${seconds}s!`);
+        setResultModalMessage({message:`Congratulations! You reached 100 in ${minutes}m ${seconds}s!`, type:'congrats'});
         setShowResultModal(true);
         setShowConfetti(true);
         setShowDiceRollButton(false);
@@ -204,20 +204,16 @@ const GamePage = () => {
             const starMove = starClimbs.find(s => s.start === playerPosition);
             if (starMove) {
                 finalPosition = starMove.end;
-                setResultModalMessage("Correct! You climb up the star!");
+                setResultModalMessage({message:`Right answer! Climb up to ${starMove?.end}!`, type: 'success'});
                 setTimeout(() => setPlayerPosition(finalPosition), 500); // Animate the climb
-            } else {
-                setResultModalMessage("Correct answer!");
-            }
+            } 
         } else {
             const starMove = starClimbs.find(s => s.start === playerPosition);
             if (starMove && starMove.drop) {
                 finalPosition = starMove.drop;
-                setResultModalMessage(`Oops! Wrong answer. You drop to cell ${finalPosition}!`);
+                setResultModalMessage({message:`Oops! Wrong answer. Down you go to ${finalPosition}!`, type: 'drop'});
                 setTimeout(() => setPlayerPosition(finalPosition), 500); // Animate the drop
-            } else {
-                setResultModalMessage("Oops! Wrong answer. You stay where you are.");
-            }
+            } 
         }
 
         setShowResultModal(true);
@@ -262,13 +258,13 @@ const GamePage = () => {
                         onRoll={rollDice} // Pass your rollDice function
                         disabled={!showDiceRollButton || !gameStarted} // Pass your disabled logic
                     />
-                </div>
-
+                </div> 
             </section>
 
             <section className="home-footer">
                 <Footer variant="game" />
             </section>
+                        
 
             {showQuestionModal && currentQuestion && (
                 <QuestionModal
@@ -279,10 +275,10 @@ const GamePage = () => {
             )}
 
             {showResultModal && modalConfirmAction && (
-                <Modal
-                    message={resultModalMessage}
+                <ResultModal
+                    message={resultModalMessage?.message}
                     onConfirm={modalConfirmAction}
-                    title={resultModalMessage.includes('Congratulations') ? 'Game Over!' : 'Result'}
+                    title={resultModalMessage?.type}
                 />
             )}
 

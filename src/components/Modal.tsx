@@ -66,3 +66,38 @@ export const QuestionModal = ({ question, options, onAnswer }: any) => (
         </div>
     </div>
 );
+
+export const ResultModal = ({
+  message,
+  onConfirm,
+  onCancel,
+  showCancel = false,
+  title = "Message",
+}: any) => {
+    
+    const imgSrc= title === 'success' ? '/result_ladder.svg' : title==='drop' ? '/result_snake.png' : '/congrats.svg'
+    return (
+
+  <div className="result-modal-overlay">
+    <div className="result-modal-content">
+      <img src={imgSrc} alt="Result" className="result-modal-image" />
+      <p className="result-modal-message">{message}</p>
+      <div className="result-modal-actions">
+        {showCancel && (
+          <button
+            onClick={onCancel}
+            className="result-modal-button result-modal-button-cancel"
+          >
+            Cancel
+          </button>
+        )}
+        <button
+          onClick={onConfirm}
+          className="result-modal-button result-modal-button-confirm"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+)};

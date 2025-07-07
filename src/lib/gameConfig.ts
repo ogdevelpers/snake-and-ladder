@@ -1,16 +1,16 @@
 export const starClimbs = [
-    { start: 7, end: 14, drop: 3, type: 'star' },
-    { start: 12, end: 26, drop: 8, type: 'star' },
-    { start: 18, end: 38, drop: 14, type: 'star' },
-    { start: 37, end: 50, drop: 19, type: 'star' },
-    { start: 39, end: 50, drop: 16, type: 'star' },
-    { start: 51, end: 88, drop: 1, type: 'star' },
-    { start: 61, end: 73, drop: 53, type: 'star' },
-    { start: 69, end: 89, drop: 49, type: 'star' },
-    { start: 77, end: 88, drop: 72, type: 'star' },
-    { start: 79, end: 92, drop: 64, type: 'star' },
-    { start: 87, end: 97, drop: 80, type: 'star' },
-    { start: 99, end: 100, drop: 1, type: 'star' },
+  { start: 7, end: 14, drop: 3, type: 'star', number: 1 },
+  { start: 12, end: 26, drop: 8, type: 'star', number: 2 },
+  { start: 18, end: 38, drop: 14, type: 'star', number: 3 },
+  { start: 37, end: 50, drop: 19, type: 'star', number: 4 },
+  { start: 39, end: 50, drop: 16, type: 'star', number: 5 },
+  { start: 51, end: 88, drop: 1, type: 'star', number: 6 },
+  { start: 61, end: 73, drop: 53, type: 'star', number: 7 },
+  { start: 69, end: 89, drop: 49, type: 'star', number: 8 },
+  { start: 77, end: 88, drop: 72, type: 'star', number: 9 },
+  { start: 79, end: 92, drop: 64, type: 'star', number: 10 },
+  { start: 87, end: 97, drop: 80, type: 'star', number: 11 },
+  { start: 99, end: 100, drop: 1, type: 'star', number: 12 },
 ];
 
 // The cells that will trigger a question. These are the starting points of the stars.
@@ -165,7 +165,7 @@ export const questions = [
 ];
 
 const extraQuestions = [
- {
+  {
     question: "Which of the following is a key service provided by a Convention and Visitors Bureau to hotels?",
     options: [
       "Providing free guest room upgrades",
@@ -208,7 +208,7 @@ const extraQuestions = [
 ]
 
 export const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 };
