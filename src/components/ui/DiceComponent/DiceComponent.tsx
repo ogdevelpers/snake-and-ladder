@@ -29,8 +29,8 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({ onRoll, disabled = false
     const fullSpinY = 360 * 3;
     const final = baseRotations[face-1];
     return {
-      x: fullSpinX + final.x,
-      y: fullSpinY + final.y,
+      x: fullSpinX + final?.x,
+      y: fullSpinY + final?.y,
     };
   };
 
@@ -39,8 +39,8 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({ onRoll, disabled = false
     const offset = 90 * 5; // 450 deg = 1.25 full spins
     const final = baseRotations[face-1];
     return {
-      x: final.x + offset,
-      y: final.y + offset,
+      x: final?.x + offset,
+      y: final?.y + offset,
     };
   };
 

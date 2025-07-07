@@ -6,6 +6,7 @@ import Footer from '@/components/ui/Footer/Footer';
 import Katora from '@/components/ui/Katora/Katora';
 import Logo from '@/components/ui/Logo/Logo';
 import { formatTime, questionCells, otherQuestions, hospitalQuestions, starClimbs } from '@/lib/gameConfig';
+import { supabase } from '@/lib/supabaseClient';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
  
 const colorResolver = (cellNumber: number): string => {
@@ -31,7 +32,7 @@ const GamePage = () => {
     const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string, number:number, start:number } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState({message:'', type:'success'});
-    const [timer, setTimer] = useState(1800); // 3 minutes in seconds
+    const [timer, setTimer] = useState(300); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
@@ -150,15 +151,31 @@ const GamePage = () => {
     }, [playerPosition, selectedColor]);
 
 
-    const handleGameWin = useCallback(() => {
+    const handleGameWin = useCallback(async() => {
         setGameStarted(false);
-        const timeTaken = 180 - timer;
+        const timeTaken = 300 - timer;
         const minutes = Math.floor(timeTaken / 60);
         const seconds = timeTaken % 60;
         setResultModalMessage({message:`Congratulations! You reached 100 in ${minutes}m ${seconds}s!`, type:'congrats'});
         setShowResultModal(true);
         setShowConfetti(true);
         setShowDiceRollButton(false);
+
+        try {
+        const { error } = await supabase.from('game_winners').insert([{
+            playerid: localStorage.getItem('snakesAndLaddersGameId'), // Replace with actual name input if you have
+            profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
+            time_taken: timeTaken
+        }]);
+        if (error) {
+            console.error('❌ Supabase insert error:', error.message);
+        } else {
+            console.log('✅ Winner inserted successfully');
+        }
+    } catch (err) {
+        console.error('🔥 Unexpected error:', err);
+    }
+
         setModalConfirmAction(() => () => {
             setShowResultModal(false);
             setShowConfetti(false);
