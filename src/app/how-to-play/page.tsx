@@ -37,7 +37,7 @@ const HowToPlayPage = () => {
                     <article className="how-to-play-article">
                         <ul className="hot-to-play-list">
                             <li><span className="how-to-play-text">Roll dice to start game.</span></li>
-                            <li><span className="how-to-play-text">On cells with a       , a question will pop up. </span></li>
+                            <li><span className="how-to-play-text">On cells with a ⭐, a question will pop up. </span></li>
                             <li><span className="how-to-play-text">Choose the right option to go up the ladder.</span></li>
                             <li><span className="how-to-play-text">If you selectthe wrong option, you go downthe snake.</span></li>
                         </ul>
