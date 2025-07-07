@@ -661,8 +661,7 @@ img{
     flex-direction: column;
     align-items: center;
     width: min(500px, 80vw);
-    max-height:56vh;
-    outline:12px solid red;
+    max-height:56vh; 
 }
 
 .color-grid {
@@ -672,8 +671,7 @@ img{
     width: 100%;
     max-width: 28rem;
     justify-items: center;
-    align-items: stretch;
-    /* Maintains current vertical behavior */
+    align-items: stretch; 
 }
 
 .color-button-box {
