@@ -928,7 +928,7 @@ body {
 .board-grid {
     display: grid;
     grid-template: repeat(10, minmax(0, 1fr)) / repeat(10, minmax(0, 1fr));
-    gap: 0.5vw;
+    gap: 2px;
     /* --- NEW Fixed Sizing --- */
     width: min(800px, 90vw); /* Take the minimum of 60% viewport height or 100% viewport width */
     height: min(800px, 90vw); /* Ensure it's a square with the same dimension */
@@ -954,7 +954,11 @@ body {
     background: linear-gradient(135deg, #f8f6ff 0%, #e6d7ff 15%, #c084fc 50%, #8b5cf6 100%);
     box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
     border: 0.51px solid #00369A;
-    transition: transform 0.2s ease; 
+    transition: transform 0.2s ease;
+    max-width:min(calc(88vw/10),90px);
+    max-height:min(calc(88vw/10),90px);
+    height:99%;
+    width:99%;
 } 
 
 .board-cell:hover {
@@ -1033,8 +1037,8 @@ body {
 .player-token {
     position: absolute;
     z-index: 10;
-    width: 7vw;
-    height: 7vw;
+    width: min(7vw,70px);
+    height: min(7vw,70px);
     border-radius: 9999px;
     display: flex;
     align-items: center;
