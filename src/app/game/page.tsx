@@ -51,6 +51,8 @@ const GamePage = () => {
         if (storedProfile) {
             setSelectedProfile(storedProfile);
         }
+        console.log("Selected Color:", storedColor);
+        console.log("Selected Profile:", storedProfile);
         setGameStarted(true);
     }, []);
 

@@ -1,4 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica/HelveticaNeueMedium.ttf") format("truetype");
+  font-weight: 500; /* Medium is typically 500 */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon Text";
+  src: url("/fonts/brandon/HvDTrial_Brandon_Text_Regular-BF6514e9eb617a0.otf") format("opentype");
+}
+ 
+ 
+
 
 /* Global Styles */
 body {
@@ -519,7 +532,7 @@ body {
     position:absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%, -100%); /* Center horizontally, lift above top */
+    transform: translate(-50%, -50%); /* Center horizontally, lift above top */
     z-index: 1; /* Ensure it's above the border */
 }
 @media (min-width: 768px) {
@@ -537,6 +550,7 @@ body {
     color: white;
 
 }
+
 .how-to-play-highlight {
     font-weight: 700;
     color: #2563eb;
