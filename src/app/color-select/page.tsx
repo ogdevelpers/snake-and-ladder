@@ -35,9 +35,9 @@ const ColorSelectPage = () => {
                     <Logo src='/logo_cvent2.png'/>
                 </div> 
             </section>
-            <span className="color-select-title">
+            <div className="color-select-title">
                 Select Your Token Colour
-            </span>
+            </div>
             <div className="color-grid-outer">
                 <div className="color-grid">
                     {colors.map((color) => (

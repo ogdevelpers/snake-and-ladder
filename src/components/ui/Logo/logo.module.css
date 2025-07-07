@@ -1,18 +1,21 @@
 .logo {
-  height: 100%;              /* Take full height of parent */
-  width: 100%;               /* Optional: take full width of parent if needed */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  flex:1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    flex: 1;
+    /* --- ADD THESE LINES --- */
+    min-width: 0;
+    min-height: 0; 
+    /* ----------------------- */
 }
 
 .logoImg {
-  max-height: 100%;          /* Scale image to fit container’s height */
-  max-width: 100%;           /* Prevent horizontal overflow */
-  object-fit: contain;       /* Maintain aspect ratio without cropping */
-  display: block;
-  width:auto;
-  height:auto;
+    max-height: 19svh;
+    max-width: 100%;
+    object-fit: contain; 
+    width:100%;
+    height: auto;
 }
