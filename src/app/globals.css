@@ -7,16 +7,14 @@
 
 @font-face {
   font-family: "Brandon Text";
-  src: url("/fonts/brandon/HvDTrial_Brandon_Text_Regular-BF6514e9eb617a0.otf") format("opentype");
+  src: url("/fonts/brandon/HvDTrial_Brandon_Text_Medium-BF6514e9eb272a3.otf") format("opentype");
+  font-weight: 500;
 }
- 
- 
-
 
 /* Global Styles */
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Brandon Text', sans-serif;
   overflow-x: hidden; /* Prevent horizontal scrolling */
   max-height: 100dvh;
   padding: 0;
@@ -408,7 +406,7 @@ body {
     font-weight: 700;
     color: white;
     margin-bottom: 2rem;
-    font-family: Brandon Text;
+    font-family: 'Brandon Text';
     font-weight: 500; 
     line-height: 120%;
     letter-spacing: 0%;
@@ -875,8 +873,9 @@ body {
     width: 100%;
     display: flex; 
     align-items: center;
+    justify-content: space-evenly;
     background-color: transparent;
-    padding: 1rem;
+    padding: 0.2rem;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     margin-top: 1rem;
@@ -894,6 +893,7 @@ body {
     background: white;
     padding: 0.8rem;
     border-radius: 0.5rem;
+    max-width:100px;
 }
 
 .timer-display span {
@@ -917,6 +917,11 @@ body {
         font-size: 2.25rem;
     }
 }
+
+.dice-roller-box{
+    max-width:110px;
+}
+
 .roll-dice-button {
     background: linear-gradient(to right, #ec4899, #dc2626);
     color: white;

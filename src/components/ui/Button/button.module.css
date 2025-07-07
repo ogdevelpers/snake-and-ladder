@@ -3,6 +3,7 @@
 }
 
 .button{
+    font-family: 'Brandon Text';
     display: inline-flex;
     width:90%;
     align-items: center;
@@ -13,13 +14,11 @@
     border: 2.21px solid #FFFFFF;
     padding:1rem 2rem;
     border-radius: 0.5rem;
-    cursor:pointer;
-    font-family: Brandon Text;
+    cursor:pointer; 
     font-weight: 500;
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
-
 }

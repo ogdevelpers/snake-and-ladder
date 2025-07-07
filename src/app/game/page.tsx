@@ -166,7 +166,7 @@ const GamePage = () => {
     }, [timer, resetGame]);
 
     // Handles the dice roll and player movement
-    const rollDice = useCallback((diceNumber:number) => {
+    const rollDice = useCallback((diceNumber: number) => {
         if (!gameStarted || !showDiceRollButton) return;
 
         const roll = diceNumber;
@@ -182,7 +182,7 @@ const GamePage = () => {
             setPlayerPosition(newPosition);
             if (questionCells.includes(newPosition)) {
                 const idx = questionCells.indexOf(newPosition);
-                const fallBackQuestion = questions.find(q => q.number === (idx+1)) ;
+                const fallBackQuestion = questions.find(q => q.number === (idx + 1));
                 const questionIndex = questions.find(q => q.start === newPosition);
                 setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
                 setShowQuestionModal(true);
@@ -257,10 +257,13 @@ const GamePage = () => {
                     <span className="timer-label">Time:</span>
                     <span className="timer-value">{formattedTime}</span>
                 </div>
-            <DiceRoller
-                onRoll={rollDice} // Pass your rollDice function
-                disabled={!showDiceRollButton || !gameStarted} // Pass your disabled logic
-            />
+                <div className="dice-roller-box">
+                    <DiceRoller
+                        onRoll={rollDice} // Pass your rollDice function
+                        disabled={!showDiceRollButton || !gameStarted} // Pass your disabled logic
+                    />
+                </div>
+
             </section>
 
             <section className="home-footer">

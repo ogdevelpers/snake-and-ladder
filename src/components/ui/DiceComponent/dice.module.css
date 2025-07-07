@@ -3,8 +3,9 @@
 .dice-roller-button {
     /* Basic button styling */
     background: #00369A;
+    max-width:100px;
     color: white;
-    padding: 15px 20px;
+    padding: 10px 10px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -16,8 +17,7 @@
     flex-direction: column; /* Stack dice and text */
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Space between dice and text */
-    min-width: 150px; /* Ensure button has some width */
+    gap: 10px; /* Space between dice and text */ 
     margin: 20px auto; /* Center the button */
     position: relative; /* For potential future positioning of elements */
     overflow: hidden; /* Ensure nothing spills out */
