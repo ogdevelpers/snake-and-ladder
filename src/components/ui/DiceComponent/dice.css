@@ -18,7 +18,7 @@
     background: blue;
     box-shadow: 1.62px 1.08px 3.24px 0px #000000BF;
     border: 1px solid #FFFFFF;
-    border-radius: 0.5rem;
+    border-radius: 0.5rem;;
     /* Add min-height or height to see the container if it's empty */
     min-height: 110px; /* Added for visibility */
     perspective: 800px; /* Added for proper 3D rendering */

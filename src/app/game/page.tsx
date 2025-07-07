@@ -4,7 +4,7 @@ import { QuestionModal, ResultModal } from '@/components/Modal';
 import { DiceRoller } from '@/components/ui/DiceComponent/DiceComponent';
 import Footer from '@/components/ui/Footer/Footer';
 import Katora from '@/components/ui/Katora/Katora';
-import Logo from '@/components/ui/Logo/Logo';
+import Logo, { LogoGame } from '@/components/ui/Logo/Logo';
 import { formatTime, questionCells, otherQuestions, hospitalQuestions, starClimbs } from '@/lib/gameConfig';
 import { supabase } from '@/lib/supabaseClient';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
@@ -263,13 +263,10 @@ const GamePage = () => {
 
     return (
         <div className="game-screen-main">
-            <div className="game-header">
-                <section className="game-home-title">
+            <div className="game-header"> 
                     <div className="game-home-logo">
-                        <Logo src={"/game_logo.png"} />
-                    </div>
-                </section>
-
+                        <LogoGame src={"/game_logo.png"} />
+                    </div> 
             </div>
 
             <div className="board-grid">

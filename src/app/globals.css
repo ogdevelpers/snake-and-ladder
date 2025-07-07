@@ -839,7 +839,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     min-height: calc(100vh - 2rem);
     /* Adjusted for app-container padding */
     background-color: #f3f4f6;
@@ -930,8 +930,8 @@ body {
     grid-template: repeat(10, minmax(0, 1fr)) / repeat(10, minmax(0, 1fr));
     gap: 0.5vw;
     /* --- NEW Fixed Sizing --- */
-    width: min(800px, 85vw); /* Take the minimum of 60% viewport height or 100% viewport width */
-    height: min(800px, 85vw); /* Ensure it's a square with the same dimension */
+    width: min(800px, 90vw); /* Take the minimum of 60% viewport height or 100% viewport width */
+    height: min(800px, 90vw); /* Ensure it's a square with the same dimension */
     /* --- End NEW Fixed Sizing --- */
     max-width: 100%; /* Keep max-width for safety, though min() handles most cases */
     margin: 0 auto;
@@ -949,7 +949,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center; 
-    font-size: clamp(0.5rem, 1.5vw, 1.2rem); 
+    font-size: clamp(0.8rem, 1.5vw, 1.2rem); 
     font-weight: 600;
     background: linear-gradient(135deg, #f8f6ff 0%, #e6d7ff 15%, #c084fc 50%, #8b5cf6 100%);
     box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
@@ -1033,8 +1033,8 @@ body {
 .player-token {
     position: absolute;
     z-index: 10;
-    width: 2rem;
-    height: 2rem;
+    width: 7vw;
+    height: 7vw;
     border-radius: 9999px;
     display: flex;
     align-items: center;
