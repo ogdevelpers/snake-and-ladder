@@ -924,14 +924,14 @@ body {
   - Its size is constrained by both the viewport width and 70% of the viewport height.
 */
 /* Board Grid */
-/* Mobile First - Base styles */
+/* Mobile First - Base styles */  
 .board-grid {
     display: grid;
     grid-template: repeat(10, minmax(0, 1fr)) / repeat(10, minmax(0, 1fr));
     gap: 2px;
     /* --- NEW Fixed Sizing --- */
-    width: min(800px, 90vw); /* Take the minimum of 60% viewport height or 100% viewport width */
-    height: min(800px, 90vw); /* Ensure it's a square with the same dimension */
+    width: min(800px, min(90vw,70vh)); /* Take the minimum of 60% viewport height or 100% viewport width */
+    height: min(800px, min(90vw,70vh)); /* Ensure it's a square with the same dimension */
     /* --- End NEW Fixed Sizing --- */
     max-width: 100%; /* Keep max-width for safety, though min() handles most cases */
     margin: 0 auto;
@@ -1037,8 +1037,8 @@ body {
 .player-token {
     position: absolute;
     z-index: 10;
-    width: min(7vw,70px);
-    height: min(7vw,70px);
+    width: min(7vw,40px);
+    height: min(7vw,40px);
     border-radius: 9999px;
     display: flex;
     align-items: center;
