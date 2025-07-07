@@ -5,17 +5,13 @@ import { useRouter } from 'next/navigation'; // Changed import for App Router
 import Logo from '@/components/ui/Logo/Logo';
 import Banner from '@/components/ui/Banner/Banner';
 import Button from '@/components/ui/Button/Button';
+
 import { GameProfileTypes } from '@/types/GameComponentTypes';
 import { create } from 'domain';
 import Footer from '@/components/ui/Footer/Footer';
+import { GAME_PROFILE_OPTIONS } from '@/lib/constants';
 
-
-const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
-    'Marketing Professional',
-    'Event Planner',
-    'Others',
-];
-
+ 
 const GameIdPage = () => {
     const router = useRouter();
     const [gameIdInput, setGameIdInput] = useState('');

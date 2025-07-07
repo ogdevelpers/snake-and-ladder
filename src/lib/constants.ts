@@ -1,3 +1,5 @@
+import { GameProfileTypes } from '@/types/GameComponentTypes';
+
 const colors = [
     { name: 'Red', hex: '#870303' },
     { name: 'Green', hex: '#23992E' },
@@ -5,6 +7,10 @@ const colors = [
     { name: 'Blue', hex: '#16759E' },
 ];
 
-
+export const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
+    'Marketing Professional',
+    'Event Planner',
+    'Others',
+];
 
 export default colors;
