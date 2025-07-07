@@ -15,14 +15,14 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({ onRoll, disabled = false
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [next, setNext] = useState(1);
 
-  const baseRotations = {
-    1: { x: 0, y: 0 },
-    2: { x: -90, y: 0 },
-    3: { x: 0, y: 90 },
-    4: { x: 0, y: -90 },
-    5: { x: 90, y: 0 },
-    6: { x: 180, y: 0 },
-  };
+  const baseRotations = [
+     { x: 0, y: 0 },
+     { x: -90, y: 0 },
+     { x: 0, y: 90 },
+     { x: 0, y: -90 },
+     { x: 90, y: 0 },
+     { x: 180, y: 0 },
+  ];
 
   const getRotationForFace = (face: number) => {
     const fullSpinX = 360 * 3;
