@@ -11,6 +11,9 @@ body {
 
 *{
     box-sizing: border-box; /* Ensures padding and borders are included in element's total width and height */
+    z-index: 2;
+    margin: 0;
+    padding: 0;
 }
 
 .app-container {
@@ -606,17 +609,7 @@ body {
     .game-header {
         margin-bottom: 1rem;
     }
-}
-.game-header-item {
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #374151;
-}
-@media (min-width: 640px) {
-    .game-header-item {
-        font-size: 1.25rem;
-    }
-}
+} 
 .player-position-text {
     font-size: 1.25rem;
     font-weight: 800;

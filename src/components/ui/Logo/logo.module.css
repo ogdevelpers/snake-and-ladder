@@ -1,1 +1,18 @@
  
+.logo {
+    /* Existing styles for the logo container */
+    width: fit-content; /* As seen in .game-home-logo */
+    margin: 0 auto; /* As seen in .game-home-logo */
+    /* Add any other container styles if necessary */
+    display: flex; /* To center the image if needed */
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure container takes available height */
+}
+
+.logoImg {
+    max-width: 100%; /* Ensures the image does not exceed the width of its parent (.logo) */
+    height: auto;    /* Maintains the aspect ratio of the image */
+    display: block;  /* Removes any extra space below the image */
+    /* Add any other specific styling for the image here */
+}

@@ -3,6 +3,7 @@
 import { Modal, QuestionModal } from '@/components/Modal';
 import DiceRoller from '@/components/ui/DiceComponent/DiceComponent';
 import Footer from '@/components/ui/Footer/Footer';
+import Katora from '@/components/ui/Katora/Katora';
 import Logo from '@/components/ui/Logo/Logo';
 import { formatTime, questionCells, questions, starClimbs } from '@/lib/gameConfig';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
@@ -35,6 +36,7 @@ const GamePage = () => {
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
+    const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
 
     // Use useRef to store the timer interval ID
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -42,8 +44,12 @@ const GamePage = () => {
     // Load selected color from localStorage and start the game on mount
     useEffect(() => {
         const storedColor = localStorage.getItem('selectedPlayerColor');
+        const storedProfile = localStorage.getItem('snakesAndLaddersGameProfile');
         if (storedColor) {
             setSelectedColor(storedColor);
+        }
+        if (storedProfile) {
+            setSelectedProfile(storedProfile);
         }
         setGameStarted(true);
     }, []);
@@ -91,7 +97,7 @@ const GamePage = () => {
         };
     }, [gameStarted]); // Only depends on gameStarted
 
-    // Resets the game state and navigates home
+
     const resetGame = useCallback(() => {
         setPlayerPosition(1);
         setDiceValue(0);
@@ -109,16 +115,13 @@ const GamePage = () => {
         // Iterate from the top row (index 9) down to the bottom row (index 0)
         for (let r = 9; r >= 0; r--) {
             const row = [];
-            // Populate cells for the current row
             for (let c = 0; c < 10; c++) {
                 row.push(r * 10 + c + 1);
             }
-            // Apply S-shape logic: reverse odd-numbered rows (from top)
-            // r=9 (topmost row) is odd, r=8 is even, etc.
+
             if (r % 2 !== 0) {
                 row.reverse();
             }
-            // Add the completed row to the reorderedBoard
             reorderedBoard.push(...row);
         }
         return reorderedBoard.map((num) => {
@@ -176,8 +179,10 @@ const GamePage = () => {
         setTimeout(() => {
             setPlayerPosition(newPosition);
             if (questionCells.includes(newPosition)) {
-                const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-                setCurrentQuestion(randomQuestion);
+                const idx = questionCells.indexOf(newPosition);
+                const fallBackQuestion = questions.find(q => q.number === (idx+1)) ;
+                const questionIndex = questions.find(q => q.start === newPosition);
+                setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
                 setShowQuestionModal(true);
             } else if (newPosition === 100) {
                 handleGameWin();
@@ -244,7 +249,7 @@ const GamePage = () => {
 
             <section className="game-controls">
                 <div className="dice-reveal">
-
+                    <Katora color={selectedColor} />
                 </div>
                 <div className="timer-display">
                     <span className="timer-label">Time:</span>
