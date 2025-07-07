@@ -1,19 +1,18 @@
- 
 .logo {
-    /* Existing styles for the logo container */
-    width: fit-content; /* As seen in .game-home-logo */
-    margin: 0 auto; /* As seen in .game-home-logo */
-    /* Add any other container styles if necessary */
-    display: flex; /* To center the image if needed */
-    justify-content: center;
-    align-items: center;
-    height: 100%; /* Ensure container takes available height */
+  height: 100%;              /* Take full height of parent */
+  width: 100%;               /* Optional: take full width of parent if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex:1;
 }
 
 .logoImg {
-    max-width: 100%; /* Ensures the image does not exceed the width of its parent (.logo) */
-    object-fit: contain; 
-    max-height:80%;
-    display: block;  /* Removes any extra space below the image */
-    /* Add any other specific styling for the image here */
+  max-height: 100%;          /* Scale image to fit container’s height */
+  max-width: 100%;           /* Prevent horizontal overflow */
+  object-fit: contain;       /* Maintain aspect ratio without cropping */
+  display: block;
+  width:auto;
+  height:auto;
 }

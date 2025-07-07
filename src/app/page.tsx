@@ -15,10 +15,7 @@ const HomePage = () => {
             <section className="home-title">
                 <div className="home-logo">
                     <Logo />
-                </div>
-                <div className="home-banner">
-                    <Banner />
-                </div>
+                </div> 
             </section>
 
             <section className="home-hero">

@@ -32,11 +32,8 @@ const ColorSelectPage = () => {
         <div className="screen color-select-screen">
             <section className="home-title">
                 <div className="home-logo">
-                    <Logo />
-                </div>
-                <div className="home-banner">
-                    <Banner />
-                </div>
+                    <Logo src='/logo_cvent2.png'/>
+                </div> 
             </section>
             <span className="color-select-title">
                 Select Your Token Colour

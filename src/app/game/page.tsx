@@ -39,6 +39,8 @@ const GamePage = () => {
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
     const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
     const [questions, setQuestions] = useState(hospitalQuestions);
+    const [animatePlayer, setAnimatePlayer] = useState(false);
+
 
     // Use useRef to store the timer interval ID
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -141,9 +143,13 @@ const GamePage = () => {
                     {!starInfo && num}
                     {starInfo && <span className="game-icon-star" role="img" aria-label="star">⭐</span>}
                     {isPlayerHere && (
-                        <div className="player-token" style={{ backgroundColor: selectedColor }}>
-                            <span className="player-initial">P</span>
+                        <div
+                        className={`player-token ${animatePlayer ? 'player-token--move' : ''}`}
+                        style={{ backgroundColor: selectedColor }}
+                        >
+                        <span className="player-initial">P</span>
                         </div>
+
                     )}
                 </div>
             );
@@ -194,24 +200,29 @@ const GamePage = () => {
         let newPosition = playerPosition + roll;
         if (newPosition > 100) {
             newPosition = playerPosition; // If overshoot, stay in place
-        }
-
-
+        } 
 
         setTimeout(() => {
-            setPlayerPosition(newPosition);
-            if (questionCells.includes(newPosition)) {
-                const idx = questionCells.indexOf(newPosition);
-                const fallBackQuestion = questions.find(q => q.number === (idx + 1));
-                const questionIndex = questions.find(q => q.start === newPosition);
-                setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
-                setShowQuestionModal(true);
-            } else if (newPosition === 100) {
-                handleGameWin();
-            } else {
-                setShowDiceRollButton(true);
-            }
+        setPlayerPosition(newPosition);
+
+        if (questionCells.includes(newPosition)) {
+            const idx = questionCells.indexOf(newPosition);
+            const fallBackQuestion = questions.find(q => q.number === (idx + 1));
+            const questionIndex = questions.find(q => q.start === newPosition);
+            setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
+            setShowQuestionModal(true);
+        } else if (newPosition === 100) {
+            handleGameWin();
+        } else {
+            // Trigger player animation
+            setAnimatePlayer(true);
+            setTimeout(() => {
+            setAnimatePlayer(false);
+            }, 600); // Match the CSS animation duration
+            setShowDiceRollButton(true);
+        }
         }, 1000);
+
     }, [gameStarted, showDiceRollButton, playerPosition, handleGameWin]);
 
     // Handles the outcome of answering a question

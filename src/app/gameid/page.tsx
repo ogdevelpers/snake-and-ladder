@@ -64,11 +64,8 @@ const GameIdPage = () => {
         <div className="screen game-id-screen">
             <section className="home-title">
                 <div className="home-logo">
-                    <Logo />
-                </div>
-                <div className="home-banner">
-                    <Banner />
-                </div>
+                    <Logo src='logo_cvent2.png'/>
+                </div> 
             </section>
             <section className="game-id-form-section">
                 <div className="game-id-form">

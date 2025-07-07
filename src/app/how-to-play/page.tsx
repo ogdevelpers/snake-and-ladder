@@ -20,11 +20,8 @@ const HowToPlayPage = () => {
         <div className="screen how-to-play-screen">
             <section className="home-title">
                 <div className="home-logo">
-                    <Logo />
-                </div>
-                <div className="home-banner">
-                    <Banner />
-                </div>
+                    <Logo src='logo_cvent2.png'/>
+                </div> 
             </section>
 
             <section className="how-to-play-section">
