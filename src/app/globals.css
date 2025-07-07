@@ -77,14 +77,59 @@ body {
     }
 }
 
-.home-hero {
-    display: flex;
-    flex-direction: column;
+/* Home Screen Styles */
+.home-title {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 800;
+    color: #1e40af;
+    margin-bottom: 2rem;
+    letter-spacing: -0.025em;
+    max-height:15vh;
 }
 
+img{
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .home-title {
+        font-size: 3.75rem;
+    }
+}
+
+.game-home-title {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    overflow: hidden;
+    max-height: 10vh;
+}
+
+.game-home-logo {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.home-hero {
+    flex: 0 0 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Distribute space evenly */
+    width: 100%;
+    padding: 1rem 0;
+    max-height:56vh;
+}
 .home-footer {
     width: 100%;
-    flex-grow: 1;
+    flex-grow: 1; 
 }
 
 /* Modal Styles - common to all pages that use modals */
@@ -411,45 +456,22 @@ body {
     }
 }
 
-/* Home Screen Styles */
-.home-title {
-    font-size: 3rem;
-    line-height: 1;
-    font-weight: 800;
-    color: #1e40af;
-    margin-bottom: 2rem;
-    letter-spacing: -0.025em;
-}
-
-@media (min-width: 768px) {
-    .home-title {
-        font-size: 3.75rem;
-    }
-}
-
-.game-home-title {
-    font-size: 3rem;
-    line-height: 1;
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100%;
-    overflow: hidden;
-}
-
-.game-home-logo {
-    width: fit-content;
-    margin: 0 auto;
-}
 
 .home-image-container {
-    margin-bottom: 2rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 0; /* Important for flex child */
 }
 
 .home-image {
+    max-width: 90%; /* Slightly smaller than container */
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
@@ -633,6 +655,8 @@ body {
     flex-direction: column;
     align-items: center;
     width: min(500px, 80vw);
+    max-height:56vh;
+    outline:12px solid red;
 }
 
 .color-grid {
@@ -713,6 +737,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: min(500px, 80vw);
+    max-height:56vh;
 }
 
 .how-to-play-content {

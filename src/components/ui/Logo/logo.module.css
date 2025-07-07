@@ -12,7 +12,8 @@
 
 .logoImg {
     max-width: 100%; /* Ensures the image does not exceed the width of its parent (.logo) */
-    height: auto;    /* Maintains the aspect ratio of the image */
+    object-fit: contain;
+    max-height: 5vh;
     display: block;  /* Removes any extra space below the image */
     /* Add any other specific styling for the image here */
 }

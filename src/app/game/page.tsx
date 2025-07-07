@@ -5,7 +5,7 @@ import DiceRoller from '@/components/ui/DiceComponent/DiceComponent';
 import Footer from '@/components/ui/Footer/Footer';
 import Katora from '@/components/ui/Katora/Katora';
 import Logo from '@/components/ui/Logo/Logo';
-import { formatTime, questionCells, questions, starClimbs } from '@/lib/gameConfig';
+import { formatTime, questionCells, otherQuestions, hospitalQuestions, starClimbs } from '@/lib/gameConfig';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 
 const colorResolver = (cellNumber: number): string => {
@@ -37,6 +37,7 @@ const GamePage = () => {
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
     const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
+    const [questions, setQuestions] = useState(hospitalQuestions);
 
     // Use useRef to store the timer interval ID
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -50,9 +51,10 @@ const GamePage = () => {
         }
         if (storedProfile) {
             setSelectedProfile(storedProfile);
+            if(storedProfile !== 'Hospitality Professional'){
+                setQuestions(otherQuestions); 
+            }
         }
-        console.log("Selected Color:", storedColor);
-        console.log("Selected Profile:", storedProfile);
         setGameStarted(true);
     }, []);
 

@@ -17,7 +17,7 @@ export const starClimbs = [
 export const questionCells = starClimbs.map(s => s.start);
 
 // Sample questions.
-export const questions = [
+export const hospitalQuestions = [
   {
     number: 1,
     start: 7,
@@ -206,6 +206,146 @@ const extraQuestions = [
     correctAnswer: "Clear visual communication of setups & capacities"
   }
 ]
+
+
+
+export const otherQuestions = [
+  {
+    number: 1,
+    start: 7,
+    question: "Which of the following ranks in the Top 10 most stressful jobs according to a Forbes study?",
+    options: ["Nuclear Scientist", "Marine Engineer", "Event Planner", "Orthodontist"],
+    correctAnswer: "Event Planner"
+  },
+  {
+    number: 2,
+    start: 12,
+    question: "What does RFP stand for?",
+    options: ["Request for Pricing", "Requirements for Proposal", "Request for Proposal", "Request for Participation"],
+    correctAnswer: "Request for Proposal"
+  },
+  {
+    number: 3,
+    start: 18,
+    question: "How does Cvent's online venue sourcing tool help event planners?",
+    options: [
+      "Helps in finding and comparing venues for their events",
+      "Provides automated venue decoration designs based on event themes",
+      "Manages venue staff scheduling and task assignments",
+      "Facilitates automated negotiation of venue rental contracts"
+    ],
+    correctAnswer: "Helps in finding and comparing venues for their events"
+  },
+  {
+    number: 4,
+    start: 37,
+    question: "What are the main benefits of using Cvent's Event Budget Management Tool for planners?",
+    options: [
+      "Helps compare costs",
+      "Enables tracking of all catering expenses",
+      "Supports collaboration with vendors",
+      "Provides spending estimates and monitors expenses throughout the event"
+    ],
+    correctAnswer: "Provides spending estimates and monitors expenses throughout the event"
+  },
+  {
+    number: 5,
+    start: 39,
+    question: "How can event planners save time utilising Cvent's Event Diagramming Solution?",
+    options: [
+      "It's allows for invitees to register for an event",
+      "It helps to eliminate hours of back-and-forth spent on seating layout",
+      "It allows planners to communicate with speakers",
+      "It helps planners to collaborate with attendees"
+    ],
+    correctAnswer: "It helps to eliminate hours of back-and-forth spent on seating layout"
+  },
+  {
+    number: 6,
+    start: 51,
+    question: "iCapture is...",
+    options: [
+      "Apple's new solution for gathering data and insights",
+      "used for AI-powered photography",
+      "a solution for capturing leads",
+      "a defence intelligence solution"
+    ],
+    correctAnswer: "a solution for capturing leads"
+  },
+  {
+    number: 7,
+    start: 61,
+    question: "What is the primary function of an event website?",
+    options: [
+      "To facilitate event registration",
+      "To provide comprehensive history of the event organisation",
+      "To serve as a virtual venue for events",
+      "To assist planners in diagramming their venues"
+    ],
+    correctAnswer: "To facilitate event registration"
+  },
+  {
+    number: 8,
+    start: 69,
+    question: "Which Cvent tool is best suited for managing hotel room blocks?",
+    options: [
+      "Cvent Attendee Hub",
+      "Cvent Business Transient",
+      "Cvent Event Diagramming",
+      "Cvent Passkey"
+    ],
+    correctAnswer: "Cvent Passkey"
+  },
+  {
+    number: 9,
+    start: 77,
+    question: "Event planners use venue diagramming tools to…",
+    options: [
+      "Streamline attendee registration",
+      "Design and organise the layout of event spaces",
+      "Facilitate event ticket sales",
+      "Host virtual events"
+    ],
+    correctAnswer: "Design and organise the layout of event spaces"
+  },
+  {
+    number: 10,
+    start: 79,
+    question: "Which of the following is the primary objective of an event mobile app?",
+    options: [
+      "Improving event networking",
+      "Increasing attendee engagement",
+      "Enhancing the onsite experience",
+      "All of the above"
+    ],
+    correctAnswer: "All of the above"
+  },
+  {
+    number: 11,
+    start: 87,
+    question: "Which Cvent product allows you to print sustainable event badges?",
+    options: [
+      "Cvent Event Diagramming",
+      "Cvent OnArrival",
+      "Cvent Supplier Network",
+      "Cvent Passkey"
+    ],
+    correctAnswer: "Cvent OnArrival"
+  },
+  {
+    number: 12,
+    start: 99,
+    question: "Which of the following is a crucial element of effective event reporting?",
+    options: [
+      "Session insights, attendee tracking, and registration analysis for actionable feedback",
+      "Compiling speaker profiles and audience demographics",
+      "Reviewing catering preferences and vendor ratings",
+      "Documenting event themes and entertainment quality"
+    ],
+    correctAnswer: "Session insights, attendee tracking, and registration analysis for actionable feedback"
+  }
+];
+
 
 export const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);
