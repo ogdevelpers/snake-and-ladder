@@ -1,94 +1,83 @@
-// DiceRoller.tsx
-import React, { useState, useEffect } from 'react';
-import styles from './dice.module.css';
-import { One, Two, Three, Four, Five, Six } from './DiceFace';
+import { useState } from "react";
+import './dice.css';
 
-// Define the types for the component's props
 interface DiceRollerProps {
-    onRoll: (result: number) => void;
-    disabled: boolean;
+  onRoll: (result: number) => void;
+  disabled?: boolean;
 }
 
-const DiceRoller: React.FC<DiceRollerProps> = ({ onRoll, disabled }) => {
-    // Primary state: dice face number (1-6)
-    const [diceFaceNumber, setDiceFaceNumber] = useState<number>(1);
-    
-    // Secondary state: rolling animation state
-    const [isRolling, setIsRolling] = useState<boolean>(false);
-
-    // Function to get the appropriate dice face component based on face number
-    const getDiceFace = (faceNumber: number): React.ReactElement => {
-        console.log(`getDiceFace called with faceNumber: ${faceNumber}`);
-        switch (faceNumber) {
-            case 1:
-                return <One />;
-            case 2:
-                return <Two />;
-            case 3:
-                return <Three />;
-            case 4:
-                return <Four />;
-            case 5:
-                return <Five />;
-            case 6:
-                return <Six />;
-            default:
-                return <One />;
-        }
-    };
-
-    // Function to generate a random dice face number
-    const generateRandomDiceFace = (): number => {
-        return Math.floor(Math.random() * 6) + 1;
-    };
-
-    // Function to simulate the dice roll
-    const handleDiceRoll = (): void => {
-        if (disabled || isRolling) {
-            return; // Prevent rolling if disabled or already rolling
-        }
-
-        // Generate the new dice face number
-        const newDiceFaceNumber: number = generateRandomDiceFace();
-        
-        // Start the rolling animation
-        setIsRolling(true);
-
-        // Complete the roll after animation duration
-        setTimeout(() => {
-            setIsRolling(false); // Stop the rolling animation
-            setDiceFaceNumber(newDiceFaceNumber); // Update the dice face
-            
-            // Notify parent component of the roll result
-            if (onRoll) {
-                onRoll(newDiceFaceNumber);
-            }
-        }, 1000); // Animation duration
-    };
-
-    // Initialize dice face on component mount
-    useEffect(() => {
-        // Start with face 1, or optionally a random face
-        setDiceFaceNumber(1);
-        // Alternative: setDiceFaceNumber(generateRandomDiceFace());
-    }, []);
-
-    // Effect to handle dice face changes (for debugging or additional logic)
-    useEffect(() => {
-        console.log(`Dice face changed to: ${diceFaceNumber}`);
-    }, [diceFaceNumber]);
-
-    return (
-        <button
-            onClick={handleDiceRoll}
-            disabled={disabled || isRolling} // Disable button while rolling or if parent disables
-            className={`${styles['dice-roller-button']} ${disabled || isRolling ? styles['dice-roller-button-disabled'] : ''}`}
-        >
-            <div className={`${styles['dice-face']} ${isRolling ? styles['rolling-animation'] : ''}`}>
-                {getDiceFace(diceFaceNumber)}
-            </div> 
-        </button>
-    );
+const generateRandomDiceFace = (): number => {
+  return Math.floor(Math.random() * 6) + 1;
 };
 
-export default DiceRoller;
+export const DiceRoller: React.FC<DiceRollerProps> = ({ onRoll, disabled = false }) => {
+  const [isRolling, setIsRolling] = useState(false);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [next, setNext] = useState(1);
+
+  const baseRotations = {
+    1: { x: 0, y: 0 },
+    2: { x: -90, y: 0 },
+    3: { x: 0, y: 90 },
+    4: { x: 0, y: -90 },
+    5: { x: 90, y: 0 },
+    6: { x: 180, y: 0 },
+  };
+
+  const getRotationForFace = (face: number) => {
+    const fullSpinX = 360 * 3;
+    const fullSpinY = 360 * 3;
+    const final = baseRotations[face];
+    return {
+      x: fullSpinX + final.x,
+      y: fullSpinY + final.y,
+    };
+  };
+
+  // New: Dynamic animation start rotation to simulate rolling
+  const getSpinStartRotation = (face: number) => {
+    const offset = 90 * 5; // 450 deg = 1.25 full spins
+    const final = baseRotations[face];
+    return {
+      x: final.x + offset,
+      y: final.y + offset,
+    };
+  };
+
+  const handleDiceRoll = () => {
+    if (disabled || isRolling) return;
+
+    const finalFace = generateRandomDiceFace();
+    setNext(finalFace);
+    const finalRotation = getRotationForFace(finalFace);
+    setRotation(finalRotation);
+
+    setIsRolling(true);
+    setTimeout(() => {
+      setIsRolling(false);
+      onRoll(finalFace);
+    }, 450);
+  };
+
+  const transform = isRolling
+    ? `rotateX(${getSpinStartRotation(next).x}deg) rotateY(${getSpinStartRotation(next).y}deg)`
+    : `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`;
+
+  return (
+<div className="dice-wrapper">
+  <div className="container">
+    <div className="dice-container" onClick={handleDiceRoll}>
+      <div className="dice" style={{ transform }}>
+        <div className="face front"></div>
+        <div className="face back"></div>
+        <div className="face top"></div>
+        <div className="face bottom"></div>
+        <div className="face right"></div>
+        <div className="face left"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  );
+};

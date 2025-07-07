@@ -1,13 +1,13 @@
 'use client'; // This directive marks the component for client-side rendering
 
-import { Modal, QuestionModal, ResultModal } from '@/components/Modal';
-import DiceRoller from '@/components/ui/DiceComponent/DiceComponent';
+import { QuestionModal, ResultModal } from '@/components/Modal';
+import { DiceRoller } from '@/components/ui/DiceComponent/DiceComponent';
 import Footer from '@/components/ui/Footer/Footer';
 import Katora from '@/components/ui/Katora/Katora';
 import Logo from '@/components/ui/Logo/Logo';
 import { formatTime, questionCells, otherQuestions, hospitalQuestions, starClimbs } from '@/lib/gameConfig';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-
+ 
 const colorResolver = (cellNumber: number): string => {
     const idx = (cellNumber) % 5;
     const isOddRow = Math.floor(cellNumber / 10) % 2 === 1;
@@ -113,7 +113,6 @@ const GamePage = () => {
         window.location.href = '/';
     }, []);
 
-    // Memoized board generation - only re-renders when playerPosition or selectedColor changes
     const boardCells = useMemo(() => {
         const reorderedBoard = [];
         // Iterate from the top row (index 9) down to the bottom row (index 0)
@@ -170,7 +169,7 @@ const GamePage = () => {
     // Handles the dice roll and player movement
     const rollDice = useCallback((diceNumber: number) => {
         if (!gameStarted || !showDiceRollButton) return;
-
+        console.log(diceNumber);
         const roll = diceNumber;
         setDiceValue(roll);
         setShowDiceRollButton(false);
@@ -179,6 +178,8 @@ const GamePage = () => {
         if (newPosition > 100) {
             newPosition = playerPosition; // If overshoot, stay in place
         }
+
+
 
         setTimeout(() => {
             setPlayerPosition(newPosition);
