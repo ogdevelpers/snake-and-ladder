@@ -18,7 +18,7 @@ body {
     font-family: 'Brandon Text', sans-serif;
     overflow-x: hidden;
     /* Prevent horizontal scrolling */
-    max-height: 100dvh;
+    max-height: 100 vh;
     padding: 0;
 }
 
@@ -130,6 +130,11 @@ img{
 .home-footer {
     width: 100%;
     flex-grow: 1; 
+    z-index:0;
+}
+
+.home-footer > *{
+    z-index:0;
 }
 
 /* Modal Styles - common to all pages that use modals */
