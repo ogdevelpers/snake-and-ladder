@@ -55,13 +55,13 @@ export const QuestionModal = ({ question, options, onAnswer }: any) => (
             <h3 className="modal-question-title">{question}</h3>
             <div className="modal-question-options">
                 {options.map((option: any, index: number) => (
-                    <Button
+                    <button
                         key={index}
                         onClick={() => onAnswer(option)}
-                        // className="modal-question-button"
+                        className="modal-question-button"
                     >
                         {option}
-                    </Button>
+                    </button>
                 ))}
             </div>
         </div>

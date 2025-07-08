@@ -10,6 +10,7 @@ import { formatTime, questionCells, otherQuestions, hospitalQuestions, starClimb
 import { supabase } from '@/lib/supabaseClient';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
  
+ResultModal
 const colorResolver = (cellNumber: number): string => {
     const idx = (cellNumber) % 5;
     const isOddRow = Math.floor(cellNumber / 10) % 2 === 1;
@@ -305,22 +306,7 @@ const GamePage = () => {
                     title={resultModalMessage?.type}
                 />
             )}
-
-            {showConfetti && (
-                <div className="confetti-container">
-                    {[...Array(100)].map((_, i) => (
-                        <div
-                            key={i}
-                            className={`confetti-particle ${i % 2 === 0 ? 'yellow' : 'blue'}`}
-                            style={{
-                                left: `${Math.random() * 100}vw`,
-                                animationDelay: `${Math.random() * 4}s`,
-                                transform: `rotate(${Math.random() * 360}deg)`,
-                            }}
-                        />
-                    ))}
-                </div>
-            )}
+ 
         </div>
     );
 };
