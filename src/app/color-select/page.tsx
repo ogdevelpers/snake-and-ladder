@@ -56,7 +56,7 @@ const ColorSelectPage = () => {
                             onClick={handleNext}
                             className="next-button"
                         >
-                            Continue
+                            Next
                         </Button>)
                 }
             </div>

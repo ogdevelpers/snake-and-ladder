@@ -16,7 +16,6 @@ const GameIdPage = () => {
     const router = useRouter();
     const [gameIdInput, setGameIdInput] = useState('');
     const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');
-    const [inputError, setInputError] = useState<boolean>(true);
     const [gameIdError, setGameIdError] = useState<boolean>(false);
     const [gameProfileError, setGameProfileError] = useState<boolean>(false);
 
@@ -76,7 +75,7 @@ const GameIdPage = () => {
                                 type="text"
                                 value={gameIdInput}
                                 onChange={(e) => setGameIdInput(e.target.value)}
-                                placeholder="E.g. 12345"
+                                placeholder=""
                                 className="game-id-input"
                                 name='gameIdInput'
                             />
@@ -95,7 +94,7 @@ const GameIdPage = () => {
                                 onChange={(e) => setGameProfile(e.target.value as GameProfileTypes)}
                                 className="game-id-input"
                             >
-                                <option value="">Select Profile Type</option>
+                                <option value=""> </option>
                                 {GAME_PROFILE_OPTIONS.map((option) => (
                                     <option key={option} value={option}>
                                         {option}
@@ -111,7 +110,7 @@ const GameIdPage = () => {
                     </div>
                     <div className="game-id-register-button">
                         <Button onClick={handleEnterGameId}>
-                            Register & Play
+                            Next
                         </Button>
                     </div>
                 </div>

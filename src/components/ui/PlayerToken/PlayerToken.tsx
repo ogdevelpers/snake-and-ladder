@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 
 type PlayerTokenProps = {
     position: number;
-    boardRef: React.RefObject<HTMLDivElement >;
+    boardRef: React.RefObject<HTMLDivElement | null>;
     cellRefs: React.RefObject<Record<number, HTMLDivElement | null>>;
     color: string;
 };

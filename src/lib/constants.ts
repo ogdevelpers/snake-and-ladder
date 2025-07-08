@@ -8,8 +8,8 @@ const colors = [
 ];
 
 export const GAME_PROFILE_OPTIONS: GameProfileTypes[] = [
-    'Marketing Professional',
-    'Event Planner',
+    'Hospitality Professional',
+    'Event/Marketing Professional',
     'Others',
 ];
 

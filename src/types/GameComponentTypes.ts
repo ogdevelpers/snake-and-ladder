@@ -1,1 +1,1 @@
-export type GameProfileTypes = 'Marketing Professional' | 'Others' | 'Event Planner';
+export type GameProfileTypes = 'Hospitality Professional' | 'Others' | 'Event/Marketing Professional';

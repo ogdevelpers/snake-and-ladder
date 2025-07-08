@@ -33,15 +33,16 @@ const GamePage = () => {
     const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string, number:number, start:number } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState({message:'', type:'success'});
-    const [timer, setTimer] = useState(3000); // 3 minutes in seconds
+    const [timer, setTimer] = useState(300); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
     const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
     const [questions, setQuestions] = useState(hospitalQuestions);
-    const boardRef = useRef<React.RefObject<HTMLDivElement >>(null);
-    const cellRefs = useRef<Record<number, HTMLDivElement>>({});
+    const boardRef = useRef<HTMLDivElement >(null);
+    const cellRefs = useRef<Record<number, HTMLDivElement | null>>({});
+
 
     // Use useRef to store the timer interval ID
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -55,7 +56,7 @@ const GamePage = () => {
         }
         if (storedProfile) {
             setSelectedProfile(storedProfile);
-            if(storedProfile !== 'Marketing Professional'){
+            if(storedProfile !== 'Hospitality Professional'){
                 setQuestions(otherQuestions); 
             }
         }
@@ -132,7 +133,7 @@ const GamePage = () => {
                 <div
                     key={num}
                     // This function populates our refs object for the PlayerToken to use
-                    ref={(el) => (cellRefs.current[num] = el)}
+                    ref={(el) => { cellRefs.current[num] = el; }}
                     className={`board-cell board-cell-${colorResolver(num)} ${isQuestionCell ? 'board-cell-question' : ''}`}
                 >
                     {/* The content of the cell (number or star) */}
