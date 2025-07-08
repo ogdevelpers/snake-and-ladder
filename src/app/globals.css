@@ -1143,3 +1143,39 @@ body {
     }
 }
 
+.board-grid {
+    /* This is CRUCIAL for the token's positioning */
+    position: relative;
+    display: grid;
+    /* ... your other grid styles ... */
+}
+
+.player-token { 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid white; 
+    z-index: 10;
+    width: min(7vw,40px);
+    height: min(7vw,40px);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    /* --- ANIMATION LOGIC --- */
+    position: absolute; /* Positions the token relative to .board-grid */
+    top: 0;
+    left: 0;
+    z-index: 10;
+    /* The CSS transition that creates the smooth movement */
+    transition: transform 0.6s ease-in-out;
+}
+
+.player-token .player-initial {
+    font-size: 10px;
+}

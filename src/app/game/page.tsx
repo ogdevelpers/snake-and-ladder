@@ -5,6 +5,7 @@ import { DiceRoller } from '@/components/ui/DiceComponent/DiceComponent';
 import Footer from '@/components/ui/Footer/Footer';
 import Katora from '@/components/ui/Katora/Katora';
 import Logo, { LogoGame } from '@/components/ui/Logo/Logo';
+import { PlayerToken } from '@/components/ui/PlayerToken/PlayerToken';
 import { formatTime, questionCells, otherQuestions, hospitalQuestions, starClimbs } from '@/lib/gameConfig';
 import { supabase } from '@/lib/supabaseClient';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
@@ -32,15 +33,15 @@ const GamePage = () => {
     const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string, number:number, start:number } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState({message:'', type:'success'});
-    const [timer, setTimer] = useState(300); // 3 minutes in seconds
+    const [timer, setTimer] = useState(3000); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
     const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
     const [questions, setQuestions] = useState(hospitalQuestions);
-    const [animatePlayer, setAnimatePlayer] = useState(false);
-
+    const boardRef = useRef<React.RefObject<HTMLDivElement | null>>(null);
+    const cellRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
     // Use useRef to store the timer interval ID
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -118,43 +119,31 @@ const GamePage = () => {
 
     const boardCells = useMemo(() => {
         const reorderedBoard = [];
-        // Iterate from the top row (index 9) down to the bottom row (index 0)
         for (let r = 9; r >= 0; r--) {
             const row = [];
-            for (let c = 0; c < 10; c++) {
-                row.push(r * 10 + c + 1);
-            }
-
-            if (r % 2 !== 0) {
-                row.reverse();
-            }
+            for (let c = 0; c < 10; c++) row.push(r * 10 + c + 1);
+            if (r % 2 !== 0) row.reverse();
             reorderedBoard.push(...row);
         }
         return reorderedBoard.map((num) => {
             const isQuestionCell = questionCells.includes(num);
-            const isPlayerHere = playerPosition === num;
             const starInfo = starClimbs.find(sl => sl.start === num);
-
             return (
                 <div
                     key={num}
-                    className={`board-cell board-cell-${colorResolver(num)}  ${isQuestionCell ? 'board-cell-question' : (num % 2 === 0 ? 'board-cell-even' : 'board-cell-odd')}`}
+                    // This function populates our refs object for the PlayerToken to use
+                    ref={(el) => (cellRefs.current[num] = el)}
+                    className={`board-cell board-cell-${colorResolver(num)} ${isQuestionCell ? 'board-cell-question' : ''}`}
                 >
+                    {/* The content of the cell (number or star) */}
                     {!starInfo && num}
                     {starInfo && <span className="game-icon-star" role="img" aria-label="star">⭐</span>}
-                    {isPlayerHere && (
-                        <div
-                        className={`player-token ${animatePlayer ? 'player-token--move' : ''}`}
-                        style={{ backgroundColor: selectedColor }}
-                        >
-                        <span className="player-initial">P</span>
-                        </div>
-
-                    )}
+                    {/* The Player Token is NO LONGER rendered inside the cell */}
                 </div>
             );
         });
-    }, [playerPosition, selectedColor]);
+    }, []); // Dependency array is empty because it no longer depends on playerPosition
+
 
 
     const handleGameWin = useCallback(async() => {
@@ -203,7 +192,7 @@ const GamePage = () => {
         } 
 
         setTimeout(() => {
-        setPlayerPosition(newPosition);
+            setPlayerPosition(newPosition);
 
         if (questionCells.includes(newPosition)) {
             const idx = questionCells.indexOf(newPosition);
@@ -213,11 +202,8 @@ const GamePage = () => {
             setShowQuestionModal(true);
         } else if (newPosition === 100) {
             handleGameWin();
-        } else {
-            // Trigger player animation
-            setAnimatePlayer(true);
-            setTimeout(() => {
-            setAnimatePlayer(false);
+        } else { 
+            setTimeout(() => { 
             }, 600); // Match the CSS animation duration
             setShowDiceRollButton(true);
         }
@@ -269,8 +255,15 @@ const GamePage = () => {
                     </div> 
             </div>
 
-            <div className="board-grid">
+            <div className="board-grid" ref={boardRef}>
                 {boardCells}
+                {/* The single, persistent token is rendered here, over the board */}
+                <PlayerToken
+                    position={playerPosition}
+                    boardRef={boardRef}
+                    cellRefs={cellRefs}
+                    color={selectedColor}
+                />
             </div>
 
             <section className="game-controls">
