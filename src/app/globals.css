@@ -821,7 +821,7 @@ body {
     font-size: 1rem;
     line-height: 100%;
     letter-spacing: 0%;
-    color: #ddd;
+    color: #FCE15C;
 }
 
 .play-game-button {
@@ -850,8 +850,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: calc(100vh - 2rem);
-    /* Adjusted for app-container padding */
+    min-height: 100dvh; 
     background-color: #f3f4f6;
     font-family: 'Inter', sans-serif;
     width: 100%;
@@ -876,7 +875,8 @@ body {
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     margin-bottom: 0.75rem;
-    max-height: 15vh;
+    max-height: 20vh;
+    
 }
 
 @media (min-width: 640px) {
