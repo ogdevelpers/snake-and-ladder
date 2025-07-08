@@ -1,13 +1,13 @@
 @font-face {
     font-family: "Helvetica Neue";
-    src: url("/fonts/helvetica/HVD Fonts - BrandonText-Regular") format("truetype");
+    src: url("/fonts/helvetica/HelveticaNeueMedium.ttf") format("truetype");
     font-weight: 500; 
     font-style: normal;
 }
 
 @font-face {
     font-family: "Brandon Text";
-    src: url("/fonts/brandon/HvDTrial_Brandon_Text_Medium-BF6514e9eb272a3.otf") format("opentype");
+    src: url("/fonts/brandon/BrandonMed.otf") format("opentype");
     font-weight: 500;
 }
 
