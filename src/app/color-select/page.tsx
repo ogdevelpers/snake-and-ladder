@@ -52,12 +52,16 @@ const ColorSelectPage = () => {
                 {
                     selectedColor &&
                     (
-                        <Button
-                            onClick={handleNext}
-                            className="next-button"
-                        >
-                            Next
-                        </Button>)
+                        <div className="color-select-btn">
+                            <Button
+                                onClick={handleNext}
+                                className="next-button"
+                            >
+                                Next
+                            </Button>
+                                                    
+                        </div>
+                    )
                 }
             </div>
             <section className="home-footer">

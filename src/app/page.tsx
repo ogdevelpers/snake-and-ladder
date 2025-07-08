@@ -26,12 +26,14 @@ const HomePage = () => {
                         className="home-image"
                     />
                 </div>
-                <Button
-                    onClick={() => router.push('/gameid')}
-                    className=""
-                >
-                    Let&apos;s Go
-                </Button>
+                <div className="landing-btn">
+                    <Button
+                        onClick={() => router.push('/gameid')}
+                        className=""
+                    >
+                        Let&apos;s Go
+                    </Button>
+                </div>
             </section>
             <section className="home-footer">
                 <Footer variant="default" />

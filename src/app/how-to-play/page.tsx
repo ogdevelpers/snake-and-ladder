@@ -43,12 +43,15 @@ const HowToPlayPage = () => {
                         REACH 100 WITHIN 5 MINUTES!
                     </p>
                 </div>
+                <div className="how-to-btn">
+
                 <Button
                     onClick={handlePlayGame}
                     className="play-game-button"
-                >
+                    >
                     Let&apos;s Play
                 </Button>
+                </div>
             </section>
             <section className="home-footer">
                 <Footer variant="choice" />

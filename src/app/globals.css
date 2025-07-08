@@ -135,6 +135,18 @@ body {
     z-index:0;
 }
 
+.landing-btn{
+    width:60%;
+}
+
+.color-select-btn{
+    width:65%;
+}
+
+.how-to-btn{
+    width:70%;
+}
+
 /* Modal Styles - common to all pages that use modals */
 .modal-overlay {
     position: fixed;
