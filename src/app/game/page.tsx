@@ -40,8 +40,8 @@ const GamePage = () => {
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
     const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
     const [questions, setQuestions] = useState(hospitalQuestions);
-    const boardRef = useRef<React.RefObject<HTMLDivElement | null>>(null);
-    const cellRefs = useRef<Record<number, HTMLDivElement | null>>({});
+    const boardRef = useRef<React.RefObject<HTMLDivElement >>(null);
+    const cellRefs = useRef<Record<number, HTMLDivElement>>({});
 
     // Use useRef to store the timer interval ID
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -137,12 +137,11 @@ const GamePage = () => {
                 >
                     {/* The content of the cell (number or star) */}
                     {!starInfo && num}
-                    {starInfo && <span className="game-icon-star" role="img" aria-label="star">⭐</span>}
-                    {/* The Player Token is NO LONGER rendered inside the cell */}
+                    {starInfo && <span className="game-icon-star" role="img" aria-label="star">⭐</span>} 
                 </div>
             );
         });
-    }, []); // Dependency array is empty because it no longer depends on playerPosition
+    }, []);  
 
 
 
@@ -180,8 +179,7 @@ const GamePage = () => {
 
     // Handles the dice roll and player movement
     const rollDice = useCallback((diceNumber: number) => {
-        if (!gameStarted || !showDiceRollButton) return;
-        console.log(diceNumber);
+        if (!gameStarted || !showDiceRollButton) return; 
         const roll = diceNumber;
         setDiceValue(roll);
         setShowDiceRollButton(false);
@@ -194,22 +192,26 @@ const GamePage = () => {
         setTimeout(() => {
             setPlayerPosition(newPosition);
 
-        if (questionCells.includes(newPosition)) {
-            const idx = questionCells.indexOf(newPosition);
+        }, 1000);
+
+    }, [gameStarted, showDiceRollButton, playerPosition, handleGameWin]);
+
+     useEffect(()=>{
+        
+        if (questionCells.includes(playerPosition)) {
+            const idx = questionCells.indexOf(playerPosition);
             const fallBackQuestion = questions.find(q => q.number === (idx + 1));
-            const questionIndex = questions.find(q => q.start === newPosition);
+            const questionIndex = questions.find(q => q.start === playerPosition);
             setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
             setShowQuestionModal(true);
-        } else if (newPosition === 100) {
+        } else if (playerPosition === 100) {
             handleGameWin();
         } else { 
             setTimeout(() => { 
             }, 600); // Match the CSS animation duration
             setShowDiceRollButton(true);
         }
-        }, 1000);
-
-    }, [gameStarted, showDiceRollButton, playerPosition, handleGameWin]);
+     },[playerPosition]);
 
     // Handles the outcome of answering a question
     const handleAnswer = useCallback((selectedOption: string) => {
