@@ -92,12 +92,12 @@ export const ResultModal = ({
             Cancel
           </button>
         )}
-        <button
+        <Button
           onClick={onConfirm}
           className="result-modal-button result-modal-button-confirm"
         >
           OK
-        </button>
+        </Button>
       </div>
     </div>
   </div>
