@@ -26,7 +26,7 @@ const colorResolver = (cellNumber: number): string => {
 };
 
 const GamePage = () => {
-    const [playerPosition, setPlayerPosition] = useState(98);
+    const [playerPosition, setPlayerPosition] = useState(1);
     const [diceValue, setDiceValue] = useState(0);
     const [showDiceRollButton, setShowDiceRollButton] = useState(true);
     const [showQuestionModal, setShowQuestionModal] = useState(false);

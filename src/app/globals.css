@@ -581,6 +581,9 @@ body {
     border-radius: 6px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     outline: transparent;
+    font-family: "Brandon Text";
+    color: #001D54;
+
 }
 
 .game-id-input:focus {
@@ -633,16 +636,21 @@ body {
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem; /* Adjust icon size */
-  padding-right: 2.5rem; /* Make space for the icon */
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1rem;
-  height: 40px;
-  width: 100%;
+  font-size: 1rem; 
   cursor: pointer;
   font-family: "Brandon Text";
   color: #001D54;
   font-weight:bold;
+      width: 100%;
+    padding: 1rem;
+    padding-right: 3rem;
+    font-size: 1.125rem;
+    border: 2px solid #60a5fa;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    outline: transparent;
 }
 
  
