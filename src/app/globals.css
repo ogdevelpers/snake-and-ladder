@@ -120,10 +120,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Distribute space evenly */
+    justify-content: flex-start; /* Distribute space evenly */
     width: 100%;
     padding: 1rem 0;
-    max-height:56vh;
+    max-height:53vh;
 }
 .home-footer {
     width: 100%; 
