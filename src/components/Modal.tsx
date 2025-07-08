@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './ui/Button/Button';
 
 export const Modal = ({ message, onConfirm, onCancel, showCancel = false, title = "Message" }: any) => (
     <div className="modal-overlay">
@@ -54,13 +55,13 @@ export const QuestionModal = ({ question, options, onAnswer }: any) => (
             <h3 className="modal-question-title">{question}</h3>
             <div className="modal-question-options">
                 {options.map((option: any, index: number) => (
-                    <button
+                    <Button
                         key={index}
                         onClick={() => onAnswer(option)}
-                        className="modal-question-button"
+                        // className="modal-question-button"
                     >
                         {option}
-                    </button>
+                    </Button>
                 ))}
             </div>
         </div>

@@ -1,8 +1,7 @@
 @font-face {
     font-family: "Helvetica Neue";
-    src: url("/fonts/helvetica/HelveticaNeueMedium.ttf") format("truetype");
-    font-weight: 500;
-    /* Medium is typically 500 */
+    src: url("/fonts/helvetica/HVD Fonts - BrandonText-Regular") format("truetype");
+    font-weight: 500; 
     font-style: normal;
 }
 
@@ -1182,4 +1181,30 @@ body {
 
 .how-to-play-content{
     background-color: #006AE1;
+}
+
+
+
+/* game id input */
+.game-id-input-wrapper{
+    position:relative;
+}
+
+.where-is-my-id-button{
+    color: #00369A;
+    position:absolute;
+    right:10%;
+    bottom:0;
+    height:80%;
+    outline:4px solid red;  
+    background: none;
+    font-size:1rem;
+    border: none; 
+    text-decoration: underline;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    white-space: nowrap;
 }

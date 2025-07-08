@@ -2,15 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // Changed import for App Router
-import Logo from '@/components/ui/Logo/Logo';
-import Banner from '@/components/ui/Banner/Banner';
+import Logo from '@/components/ui/Logo/Logo'; 
 import Button from '@/components/ui/Button/Button';
-
-import { GameProfileTypes } from '@/types/GameComponentTypes';
-import { create } from 'domain';
+import { GameProfileTypes } from '@/types/GameComponentTypes'; 
 import Footer from '@/components/ui/Footer/Footer';
 import { GAME_PROFILE_OPTIONS } from '@/lib/constants';
-
+import { Modal } from '@/components/Modal';
  
 const GameIdPage = () => {
     const router = useRouter();
@@ -18,6 +15,7 @@ const GameIdPage = () => {
     const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');
     const [gameIdError, setGameIdError] = useState<boolean>(false);
     const [gameProfileError, setGameProfileError] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const storedGameId = localStorage.getItem('snakesAndLaddersGameId');
@@ -59,6 +57,16 @@ const GameIdPage = () => {
         proceedToColorSelect();
     };
 
+    const handleWhereIsMyId = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
+    const modalMessage = `You can find your unique game ID in the profile section of the Cvent mobile app.`;
+
     return (
         <div className="screen game-id-screen">
             <section className="home-title">
@@ -71,14 +79,23 @@ const GameIdPage = () => {
                     <div className="game-id-input-container">
                         <label className="game-id-label">
                             <span className="game-id-label-text">Game ID</span>
-                            <input
-                                type="text"
-                                value={gameIdInput}
-                                onChange={(e) => setGameIdInput(e.target.value)}
-                                placeholder=""
-                                className="game-id-input"
-                                name='gameIdInput'
-                            />
+                            <div className="game-id-input-wrapper">
+                                <input
+                                    type="text"
+                                    value={gameIdInput}
+                                    onChange={(e) => setGameIdInput(e.target.value)}
+                                    placeholder=""
+                                    className="game-id-input"
+                                    name='gameIdInput'
+                                />
+                                <button
+                                    onClick={handleWhereIsMyId}
+                                    className="where-is-my-id-button"
+                                    type="button"
+                                >
+                                    Where&apos;s my ID?
+                                </button>
+                            </div>
                         </label>
                         {
                             gameIdError && <span className="game-id-error-text">
@@ -119,7 +136,15 @@ const GameIdPage = () => {
                 <Footer variant="default" />
             </section>
 
-
+            {/* Modal */}
+            {showModal && (
+                <Modal
+                    title="Where’s My ID?"
+                    message={modalMessage}
+                    onConfirm={handleCloseModal}
+                    showCancel={false}
+                />
+            )}
         </div>
     );
 };
