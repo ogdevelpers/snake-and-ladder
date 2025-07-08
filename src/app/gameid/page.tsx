@@ -17,13 +17,6 @@ const GameIdPage = () => {
     const [gameProfileError, setGameProfileError] = useState<boolean>(false);
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        const storedGameId = localStorage.getItem('snakesAndLaddersGameId');
-        if (storedGameId) {
-            setGameIdInput(storedGameId);
-        }
-    }, []);
-
     const proceedToColorSelect = () => {
         console.log("Proceeding with Game ID:", gameIdInput);
         router.push('/color-select');
@@ -88,13 +81,15 @@ const GameIdPage = () => {
                                     className="game-id-input"
                                     name='gameIdInput'
                                 />
-                                <button
+                                {
+                                    gameIdInput?.trim() === '' &&
+                                    <button
                                     onClick={handleWhereIsMyId}
                                     className="where-is-my-id-button"
                                     type="button"
                                 >
                                     Where&apos;s my ID?
-                                </button>
+                                </button>}
                             </div>
                         </label>
                         {
