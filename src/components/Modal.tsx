@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './ui/Button/Button';
 
-export const Modal = ({ message, onConfirm, onCancel, showCancel = false, title = "Message" }: any) => (
+export const Modal = ({ message, onConfirm, onCancel, showCancel = false, title = "Message", closeBtnText='Ok' }: any) => (
     <div className="modal-overlay">
         <div className="modal-content">
             <h3 className="modal-title">{title}</h3>
@@ -15,12 +15,12 @@ export const Modal = ({ message, onConfirm, onCancel, showCancel = false, title 
                         Cancel
                     </button>
                 )}
-                <button
+                <Button
                     onClick={onConfirm}
                     className="modal-button modal-button-confirm"
                 >
-                    OK
-                </button>
+                    {closeBtnText}
+                </Button>
             </div>
         </div>
     </div>

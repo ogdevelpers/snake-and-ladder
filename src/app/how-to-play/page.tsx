@@ -44,7 +44,6 @@ const HowToPlayPage = () => {
                     </p>
                 </div>
                 <div className="how-to-btn">
-
                 <Button
                     onClick={handlePlayGame}
                     className="play-game-button"

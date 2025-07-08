@@ -625,38 +625,53 @@ body {
     max-width: 24rem;
 }
 
-.generate-id-button {
-    background-color: #a855f7;
-    color: white;
-    font-weight: 700;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transition-property: all;
-    transition-duration: 300ms;
-    transform: scale(1);
-    border: none;
-    cursor: pointer;
+.game-id-select {
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('/dropdown.svg');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem; /* Adjust icon size */
+  padding-right: 2.5rem; /* Make space for the icon */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  height: 40px;
+  width: 100%;
+  cursor: pointer;
+  font-family: "Brandon Text";
+  color: #001D54;
+  font-weight:bold;
 }
 
+ 
 .generate-id-button:hover {
     background-color: #9333ea;
     transform: scale(1.05);
 }
 
 /* Color Selection Screen Styles */
-.color-select-title {
-    font-size: 1.6rem;
-    line-height: 2.25rem;
-    font-weight: 900;
-    color: white; 
-    margin-bottom: 2rem;
-    font-family: 'Brandon Text';
-    font-weight: 500;
+.color-select-title { 
+    line-height: 2.25rem; 
+    color: white;  
+    margin-top:10px; 
     line-height: 120%;
     letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
+    color: #006AE1;
+    font-family: 'Brandon Text';
+    font-weight: 500;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    width: 70%;
+    background-color: white;
+    border-radius: 0.6rem;
+    padding: 0.5rem 1rem; 
 }
 
 @media (min-width: 768px) {
@@ -876,13 +891,11 @@ body {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     margin-bottom: 0.75rem;
     max-height: 20vh;
-    
 }
 
-@media (min-width: 640px) {
-    .game-header {
-        margin-bottom: 1rem;
-    }
+.game-enclose-section{
+    margin-top:auto;
+    margin-bottom:60px;
 }
 
 .player-position-text {
@@ -1071,7 +1084,8 @@ body {
     padding: 0.2rem;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    margin-top: 1rem;
+    margin-top:14px;
+
 }
 
 @media (min-width: 640px) {
@@ -1218,4 +1232,9 @@ body {
     margin: 0;
     outline: none;
     white-space: nowrap;
+}
+
+.hot-to-play-list {
+  color: white; /* Inherits bullet color in most browsers */
+  list-style-position: outside;
 }

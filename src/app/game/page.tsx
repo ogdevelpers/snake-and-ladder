@@ -258,6 +258,9 @@ const GamePage = () => {
                     </div> 
             </div>
 
+            <section className="game-enclose-section">
+
+
             <div className="board-grid" ref={boardRef}>
                 {boardCells}
                 {/* The single, persistent token is rendered here, over the board */}
@@ -284,6 +287,7 @@ const GamePage = () => {
                     />
                 </div> 
             </section>
+                        </section>
 
             <section className="home-footer">
                 <Footer variant="game" />

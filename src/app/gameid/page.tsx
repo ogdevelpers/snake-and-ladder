@@ -109,7 +109,7 @@ const GameIdPage = () => {
                             <select
                                 value={gameProfile}
                                 onChange={(e) => setGameProfile(e.target.value as GameProfileTypes)}
-                                className="game-id-input"
+                                className="game-id-select"
                             >
                                 <option value=""> </option>
                                 {GAME_PROFILE_OPTIONS.map((option) => (
@@ -143,6 +143,7 @@ const GameIdPage = () => {
                     message={modalMessage}
                     onConfirm={handleCloseModal}
                     showCancel={false}
+                    closeBtnText='Got it'
                 />
             )}
         </div>
