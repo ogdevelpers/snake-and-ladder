@@ -9,7 +9,7 @@ import { PlayerToken } from '@/components/ui/PlayerToken/PlayerToken';
 import { formatTime, questionCells, otherQuestions, hospitalQuestions, starClimbs } from '@/lib/gameConfig';
 import { supabase } from '@/lib/supabaseClient';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
- 
+
 const colorResolver = (cellNumber: number): string => {
     const idx = (cellNumber) % 5;
     const isOddRow = Math.floor(cellNumber / 10) % 2 === 1;
@@ -26,13 +26,13 @@ const colorResolver = (cellNumber: number): string => {
 };
 
 const GamePage = () => {
-    const [playerPosition, setPlayerPosition] = useState(1);
+    const [playerPosition, setPlayerPosition] = useState(98);
     const [diceValue, setDiceValue] = useState(0);
     const [showDiceRollButton, setShowDiceRollButton] = useState(true);
     const [showQuestionModal, setShowQuestionModal] = useState(false);
-    const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string, number:number, start:number } | null>(null);
+    const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string, number: number, start: number } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
-    const [resultModalMessage, setResultModalMessage] = useState({message:'', type:'success'});
+    const [resultModalMessage, setResultModalMessage] = useState({ message: '', type: 'success' });
     const [timer, setTimer] = useState(300); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
@@ -40,7 +40,7 @@ const GamePage = () => {
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
     const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
     const [questions, setQuestions] = useState(hospitalQuestions);
-    const boardRef = useRef<HTMLDivElement >(null);
+    const boardRef = useRef<HTMLDivElement>(null);
     const cellRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
 
@@ -56,8 +56,8 @@ const GamePage = () => {
         }
         if (storedProfile) {
             setSelectedProfile(storedProfile);
-            if(storedProfile !== 'Hospitality Professional'){
-                setQuestions(otherQuestions); 
+            if (storedProfile !== 'Hospitality Professional') {
+                setQuestions(otherQuestions);
             }
         }
         setGameStarted(true);
@@ -77,7 +77,7 @@ const GamePage = () => {
                     if (prev <= 1) {
                         // Time's up
                         setGameStarted(false);
-                        setResultModalMessage({message: "Time's up! Better luck next time!", type: "drop"});
+                        setResultModalMessage({ message: "Time's up! Better luck next time!", type: "drop" });
                         setShowResultModal(true);
                         setShowDiceRollButton(false);
                         setModalConfirmAction(() => () => {
@@ -138,38 +138,38 @@ const GamePage = () => {
                 >
                     {/* The content of the cell (number or star) */}
                     {!starInfo && num}
-                    {starInfo && <span className="game-icon-star" role="img" aria-label="star">⭐</span>} 
+                    {starInfo && <span className="game-icon-star" role="img" aria-label="star">⭐</span>}
                 </div>
             );
         });
-    }, []);  
+    }, []);
 
 
 
-    const handleGameWin = useCallback(async() => {
+    const handleGameWin = useCallback(async () => {
         setGameStarted(false);
         const timeTaken = 300 - timer;
         const minutes = Math.floor(timeTaken / 60);
         const seconds = timeTaken % 60;
-        setResultModalMessage({message:`Congratulations! You reached 100 in ${minutes}m ${seconds}s!`, type:'congrats'});
+        setResultModalMessage({ message: `Congratulations! You reached 100 in ${minutes}m ${seconds}s!`, type: 'congrats' });
         setShowResultModal(true);
         setShowConfetti(true);
         setShowDiceRollButton(false);
 
         try {
-        const { error } = await supabase.from('game_winners').insert([{
-            playerid: localStorage.getItem('snakesAndLaddersGameId'), // Replace with actual name input if you have
-            profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
-            time_taken: timeTaken
-        }]);
-        if (error) {
-            console.error('❌ Supabase insert error:', error.message);
-        } else {
-            console.log('✅ Winner inserted successfully');
+            const { error } = await supabase.from('game_winners').insert([{
+                playerid: localStorage.getItem('snakesAndLaddersGameId'), // Replace with actual name input if you have
+                profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
+                time_taken: timeTaken
+            }]);
+            if (error) {
+                console.error('❌ Supabase insert error:', error.message);
+            } else {
+                console.log('✅ Winner inserted successfully');
+            }
+        } catch (err) {
+            console.error('🔥 Unexpected error:', err);
         }
-    } catch (err) {
-        console.error('🔥 Unexpected error:', err);
-    }
 
         setModalConfirmAction(() => () => {
             setShowResultModal(false);
@@ -180,7 +180,7 @@ const GamePage = () => {
 
     // Handles the dice roll and player movement
     const rollDice = useCallback((diceNumber: number) => {
-        if (!gameStarted || !showDiceRollButton) return; 
+        if (!gameStarted || !showDiceRollButton) return;
         const roll = diceNumber;
         setDiceValue(roll);
         setShowDiceRollButton(false);
@@ -188,31 +188,27 @@ const GamePage = () => {
         let newPosition = playerPosition + roll;
         if (newPosition > 100) {
             newPosition = playerPosition; // If overshoot, stay in place
-        } 
+        }
 
         setTimeout(() => {
             setPlayerPosition(newPosition);
-
+            if (questionCells.includes(playerPosition)) {
+                const idx = questionCells.indexOf(playerPosition);
+                const fallBackQuestion = questions.find(q => q.number === (idx + 1));
+                const questionIndex = questions.find(q => q.start === playerPosition);
+                setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
+                setShowQuestionModal(true);
+            } else if (playerPosition === 100) {
+                handleGameWin();
+            } else {
+                setTimeout(() => {
+                }, 600); // Match the CSS animation duration
+                setShowDiceRollButton(true);
+            }
         }, 1000);
 
     }, [gameStarted, showDiceRollButton, playerPosition, handleGameWin]);
 
-     useEffect(()=>{
-        
-        if (questionCells.includes(playerPosition)) {
-            const idx = questionCells.indexOf(playerPosition);
-            const fallBackQuestion = questions.find(q => q.number === (idx + 1));
-            const questionIndex = questions.find(q => q.start === playerPosition);
-            setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
-            setShowQuestionModal(true);
-        } else if (playerPosition === 100) {
-            handleGameWin();
-        } else { 
-            setTimeout(() => { 
-            }, 600); // Match the CSS animation duration
-            setShowDiceRollButton(true);
-        }
-     },[playerPosition]);
 
     // Handles the outcome of answering a question
     const handleAnswer = useCallback((selectedOption: string) => {
@@ -224,16 +220,16 @@ const GamePage = () => {
             const starMove = starClimbs.find(s => s.start === playerPosition);
             if (starMove) {
                 finalPosition = starMove.end;
-                setResultModalMessage({message:`Right answer! Climb up to ${starMove?.end}!`, type: 'success'});
+                setResultModalMessage({ message: `Right answer! Climb up to ${starMove?.end}!`, type: 'success' });
                 setTimeout(() => setPlayerPosition(finalPosition), 500); // Animate the climb
-            } 
+            }
         } else {
             const starMove = starClimbs.find(s => s.start === playerPosition);
             if (starMove && starMove.drop) {
                 finalPosition = starMove.drop;
-                setResultModalMessage({message:`Oops! Wrong answer. Down you go to ${finalPosition}!`, type: 'drop'});
+                setResultModalMessage({ message: `Oops! Wrong answer. Down you go to ${finalPosition}!`, type: 'drop' });
                 setTimeout(() => setPlayerPosition(finalPosition), 500); // Animate the drop
-            } 
+            }
         }
 
         setShowResultModal(true);
@@ -252,47 +248,47 @@ const GamePage = () => {
 
     return (
         <div className="game-screen-main">
-            <div className="game-header"> 
-                    <div className="game-home-logo">
-                        <LogoGame src={"/game_logo.png"} />
-                    </div> 
+            <div className="game-header">
+                <div className="game-home-logo">
+                    <LogoGame src={"/game_logo.png"} />
+                </div>
             </div>
 
             <section className="game-enclose-section">
 
 
-            <div className="board-grid" ref={boardRef}>
-                {boardCells}
-                {/* The single, persistent token is rendered here, over the board */}
-                <PlayerToken
-                    position={playerPosition}
-                    boardRef={boardRef}
-                    cellRefs={cellRefs}
-                    color={selectedColor}
-                />
-            </div>
-
-            <section className="game-controls">
-                <div className="dice-reveal">
-                    <Katora color={selectedColor} />
-                </div>
-                <div className="timer-display">
-                    <span className="timer-label">Time:</span>
-                    <span className="timer-value">{formattedTime}</span>
-                </div>
-                <div className="dice-roller-box">
-                    <DiceRoller
-                        onRoll={rollDice} // Pass your rollDice function
-                        disabled={!showDiceRollButton || !gameStarted} // Pass your disabled logic
+                <div className="board-grid" ref={boardRef}>
+                    {boardCells}
+                    {/* The single, persistent token is rendered here, over the board */}
+                    <PlayerToken
+                        position={playerPosition}
+                        boardRef={boardRef}
+                        cellRefs={cellRefs}
+                        color={selectedColor}
                     />
-                </div> 
+                </div>
+
+                <section className="game-controls">
+                    <div className="dice-reveal">
+                        <Katora color={selectedColor} />
+                    </div>
+                    <div className="timer-display">
+                        <span className="timer-label">Time:</span>
+                        <span className="timer-value">{formattedTime}</span>
+                    </div>
+                    <div className="dice-roller-box">
+                        <DiceRoller
+                            onRoll={rollDice} // Pass your rollDice function
+                            disabled={!showDiceRollButton || !gameStarted} // Pass your disabled logic
+                        />
+                    </div>
+                </section>
             </section>
-                        </section>
 
             <section className="home-footer">
                 <Footer variant="game" />
             </section>
-                        
+
 
             {showQuestionModal && currentQuestion && (
                 <QuestionModal
@@ -309,7 +305,7 @@ const GamePage = () => {
                     title={resultModalMessage?.type}
                 />
             )}
- 
+
         </div>
     );
 };
