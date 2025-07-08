@@ -10,7 +10,6 @@ import { formatTime, questionCells, otherQuestions, hospitalQuestions, starClimb
 import { supabase } from '@/lib/supabaseClient';
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
  
-ResultModal
 const colorResolver = (cellNumber: number): string => {
     const idx = (cellNumber) % 5;
     const isOddRow = Math.floor(cellNumber / 10) % 2 === 1;
