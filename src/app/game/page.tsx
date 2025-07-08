@@ -192,13 +192,13 @@ const GamePage = () => {
 
         setTimeout(() => {
             setPlayerPosition(newPosition);
-            if (questionCells.includes(playerPosition)) {
-                const idx = questionCells.indexOf(playerPosition);
+            if (questionCells.includes(newPosition)) {
+                const idx = questionCells.indexOf(newPosition);
                 const fallBackQuestion = questions.find(q => q.number === (idx + 1));
-                const questionIndex = questions.find(q => q.start === playerPosition);
+                const questionIndex = questions.find(q => q.start === newPosition);
                 setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
                 setShowQuestionModal(true);
-            } else if (playerPosition === 100) {
+            } else if (newPosition === 100) {
                 handleGameWin();
             } else {
                 setTimeout(() => {
