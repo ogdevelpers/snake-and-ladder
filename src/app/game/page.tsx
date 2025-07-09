@@ -132,7 +132,6 @@ const GamePage = () => {
             return (
                 <div
                     key={num}
-                    // This function populates our refs object for the PlayerToken to use
                     ref={(el) => { cellRefs.current[num] = el; }}
                     className={`board-cell board-cell-${colorResolver(num)} ${isQuestionCell ? 'board-cell-question' : ''}`}
                 >

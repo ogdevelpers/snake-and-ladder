@@ -987,7 +987,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center; 
-    font-size: clamp(1rem, 1.5vw, 1.2rem); 
+    font-size: clamp(0.96rem, 1.5vw, 1.2rem); 
     font-weight: 600;
     background: linear-gradient(135deg, #f8f6ff 0%, #e6d7ff 15%, #c084fc 50%, #8b5cf6 100%);
     box-shadow: 1.01px 1.01px 7.1px 1.01px #00369A33;
