@@ -145,7 +145,6 @@ const GamePage = () => {
     }, []);
 
 
-
     const handleGameWin = useCallback(async () => {
         setGameStarted(false);
         const timeTaken = 300 - timer;
@@ -192,12 +191,14 @@ const GamePage = () => {
 
         setTimeout(() => {
             setPlayerPosition(newPosition);
-            if (questionCells.includes(newPosition)) {
+            if (questionCells.includes(newPosition)) { 
                 const idx = questionCells.indexOf(newPosition);
                 const fallBackQuestion = questions.find(q => q.number === (idx + 1));
                 const questionIndex = questions.find(q => q.start === newPosition);
                 setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
-                setShowQuestionModal(true);
+                setTimeout(()=>{
+                    setShowQuestionModal(true);
+                },500);
             } else if (newPosition === 100) {
                 handleGameWin();
             } else {
