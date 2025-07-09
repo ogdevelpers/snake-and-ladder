@@ -6,7 +6,7 @@ interface FooterProps {
 
 export default function Footer({ variant = 'default' }: FooterProps) {
     const imgSrc= variant === 'game' ? '/footer/game_footer.png' :
-     variant==='choice'?  '/footer/landing_footer.png' :
+     variant==='choice'?  '/footer/choice_footer.png' :
       '/footer/landing_footer.png';
 
     return (

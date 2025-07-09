@@ -17,7 +17,7 @@ body {
     font-family: 'Brandon Text', sans-serif;
     overflow-x: hidden;
     /* Prevent horizontal scrolling */
-    max-height: 100 vh;
+    max-height: 100svh;
     padding: 0;
 }
 
@@ -84,7 +84,7 @@ body {
     display:flex;
     justify-content: center;
     letter-spacing: -0.025em; 
-    flex:0 1 30%;
+    flex:0 1 28svh;
     width: 100%;
 }
  
@@ -121,6 +121,7 @@ body {
 
 .home-hero {
     flex: 1;
+    flex-basis:60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,6 +146,7 @@ body {
 
 .color-select-btn{
     width:65%;
+    margin-top:19px;
 }
 
 .how-to-btn{
@@ -474,7 +476,6 @@ body {
     }
 }
 
-
 .home-image-container { 
     display: flex;
     align-items: center;
@@ -485,9 +486,8 @@ body {
 
 .home-image {
     max-width: 90%; /* Slightly smaller than container */
-    max-height: 100%;
-    width: auto;
-    height: auto;
+    max-height: 40dvh;
+    width: auto; 
     object-fit: contain;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -682,7 +682,8 @@ body {
     width: 70%;
     background-color: white;
     border-radius: 0.6rem;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
+    margin-bottom:10px;
 }
 
 @media (min-width: 768px) {
@@ -695,8 +696,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: min(500px, 80vw);
-    max-height:50vh; 
+    max-height:50vh;
 }
 
 .color-grid {
@@ -722,8 +724,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: min(100%, 90px);
-    height: 6rem;
+    width: min(100%, 80px);
+    height: 5.3rem;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transition-property: all;
@@ -781,17 +783,22 @@ body {
 
 .how-to-play-content {
     background-color: transparent;
-    padding: 1.4rem;
     padding-bottom:19px;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     max-width: 28rem;
     width: 100%;
     text-align: left;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     line-height: 1.5;
     border: 1px solid white;
     position: relative;
+}
+
+.how-to-play-article{
+    padding:2rem;
+    padding-bottom:0.8rem;
+    padding-right:0.7rem;
 }
 
 /* How To Play Screen Styles */
@@ -849,7 +856,7 @@ body {
     line-height: 100%;
     letter-spacing: 0%;
     color: #FCE15C;
-    margin-top:20px;
+    padding-left:0.5rem;
 }
 
 .play-game-button {
@@ -902,8 +909,7 @@ body {
     background-color: transparent;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    margin-bottom: 0.75rem;
-    max-height: 20vh;
+    flex: 1 0 18%;
 }
 
 .game-enclose-section{

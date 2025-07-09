@@ -54,8 +54,7 @@ const ColorSelectPage = () => {
                     (
                         <div className="color-select-btn">
                             <Button
-                                onClick={handleNext}
-                                className="next-button"
+                                onClick={handleNext} 
                             >
                                 Next
                             </Button>

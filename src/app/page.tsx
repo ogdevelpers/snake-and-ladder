@@ -14,7 +14,7 @@ const HomePage = () => {
         <div className="screen home-screen">
             <section className="home-title">
                 <div className="home-logo">
-                    <Logo />
+                    <Logo src={"/land_logo.png"}/>
                 </div> 
             </section>
 
