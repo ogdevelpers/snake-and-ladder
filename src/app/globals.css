@@ -51,10 +51,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap:1rem;
     min-height: 100dvh;
     padding: 0;
-    padding-top:1rem;
+    padding-top:0.4rem;
     text-align: center;
     width: 100%;
     box-sizing: border-box;
@@ -82,9 +81,11 @@ body {
     line-height: 1;
     font-weight: 800;
     color: #1e40af;
-    margin-bottom: 2rem;
+    display:flex;
+    justify-content: center;
     letter-spacing: -0.025em;
-    max-height:14vh;
+    max-height:20vh;
+    width: 100%;
 }
  
 
@@ -92,6 +93,10 @@ body {
     .home-title {
         font-size: 3.75rem;
     }
+}
+
+.home-logo{
+    max-width:95%;
 }
 
 .game-home-title {
@@ -120,8 +125,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* Distribute space evenly */
-    width: 100%;
-    padding: 1rem 0;
+    width: 100%; 
     max-height:53vh;
 }
 .home-footer {
@@ -527,7 +531,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     width: 100%;
 }
 
@@ -574,7 +578,7 @@ body {
 
 .game-id-input {
     width: 100%;
-    padding: 1rem;
+    padding: 0.4rem;
     padding-right: 3rem;
     font-size: 1.125rem;
     border: 2px solid #60a5fa;
@@ -644,7 +648,7 @@ body {
   color: #001D54;
   font-weight:bold;
       width: 100%;
-    padding: 1rem;
+    padding: 0.5rem;
     padding-right: 3rem;
     font-size: 1.125rem;
     border: 2px solid #60a5fa;
