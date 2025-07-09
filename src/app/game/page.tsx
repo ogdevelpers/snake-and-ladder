@@ -33,7 +33,7 @@ const GamePage = () => {
     const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string, number: number, start: number } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState({ message: '', type: 'success' });
-    const [timer, setTimer] = useState(1800); // 3 minutes in seconds
+    const [timer, setTimer] = useState(180); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
@@ -77,7 +77,7 @@ const GamePage = () => {
                     if (prev <= 1) {
                         // Time's up
                         setGameStarted(false);
-                        setResultModalMessage({ message: "Time's up! Better luck next time!", type: "drop" });
+                        setResultModalMessage({ message: "Time's up! Better luck next time!", type: "over" });
                         setShowResultModal(true);
                         setShowDiceRollButton(false);
                         setModalConfirmAction(() => () => {

@@ -76,7 +76,7 @@ export const ResultModal = ({
   title = "Message",
 }: any) => {
     
-    const imgSrc= title === 'success' ? '/result_ladder.svg' : title==='drop' ? '/result_snake.png' : '/congrats.svg'
+    const imgSrc= title === 'success' ? '/result_ladder.svg' : title==='drop' ? '/result_snake.png' : title ==='over'? '/timeout_L.png' : '/congrats.svg'
     return (
 
   <div className="result-modal-overlay">
