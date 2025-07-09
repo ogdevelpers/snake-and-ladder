@@ -15,10 +15,10 @@
 body {
     margin: 0;
     font-family: 'Brandon Text', sans-serif;
-    overflow-x: hidden;
-    /* Prevent horizontal scrolling */
+    overflow-x: hidden; 
     max-height: 100svh;
     padding: 0;
+    position:relative;
 }
 
 * {
@@ -29,8 +29,7 @@ body {
     padding: 0;
 }
 
-.app-container {
-    position: relative;
+.app-container { 
     min-height: 100dvh;
     max-height: 100dvh;
     background: linear-gradient(white 10%, #006AE1 50%);
@@ -39,11 +38,10 @@ body {
     align-items: center;
     justify-content: flex-start;
     overflow: hidden;
-    width: 100%;
-    /* Ensure it takes full width */
-    box-sizing: border-box;
-    /* Include padding in width */
+    width: 100%; 
+    box-sizing: border-box; 
 }
+
 
 /* Base styles for screens */
 .screen {
@@ -970,11 +968,9 @@ body {
 .board-grid {
     display: grid;
     grid-template: repeat(10, minmax(0, 1fr)) / repeat(10, minmax(0, 1fr));
-    gap: 2px;
-    /* --- NEW Fixed Sizing --- */
-    width: min(800px, min(90vw,70vh)); /* Take the minimum of 60% viewport height or 100% viewport width */
-    height: min(800px, min(90vw,70vh)); /* Ensure it's a square with the same dimension */
-    /* --- End NEW Fixed Sizing --- */
+    gap: 2px; 
+    width: min(800px, min(89vw,70vh)); /* Take the minimum of 60% viewport height or 100% viewport width */
+    height: min(800px, min(85vw,70vh)); /* Ensure it's a square with the same dimension */
     max-width: 100%; /* Keep max-width for safety, though min() handles most cases */
     margin: 0 auto;
     min-height: 0;
@@ -1256,4 +1252,10 @@ body {
 .hot-to-play-list {
   color: white; /* Inherits bullet color in most browsers */
   list-style-position: outside;
+}
+
+@media( max-height:580px){
+    .app-container, .screen, .game-screen{
+        overflow-y:auto;
+    }
 }
