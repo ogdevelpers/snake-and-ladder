@@ -40,7 +40,7 @@ const HowToPlayPage = () => {
                         </ul>
                     </article>
                     <p className="how-to-play-timer-text">
-                        REACH 100 WITHIN 5 MINUTES!
+                        REACH 100 WITHIN 3 MINUTES!
                     </p>
                 </div>
                 <div className="how-to-btn">
