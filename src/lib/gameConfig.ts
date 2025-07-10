@@ -379,7 +379,7 @@ export const otherQuestions = [
     start: 39,
     question: "How can event planners save time utilising Cvent's Event Diagramming Solution?",
     options: [
-      "It's allows for invitees to register for an event",
+      "It allows for invitees to register an event",
       "It helps to eliminate hours of back-and-forth spent on seating layout",
       "It allows planners to communicate with speakers",
       "It helps planners to collaborate with attendees"
