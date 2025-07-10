@@ -33,27 +33,30 @@ const GameIdPage = () => {
         console.log("Game Profile created:", gameProfile);
     }
 
-    const validateGameId = (gameId: string): { isValid: boolean; errorMessage: string } => {
-        const trimmedId = gameId.trim();
-        
-        if (trimmedId === '') {
-            return { isValid: false, errorMessage: 'Please enter game ID' };
-        }
+const validateGameId = (gameId: string): { isValid: boolean; errorMessage: string } => {
+    const trimmedId = gameId.trim();
 
-        // Check if the format matches CASG followed by 4 digits
-        const gameIdRegex = /^CASG\d{4}$/;
-        if (!gameIdRegex.test(trimmedId)) {
-            return { isValid: false, errorMessage: 'Game ID must be in format CASG0001-CASG1000' };
-        }
+    if (trimmedId === '') {
+        return { isValid: false, errorMessage: 'Please enter game ID' };
+    }
 
-        // Extract the numeric part and check if it's in the valid range
-        const numericPart = parseInt(trimmedId.substring(4), 10);
-        if (numericPart < 1 || numericPart > 1000) {
-            return { isValid: false, errorMessage: 'Game ID must be between CASG0001 and CASG1000' };
-        }
+    // Check if the format matches CASG (case-insensitive) followed by 4 digits
+    // The 'i' flag at the end makes the regex case-insensitive.
+    const gameIdRegex = /^CASG\d{4}$/i; // Changed: added 'i' flag
+    if (!gameIdRegex.test(trimmedId)) {
+        return { isValid: false, errorMessage: 'Game ID must be in format CASG0001-CASG1000' };
+    }
 
-        return { isValid: true, errorMessage: '' };
-    };
+    // Extract the numeric part and check if it's in the valid range
+    // Ensure to convert the potentially lowercased prefix back to expected for substring if needed,
+    // though substring(4) will still work correctly on "casg0040" to get "0040".
+    const numericPart = parseInt(trimmedId.substring(4), 10);
+    if (numericPart < 1 || numericPart > 1000) {
+        return { isValid: false, errorMessage: 'Game ID must be between CASG0001 and CASG1000' };
+    }
+
+    return { isValid: true, errorMessage: '' };
+};
 
     const handleEnterGameId = () => {
         // Validation checks

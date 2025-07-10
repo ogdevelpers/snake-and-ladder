@@ -571,6 +571,7 @@ body {
     line-height: 100%;
     letter-spacing: 0%;
     margin-left: 20px;
+    text-align: left;
 }
 
 .game-id-input {
