@@ -14,6 +14,7 @@ const GameIdPage = () => {
     const [gameIdInput, setGameIdInput] = useState('');
     const [gameProfile, setGameProfile] = useState<GameProfileTypes | ''>('');
     const [gameIdError, setGameIdError] = useState<boolean>(false);
+    const [gameIdErrorMessage, setGameIdErrorMessage] = useState<string>('');
     const [gameProfileError, setGameProfileError] = useState<boolean>(false);
     const [showModal, setShowModal] = useState(false);
 
@@ -32,15 +33,38 @@ const GameIdPage = () => {
         console.log("Game Profile created:", gameProfile);
     }
 
+    const validateGameId = (gameId: string): { isValid: boolean; errorMessage: string } => {
+        const trimmedId = gameId.trim();
+        
+        if (trimmedId === '') {
+            return { isValid: false, errorMessage: 'Please enter game ID' };
+        }
+
+        // Check if the format matches CASG followed by 4 digits
+        const gameIdRegex = /^CASG\d{4}$/;
+        if (!gameIdRegex.test(trimmedId)) {
+            return { isValid: false, errorMessage: 'Game ID must be in format CASG0001-CASG1000' };
+        }
+
+        // Extract the numeric part and check if it's in the valid range
+        const numericPart = parseInt(trimmedId.substring(4), 10);
+        if (numericPart < 1 || numericPart > 1000) {
+            return { isValid: false, errorMessage: 'Game ID must be between CASG0001 and CASG1000' };
+        }
+
+        return { isValid: true, errorMessage: '' };
+    };
+
     const handleEnterGameId = () => {
         // Validation checks
-        const isGameIdValid = gameIdInput.trim() !== '';
+        const gameIdValidation = validateGameId(gameIdInput);
         const isProfileSelected = gameProfile !== '';
 
-        setGameIdError(!isGameIdValid);
+        setGameIdError(!gameIdValidation.isValid);
+        setGameIdErrorMessage(gameIdValidation.errorMessage);
         setGameProfileError(!isProfileSelected);
 
-        if (!isGameIdValid || !isProfileSelected) return;
+        if (!gameIdValidation.isValid || !isProfileSelected) return;
 
         // gameId and profile have been selected. 
         createNewGameId();
@@ -94,7 +118,7 @@ const GameIdPage = () => {
                         </label>
                         {
                             gameIdError && <span className="game-id-error-text">
-                                Please enter game ID
+                                {gameIdErrorMessage}
                             </span>
                         }
                     </div>
@@ -134,7 +158,7 @@ const GameIdPage = () => {
             {/* Modal */}
             {showModal && (
                 <Modal
-                    title="Where’s My ID?"
+                    title="Where&apos;s My ID?"
                     message={modalMessage}
                     onConfirm={handleCloseModal}
                     showCancel={false}
