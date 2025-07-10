@@ -577,7 +577,7 @@ export const otherQuestions = [
   {
     number: 25,
     start: 43,
-    question: "Thousands of planners use Reposite to...",
+    question: "Thousands of planners use Reposite...",
     options: [
       "To get real-time weather updates for outdoor events",
       "To connect with vendors and suppliers",
