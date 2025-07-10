@@ -138,6 +138,13 @@ body {
     z-index:0;
 }
 
+@media(min-width:1200px){
+    .home-footer{
+        display:none;
+        visibility: hidden;
+    }
+}
+
 .landing-btn{
     width:60%;
 }
