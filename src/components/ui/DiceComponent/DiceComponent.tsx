@@ -56,7 +56,7 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({ onRoll, disabled = false
     setTimeout(() => {
       setIsRolling(false);
       onRoll(finalFace);
-    }, 450);
+    }, 560);
   };
 
   const transform = isRolling

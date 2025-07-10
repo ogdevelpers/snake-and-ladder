@@ -198,7 +198,7 @@ const GamePage = () => {
                 setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
                 setTimeout(()=>{
                     setShowQuestionModal(true);
-                },500);
+                },1000);
             } else if (newPosition === 100) {
                 handleGameWin();
             } else {
@@ -206,7 +206,7 @@ const GamePage = () => {
                 }, 600); // Match the CSS animation duration
                 setShowDiceRollButton(true);
             }
-        }, 1000);
+        }, 1200);
 
     }, [gameStarted, showDiceRollButton, playerPosition, handleGameWin]);
 
@@ -222,14 +222,14 @@ const GamePage = () => {
             if (starMove) {
                 finalPosition = starMove.end;
                 setResultModalMessage({ message: `Right answer! Climb up to ${starMove?.end}!`, type: 'success' });
-                setTimeout(() => setPlayerPosition(finalPosition), 500); // Animate the climb
+                setTimeout(() => setPlayerPosition(finalPosition), 950); // Animate the climb
             }
         } else {
             const starMove = starClimbs.find(s => s.start === playerPosition);
             if (starMove && starMove.drop) {
                 finalPosition = starMove.drop;
                 setResultModalMessage({ message: `Oops! Wrong answer. Down you go to ${finalPosition}!`, type: 'drop' });
-                setTimeout(() => setPlayerPosition(finalPosition), 500); // Animate the drop
+                setTimeout(() => setPlayerPosition(finalPosition), 950); // Animate the drop
             }
         }
 
