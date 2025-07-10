@@ -539,7 +539,7 @@ export const otherQuestions = [
   {
     number: 21,
     start: 91,
-    question: "Which of the following is a breakout session at Accelerate Singapore 2025?",
+    question: "Which of the following is a breakout session at Cvent Accelerate Singapore 2025?",
     options: [
       "Launching an Event-Led Growth Strategy",
       "Advanced Origami Techniques for Business Professionals",

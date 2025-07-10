@@ -1,4 +1,5 @@
 'use client'; // This directive marks the component for client-side rendering
+const TIME= 180; // 3 minutes
 
 import { QuestionModal, ResultModal } from '@/components/Modal';
 import { DiceRoller } from '@/components/ui/DiceComponent/DiceComponent';
@@ -33,7 +34,7 @@ const GamePage = () => {
     const [currentQuestion, setCurrentQuestion] = useState<{ question: string; options: string[]; correctAnswer: string, number: number, start: number } | null>(null);
     const [showResultModal, setShowResultModal] = useState(false);
     const [resultModalMessage, setResultModalMessage] = useState({ message: '', type: 'success' });
-    const [timer, setTimer] = useState(180); // 3 minutes in seconds
+    const [timer, setTimer] = useState(TIME); // 3 minutes in seconds
     const [gameStarted, setGameStarted] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
@@ -146,7 +147,7 @@ const GamePage = () => {
 
     const handleGameWin = useCallback(async () => {
         setGameStarted(false);
-        const timeTaken = 300 - timer;
+        const timeTaken = TIME - timer;
         const minutes = Math.floor(timeTaken / 60);
         const seconds = timeTaken % 60;
         setResultModalMessage({ message: `Congratulations! You reached 100 in ${minutes}m ${seconds}s!`, type: 'congrats' });
