@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // Changed import for App Router
-import Logo from '@/components/ui/Logo/Logo'; 
+import Logo from '@/components/ui/Logo/Logo';
 import Button from '@/components/ui/Button/Button';
-import { GameProfileTypes } from '@/types/GameComponentTypes'; 
+import { GameProfileTypes } from '@/types/GameComponentTypes';
 import Footer from '@/components/ui/Footer/Footer';
 import { GAME_PROFILE_OPTIONS } from '@/lib/constants';
 import { Modal } from '@/components/Modal';
- 
+import { supabase } from '@/lib/supabaseClient';
+
 const GameIdPage = () => {
     const router = useRouter();
     const [gameIdInput, setGameIdInput] = useState('');
@@ -33,31 +34,60 @@ const GameIdPage = () => {
         console.log("Game Profile created:", gameProfile);
     }
 
-const validateGameId = async (gameId: string): Promise<{ isValid: boolean; errorMessage: string }> => {
-    const trimmedId = gameId.trim();
+    const validateGameId = async (gameId: string): Promise<{ isValid: boolean; errorMessage: string }> => {
+        const trimmedId = gameId.trim();
 
-    if (trimmedId === '') {
-        return { isValid: false, errorMessage: 'Please enter game ID' };
-    }
+        if (trimmedId === '') {
+            return { isValid: false, errorMessage: 'Please enter game ID' };
+        }
 
-    // Check if the format matches CVTSAL (case-insensitive) followed by 4 digits
-    // The 'i' flag at the end makes the regex case-insensitive.
-    const gameIdRegex = /^CVTSAL\d{4}$/i; // Changed: added 'i' flag
-    if (!gameIdRegex.test(trimmedId)) {
-        return { isValid: false, errorMessage: 'Game ID must be in format CVTSAL0001-CVTSAL1000' };
-    }
+        // Check if the format matches CVTSAL (case-insensitive) followed by 4 digits
+        // The 'i' flag at the end makes the regex case-insensitive.
+        const gameIdRegex = /^CVTSAL\d{4}$/i; // Changed: added 'i' flag
+        if (!gameIdRegex.test(trimmedId)) {
+            return { isValid: false, errorMessage: 'Game ID must be in format CVTSAL0001-CVTSAL1000' };
+        }
 
-    // Extract the numeric part and check if it's in the valid range
-    // Ensure to convert the potentially lowercased prefix back to expected for substring if needed,
-    // though substring(4) will still work correctly on "CVTSAL0040" to get "0040".
-    const numericPart = parseInt(trimmedId.substring(4), 10);
-    if (numericPart < 1 || numericPart > 1000) {
-        return { isValid: false, errorMessage: 'Game ID must be between CVTSAL0001 and CVTSAL1000' };
-    }
+        // Extract the numeric part and check if it's in the valid range
+        // Ensure to convert the potentially lowercased prefix back to expected for substring if needed,
+        // though substring(4) will still work correctly on "CVTSAL0040" to get "0040".
+        const numericPart = parseInt(trimmedId.substring(4), 10);
+        if (numericPart < 1 || numericPart > 1000) {
+            return { isValid: false, errorMessage: 'Game ID must be between CVTSAL0001 and CVTSAL1000' };
+        }
 
-    //
+        // query supabase to check if hte gameId exists 
+        try {
+            const { data, error } = await supabase
+                .from('game_winners')
+                .select('playerid')
+                .eq('playerid', trimmedId) 
 
-    return { isValid: true, errorMessage: '' };
+            console.log({ data, error });
+
+            if (error && error.code !== 'PGRST116') {
+                // Check if the error is not 'PGRST116', which indicates no row found with .single()
+                console.error('Supabase query error:', error.message);
+                return { isValid: false, errorMessage: 'Error checking Game ID.' };
+            }
+
+            
+            if(!data && !error){  // if both are null, this is a fresh player
+                return {isValid:true, errorMessage:''}
+            }
+
+            if(data && data.length>0){
+                return {isValid:false, errorMessage: "GameId exists in database already, you cannot proceed"}
+            }
+
+
+        } catch (error) {
+            console.error('Unexpected error:', error);
+            return { isValid: false, errorMessage: 'An unexpected error occurred.' };
+        }
+
+
+        return { isValid: true, errorMessage: '' };
     };
 
     const handleEnterGameId = async () => {
@@ -74,7 +104,7 @@ const validateGameId = async (gameId: string): Promise<{ isValid: boolean; error
         // gameId and profile have been selected. 
         createNewGameId();
         createNewGameProfile();
- 
+
         // All set, let's go 
         proceedToColorSelect();
     };
@@ -93,8 +123,8 @@ const validateGameId = async (gameId: string): Promise<{ isValid: boolean; error
         <div className="screen game-id-screen">
             <section className="home-title">
                 <div className="home-logo">
-                    <Logo src='logo_cvent2.png'/>
-                </div> 
+                    <Logo src='logo_cvent2.png' />
+                </div>
             </section>
             <section className="game-id-form-section">
                 <div className="game-id-form">
@@ -113,12 +143,12 @@ const validateGameId = async (gameId: string): Promise<{ isValid: boolean; error
                                 {
                                     gameIdInput?.trim() === '' &&
                                     <button
-                                    onClick={handleWhereIsMyId}
-                                    className="where-is-my-id-button"
-                                    type="button"
-                                >
-                                    Where&apos;s my ID?
-                                </button>}
+                                        onClick={handleWhereIsMyId}
+                                        className="where-is-my-id-button"
+                                        type="button"
+                                    >
+                                        Where&apos;s my ID?
+                                    </button>}
                             </div>
                         </label>
                         {
