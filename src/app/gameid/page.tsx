@@ -44,7 +44,7 @@ const validateGameId = (gameId: string): { isValid: boolean; errorMessage: strin
     // The 'i' flag at the end makes the regex case-insensitive.
     const gameIdRegex = /^CVTSAL\d{4}$/i; // Changed: added 'i' flag
     if (!gameIdRegex.test(trimmedId)) {
-        return { isValid: false, errorMessage: 'Game ID must be in format CASG0001-CASG1000' };
+        return { isValid: false, errorMessage: 'Game ID must be in format CVTSAL0001-CVTSAL1000' };
     }
 
     // Extract the numeric part and check if it's in the valid range
@@ -52,7 +52,7 @@ const validateGameId = (gameId: string): { isValid: boolean; errorMessage: strin
     // though substring(4) will still work correctly on "CVTSAL0040" to get "0040".
     const numericPart = parseInt(trimmedId.substring(4), 10);
     if (numericPart < 1 || numericPart > 1000) {
-        return { isValid: false, errorMessage: 'Game ID must be between CASG0001 and CASG1000' };
+        return { isValid: false, errorMessage: 'Game ID must be between CVTSAL0001 and CVTSAL1000' };
     }
 
     return { isValid: true, errorMessage: '' };
