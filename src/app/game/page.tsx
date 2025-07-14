@@ -264,7 +264,7 @@ const GamePage = () => {
             if (finalPosition === 100) {
                 handleGameWin();
             } else {
-                setTimeout(()=>setShowDiceRollButton(true),2200);
+                setTimeout(()=>setShowDiceRollButton(true),1600);
             }
         });
     }, [currentQuestion, playerPosition, handleGameWin]);
