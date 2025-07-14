@@ -246,14 +246,14 @@ const GamePage = () => {
             if (starMove) {
                 finalPosition = starMove.end;
                 setResultModalMessage({ message: `Right answer! Climb up to ${starMove?.end}!`, type: 'success' });
-                setTimeout(() => setPlayerPosition(finalPosition), 1250); // Animate the climb
+                setPlayerPosition(finalPosition); // Animate the climb
             }
         } else {
             const starMove = starClimbs.find(s => s.start === playerPosition);
             if (starMove && starMove.drop) {
                 finalPosition = starMove.drop;
                 setResultModalMessage({ message: `Oops! Wrong answer. Down you go to ${finalPosition}!`, type: 'drop' });
-                setTimeout(() => setPlayerPosition(finalPosition), 1250); // Animate the drop
+                setPlayerPosition(finalPosition); // Animate the drop
             }
         }
 
