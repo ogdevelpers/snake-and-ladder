@@ -77,7 +77,7 @@ const GameIdPage = () => {
             }
 
             if(data && data.length>0){
-                return {isValid:false, errorMessage: "GameId exists in database already, you cannot proceed"}
+                return {isValid:false, errorMessage: "You have already played the game with this ID. Multiple entries are not allowed."}
             }
 
 
