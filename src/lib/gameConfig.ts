@@ -539,14 +539,14 @@ export const otherQuestions = [
   {
     number: 21,
     start: 91,
-    question: "Which of the following is a breakout session at Cvent Accelerate Singapore 2025?",
+    question: "Which Cvent solution helps create engaging virtual and hybrid event experiences?",
     options: [
-      "Launching an Event-Led Growth Strategy",
-      "Advanced Origami Techniques for Business Professionals",
-      "How to Train Your Office Plant to Do Tricks",
-      "The Art of Competitive Napping in the Workplace"
+      "Cvent Attendee Hub",
+      "Cvent Event Registration",
+      "Cvent Supplier Network",
+      "Cvent Passkey"
     ],
-    correctAnswer: "Launching an Event-Led Growth Strategy"
+    correctAnswer: "Cvent Attendee Hub"
   },
   {
     number: 22,
