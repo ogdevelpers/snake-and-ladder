@@ -1,5 +1,5 @@
 'use client'; // This directive marks the component for client-side rendering
-const TIME= 10; // 3 minutes
+const TIME= 180; // 3 minutes
 
 import { QuestionModal, ResultModal } from '@/components/Modal';
 import { DiceRoller } from '@/components/ui/DiceComponent/DiceComponent';
