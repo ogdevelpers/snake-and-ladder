@@ -64,6 +64,28 @@ const GamePage = () => {
         setGameStarted(true);
     }, []);
 
+    const handleGameLoss = useCallback(async () => {
+    setGameStarted(false);
+    const timeTaken = TIME;
+    try {
+        const { error } = await supabase.from('game_winners').insert([{
+            playerid: localStorage.getItem('snakesAndLaddersGameId'),
+            profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
+            hasWon: false, // Changed from true to false
+            time_taken: timeTaken
+        }]);
+        if (error) {
+            console.error(' Supabase insert error:', error.message);
+        } else {
+            console.log(' Game result inserted successfully');
+        }
+    } catch (err) {
+        console.error(' Unexpected error:', err);
+    }
+    }, [timer]);
+
+    const handleLoss = async ()=> await handleGameLoss();
+
     // Optimized Game Timer Effect - only runs when gameStarted changes
     useEffect(() => {
         if (gameStarted) {
@@ -81,6 +103,7 @@ const GamePage = () => {
                         setResultModalMessage({ message: "Time's up! Better luck next time!", type: "over" });
                         setShowResultModal(true);
                         setShowDiceRollButton(false);
+                        handleLoss();
                         setModalConfirmAction(() => () => {
                             setShowResultModal(false);
                             resetGame();
@@ -159,6 +182,7 @@ const GamePage = () => {
             const { error } = await supabase.from('game_winners').insert([{
                 playerid: localStorage.getItem('snakesAndLaddersGameId'), // Replace with actual name input if you have
                 profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
+                hasWon:true,
                 time_taken: timeTaken
             }]);
             if (error) {

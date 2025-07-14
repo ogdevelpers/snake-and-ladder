@@ -56,7 +56,7 @@ const validateGameId = (gameId: string): { isValid: boolean; errorMessage: strin
     }
 
     return { isValid: true, errorMessage: '' };
-};
+    };
 
     const handleEnterGameId = () => {
         // Validation checks
@@ -72,7 +72,7 @@ const validateGameId = (gameId: string): { isValid: boolean; errorMessage: strin
         // gameId and profile have been selected. 
         createNewGameId();
         createNewGameProfile();
-
+ 
         // All set, let's go 
         proceedToColorSelect();
     };
