@@ -25,8 +25,8 @@ const GameIdPage = () => {
     };
 
     const createNewGameId = () => {
-        localStorage.setItem('snakesAndLaddersGameId', gameIdInput);
-        console.log("Game ID created:", gameIdInput);
+        localStorage.setItem('snakesAndLaddersGameId', gameIdInput.toLowerCase());
+        console.log("Game ID created:",gameIdInput.toLowerCase());
     };
 
     const createNewGameProfile = () => {
@@ -61,7 +61,7 @@ const GameIdPage = () => {
             const { data, error } = await supabase
                 .from('game_winners')
                 .select('playerid')
-                .eq('playerid', trimmedId) 
+                .eq('playerid', trimmedId.toLowerCase()) 
 
             console.log({ data, error });
 
