@@ -1,5 +1,5 @@
 'use client'; // This directive marks the component for client-side rendering
-const TIME= 180; // 3 minutes
+const TIME= 10; // 3 minutes
 
 import { QuestionModal, ResultModal } from '@/components/Modal';
 import { DiceRoller } from '@/components/ui/DiceComponent/DiceComponent';
@@ -96,14 +96,14 @@ const GamePage = () => {
 
             // Start new timer
             timerRef.current = setInterval(() => {
-                setTimer((prev) => {
+                setTimer((prev) => { 
                     if (prev <= 1) {
                         // Time's up
                         setGameStarted(false);
                         setResultModalMessage({ message: "Time's up! Better luck next time!", type: "over" });
                         setShowResultModal(true);
-                        setShowDiceRollButton(false);
-                        handleLoss();
+                        setShowDiceRollButton(false); 
+                            handleLoss(); 
                         setModalConfirmAction(() => () => {
                             setShowResultModal(false);
                             resetGame();

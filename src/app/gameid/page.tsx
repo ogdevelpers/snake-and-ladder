@@ -33,7 +33,7 @@ const GameIdPage = () => {
         console.log("Game Profile created:", gameProfile);
     }
 
-const validateGameId = (gameId: string): { isValid: boolean; errorMessage: string } => {
+const validateGameId = async (gameId: string): Promise<{ isValid: boolean; errorMessage: string }> => {
     const trimmedId = gameId.trim();
 
     if (trimmedId === '') {
@@ -55,12 +55,14 @@ const validateGameId = (gameId: string): { isValid: boolean; errorMessage: strin
         return { isValid: false, errorMessage: 'Game ID must be between CVTSAL0001 and CVTSAL1000' };
     }
 
+    //
+
     return { isValid: true, errorMessage: '' };
     };
 
-    const handleEnterGameId = () => {
+    const handleEnterGameId = async () => {
         // Validation checks
-        const gameIdValidation = validateGameId(gameIdInput);
+        const gameIdValidation = await validateGameId(gameIdInput);
         const isProfileSelected = gameProfile !== '';
 
         setGameIdError(!gameIdValidation.isValid);
