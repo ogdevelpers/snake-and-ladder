@@ -40,16 +40,16 @@ const validateGameId = (gameId: string): { isValid: boolean; errorMessage: strin
         return { isValid: false, errorMessage: 'Please enter game ID' };
     }
 
-    // Check if the format matches CASG (case-insensitive) followed by 4 digits
+    // Check if the format matches CVTSAL (case-insensitive) followed by 4 digits
     // The 'i' flag at the end makes the regex case-insensitive.
-    const gameIdRegex = /^CASG\d{4}$/i; // Changed: added 'i' flag
+    const gameIdRegex = /^CVTSAL\d{4}$/i; // Changed: added 'i' flag
     if (!gameIdRegex.test(trimmedId)) {
         return { isValid: false, errorMessage: 'Game ID must be in format CASG0001-CASG1000' };
     }
 
     // Extract the numeric part and check if it's in the valid range
     // Ensure to convert the potentially lowercased prefix back to expected for substring if needed,
-    // though substring(4) will still work correctly on "casg0040" to get "0040".
+    // though substring(4) will still work correctly on "CVTSAL0040" to get "0040".
     const numericPart = parseInt(trimmedId.substring(4), 10);
     if (numericPart < 1 || numericPart > 1000) {
         return { isValid: false, errorMessage: 'Game ID must be between CASG0001 and CASG1000' };
