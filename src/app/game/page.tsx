@@ -237,6 +237,7 @@ const GamePage = () => {
 
     // Handles the outcome of answering a question
     const handleAnswer = useCallback((selectedOption: string) => {
+        setShowDiceRollButton(false);
         setShowQuestionModal(false);
         const isCorrect = selectedOption === currentQuestion?.correctAnswer;
         let finalPosition = playerPosition;
@@ -246,14 +247,14 @@ const GamePage = () => {
             if (starMove) {
                 finalPosition = starMove.end;
                 setResultModalMessage({ message: `Right answer! Climb up to ${starMove?.end}!`, type: 'success' });
-                setPlayerPosition(finalPosition); // Animate the climb
+                setTimeout(()=>setPlayerPosition(finalPosition),1250); // Animate the climb
             }
         } else {
             const starMove = starClimbs.find(s => s.start === playerPosition);
             if (starMove && starMove.drop) {
                 finalPosition = starMove.drop;
                 setResultModalMessage({ message: `Oops! Wrong answer. Down you go to ${finalPosition}!`, type: 'drop' });
-                setPlayerPosition(finalPosition); // Animate the drop
+                setTimeout(()=>setPlayerPosition(finalPosition),1250); // Animate the climb
             }
         }
 
@@ -263,7 +264,7 @@ const GamePage = () => {
             if (finalPosition === 100) {
                 handleGameWin();
             } else {
-                setShowDiceRollButton(true);
+                setTimeout(()=>setShowDiceRollButton(true),2200);
             }
         });
     }, [currentQuestion, playerPosition, handleGameWin]);
