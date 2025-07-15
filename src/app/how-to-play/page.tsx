@@ -37,14 +37,15 @@ const HowToPlayPage = () => {
                             <li><span className="how-to-play-text">On cells with a ⭐, a question will pop up. </span></li>
                             <li><span className="how-to-play-text">Choose the right option to go up the ladder.</span></li>
                             <li><span className="how-to-play-text">If you select the wrong option, you go down the snake.</span></li>
+                            <li><span className="how-to-play-text">The 10 fastest players will enter a prize draw.</span></li>
                         </ul>
                     </article>
                     <p className="how-to-play-timer-text">
                         REACH 100 WITHIN 3 MINUTES!
                     </p>
-                    <p className="how-to-play-timer-text-2">
+                    {/* <p className="how-to-play-timer-text-2">
                         The 10 fastest players will enter a prize draw.
-                    </p>
+                    </p> */}
                 </div>
                 <div className="how-to-btn">
                 <Button
