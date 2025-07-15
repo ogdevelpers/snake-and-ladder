@@ -42,6 +42,9 @@ const HowToPlayPage = () => {
                     <p className="how-to-play-timer-text">
                         REACH 100 WITHIN 3 MINUTES!
                     </p>
+                    <p className="how-to-play-timer-text-2">
+                        The 10 fastest players will enter a prize draw.
+                    </p>
                 </div>
                 <div className="how-to-btn">
                 <Button

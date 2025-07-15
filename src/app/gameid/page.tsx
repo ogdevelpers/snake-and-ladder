@@ -25,8 +25,8 @@ const GameIdPage = () => {
     };
 
     const createNewGameId = () => {
-        localStorage.setItem('snakesAndLaddersGameId', gameIdInput.toLowerCase());
-        console.log("Game ID created:",gameIdInput.toLowerCase());
+        localStorage.setItem('snakesAndLaddersGameId', gameIdInput.toUpperCase());
+        console.log("Game ID created:",gameIdInput.toUpperCase());
     };
 
     const createNewGameProfile = () => {
@@ -41,19 +41,19 @@ const GameIdPage = () => {
             return { isValid: false, errorMessage: 'Please enter game ID' };
         }
 
-        // Check if the format matches CVTSAL (case-insensitive) followed by 4 digits
+        // Check if the format matches CVT (case-insensitive) followed by 4 digits
         // The 'i' flag at the end makes the regex case-insensitive.
-        const gameIdRegex = /^CVTSAL\d{4}$/i; // Changed: added 'i' flag
+        const gameIdRegex = /^CVT\d{4}$/i; // Changed: added 'i' flag
         if (!gameIdRegex.test(trimmedId)) {
-            return { isValid: false, errorMessage: 'Game ID must be in format CVTSAL0001-CVTSAL1000' };
+            return { isValid: false, errorMessage: 'Game ID must be in format CVT0001-CVT1000' };
         }
 
         // Extract the numeric part and check if it's in the valid range
         // Ensure to convert the potentially lowercased prefix back to expected for substring if needed,
-        // though substring(4) will still work correctly on "CVTSAL0040" to get "0040".
+        // though substring(4) will still work correctly on "CVT0040" to get "0040".
         const numericPart = parseInt(trimmedId.substring(4), 10);
         if (numericPart < 1 || numericPart > 1000) {
-            return { isValid: false, errorMessage: 'Game ID must be between CVTSAL0001 and CVTSAL1000' };
+            return { isValid: false, errorMessage: 'Game ID must be between CVT0001 and CVT1000' };
         }
 
         // query supabase to check if hte gameId exists 
@@ -61,7 +61,7 @@ const GameIdPage = () => {
             const { data, error } = await supabase
                 .from('game_winners')
                 .select('playerid')
-                .eq('playerid', trimmedId.toLowerCase()) 
+                .eq('playerid', trimmedId.toUpperCase()) 
 
             console.log({ data, error });
 
@@ -117,7 +117,7 @@ const GameIdPage = () => {
         setShowModal(false);
     };
 
-    const modalMessage = `You can find your unique game ID in the profile section of the Cvent mobile app.`;
+    const modalMessage = `You can find your unique alphanumeric game ID printed below the QR code on your Cvent Accelerate Name Badge.`;
 
     return (
         <div className="screen game-id-screen">
