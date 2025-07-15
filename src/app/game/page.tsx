@@ -1,5 +1,5 @@
 'use client'; // This directive marks the component for client-side rendering
-const TIME= 180; // 3 minutes
+const TIME = 180; // 3 minutes
 
 import { QuestionModal, ResultModal } from '@/components/Modal';
 import { DiceRoller } from '@/components/ui/DiceComponent/DiceComponent';
@@ -65,26 +65,29 @@ const GamePage = () => {
     }, []);
 
     const handleGameLoss = useCallback(async () => {
-    setGameStarted(false);
-    const timeTaken = TIME;
-    try {
-        const { error } = await supabase.from('game_winners').insert([{
-            playerid: localStorage.getItem('snakesAndLaddersGameId'),
-            profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
-            hasWon: false, // Changed from true to false
-            time_taken: timeTaken
-        }]);
-        if (error) {
-            console.error(' Supabase insert error:', error.message);
-        } else {
-            console.log(' Game result inserted successfully');
-        }
-    } catch (err) {
-        console.error(' Unexpected error:', err);
-    }
-    }, [timer]);
+        setGameStarted(false);
+        const timeTaken = TIME;
+        try {
+            const { error } = await supabase.from('game_winners')
+                .update({
+                    profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
+                    hasWon: false,
+                    time_taken: timeTaken
+                })
+                .eq('playerid', localStorage.getItem('snakesAndLaddersGameId'));
 
-    const handleLoss = async ()=> await handleGameLoss();
+            if (error) {
+                console.error('❌ Supabase update error (loss):', error.message);
+            } else {
+                console.log('✅ Game loss updated successfully');
+            }
+        } catch (err) {
+            console.error('🔥 Unexpected error (loss):', err);
+        }
+    }, []);
+
+
+    const handleLoss = async () => await handleGameLoss();
 
     // Optimized Game Timer Effect - only runs when gameStarted changes
     useEffect(() => {
@@ -96,14 +99,14 @@ const GamePage = () => {
 
             // Start new timer
             timerRef.current = setInterval(() => {
-                setTimer((prev) => { 
+                setTimer((prev) => {
                     if (prev <= 1) {
                         // Time's up
                         setGameStarted(false);
                         setResultModalMessage({ message: "Time's up! Better luck next time!", type: "over" });
                         setShowResultModal(true);
-                        setShowDiceRollButton(false); 
-                            handleLoss(); 
+                        setShowDiceRollButton(false);
+                        handleLoss();
                         setModalConfirmAction(() => () => {
                             setShowResultModal(false);
                             resetGame();
@@ -179,19 +182,21 @@ const GamePage = () => {
         setShowDiceRollButton(false);
 
         try {
-            const { error } = await supabase.from('game_winners').insert([{
-                playerid: localStorage.getItem('snakesAndLaddersGameId'), // Replace with actual name input if you have
-                profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
-                hasWon:true,
-                time_taken: timeTaken
-            }]);
+            const { error } = await supabase.from('game_winners')
+                .update({
+                    profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
+                    hasWon: true,
+                    time_taken: timeTaken
+                })
+                .eq('playerid', localStorage.getItem('snakesAndLaddersGameId'));
+
             if (error) {
-                console.error('❌ Supabase insert error:', error.message);
+                console.error('❌ Supabase update error (win):', error.message);
             } else {
-                console.log('✅ Winner inserted successfully');
+                console.log('✅ Winner updated successfully');
             }
         } catch (err) {
-            console.error('🔥 Unexpected error:', err);
+            console.error('🔥 Unexpected error (win):', err);
         }
 
         setModalConfirmAction(() => () => {
@@ -200,6 +205,7 @@ const GamePage = () => {
             resetGame();
         });
     }, [timer, resetGame]);
+
 
     // Handles the dice roll and player movement
     const rollDice = useCallback((diceNumber: number) => {
@@ -215,14 +221,14 @@ const GamePage = () => {
 
         setTimeout(() => {
             setPlayerPosition(newPosition);
-            if (questionCells.includes(newPosition)) { 
+            if (questionCells.includes(newPosition)) {
                 const idx = questionCells.indexOf(newPosition);
                 const fallBackQuestion = questions.find(q => q.number === (idx + 1));
                 const questionIndex = questions.find(q => q.start === newPosition);
                 setCurrentQuestion(questionIndex || fallBackQuestion || questions[Math.floor(Math.random() * questions.length)]);
-                setTimeout(()=>{
+                setTimeout(() => {
                     setShowQuestionModal(true);
-                },1400);
+                }, 1400);
             } else if (newPosition === 100) {
                 handleGameWin();
             } else {
@@ -247,14 +253,14 @@ const GamePage = () => {
             if (starMove) {
                 finalPosition = starMove.end;
                 setResultModalMessage({ message: `Right answer! Climb up to ${starMove?.end}!`, type: 'success' });
-                setTimeout(()=>setPlayerPosition(finalPosition),1250); // Animate the climb
+                setTimeout(() => setPlayerPosition(finalPosition), 1250); // Animate the climb
             }
         } else {
             const starMove = starClimbs.find(s => s.start === playerPosition);
             if (starMove && starMove.drop) {
                 finalPosition = starMove.drop;
                 setResultModalMessage({ message: `Oops! Wrong answer. Down you go to ${finalPosition}!`, type: 'drop' });
-                setTimeout(()=>setPlayerPosition(finalPosition),1250); // Animate the climb
+                setTimeout(() => setPlayerPosition(finalPosition), 1250); // Animate the climb
             }
         }
 
@@ -264,7 +270,7 @@ const GamePage = () => {
             if (finalPosition === 100) {
                 handleGameWin();
             } else {
-                setTimeout(()=>setShowDiceRollButton(true),1600);
+                setTimeout(() => setShowDiceRollButton(true), 1600);
             }
         });
     }, [currentQuestion, playerPosition, handleGameWin]);
@@ -280,7 +286,7 @@ const GamePage = () => {
                 </div>
             </div>
 
-            <section className="game-enclose-section"> 
+            <section className="game-enclose-section">
                 <div className="board-grid" ref={boardRef}>
                     {boardCells}
                     {/* The single, persistent token is rendered here, over the board */}

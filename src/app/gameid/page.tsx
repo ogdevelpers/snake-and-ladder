@@ -26,7 +26,7 @@ const GameIdPage = () => {
 
     const createNewGameId = () => {
         localStorage.setItem('snakesAndLaddersGameId', gameIdInput.toUpperCase());
-        console.log("Game ID created:",gameIdInput.toUpperCase());
+        console.log("Game ID created:", gameIdInput.toUpperCase());
     };
 
     const createNewGameProfile = () => {
@@ -35,59 +35,58 @@ const GameIdPage = () => {
     }
 
     const validateGameId = async (gameId: string): Promise<{ isValid: boolean; errorMessage: string }> => {
-        const trimmedId = gameId.trim();
+        const trimmedId = gameId.trim().toUpperCase();
 
         if (trimmedId === '') {
             return { isValid: false, errorMessage: 'Please enter game ID' };
         }
 
-        // Check if the format matches CVT (case-insensitive) followed by 4 digits
-        // The 'i' flag at the end makes the regex case-insensitive.
-        const gameIdRegex = /^CVT\d{4}$/i; // Changed: added 'i' flag
+        const gameIdRegex = /^CVT\d{4}$/i;
         if (!gameIdRegex.test(trimmedId)) {
             return { isValid: false, errorMessage: 'Game ID must be in format CVT0001-CVT1000' };
         }
 
-        // Extract the numeric part and check if it's in the valid range
-        // Ensure to convert the potentially lowercased prefix back to expected for substring if needed,
-        // though substring(4) will still work correctly on "CVT0040" to get "0040".
         const numericPart = parseInt(trimmedId.substring(4), 10);
         if (numericPart < 1 || numericPart > 1000) {
             return { isValid: false, errorMessage: 'Game ID must be between CVT0001 and CVT1000' };
         }
 
-        // query supabase to check if hte gameId exists 
         try {
             const { data, error } = await supabase
                 .from('game_winners')
                 .select('playerid')
-                .eq('playerid', trimmedId.toUpperCase()) 
-
-            console.log({ data, error });
+                .eq('playerid', trimmedId);
 
             if (error && error.code !== 'PGRST116') {
-                // Check if the error is not 'PGRST116', which indicates no row found with .single()
                 console.error('Supabase query error:', error.message);
                 return { isValid: false, errorMessage: 'Error checking Game ID.' };
             }
 
-            
-            if(!data && !error){  // if both are null, this is a fresh player
-                return {isValid:true, errorMessage:''}
+            if (data && data.length > 0) {
+                return {
+                    isValid: false,
+                    errorMessage: 'You have already played the game with this ID. Multiple entries are not allowed.'
+                };
             }
 
-            if(data && data.length>0){
-                return {isValid:false, errorMessage: "You have already played the game with this ID. Multiple entries are not allowed."}
+            // If not found, insert new playerId
+            const { error: insertError } = await supabase
+                .from('game_winners')
+                .insert([{ playerid: trimmedId, 
+                    profiletype: gameProfile
+                 }]);
+
+            if (insertError) {
+                console.error('Insert error:', insertError.message);
+                return { isValid: false, errorMessage: 'Failed to register your Game ID. Try again.' };
             }
 
+            return { isValid: true, errorMessage: '' };
 
-        } catch (error) {
-            console.error('Unexpected error:', error);
+        } catch (err) {
+            console.error('Unexpected error:', err);
             return { isValid: false, errorMessage: 'An unexpected error occurred.' };
         }
-
-
-        return { isValid: true, errorMessage: '' };
     };
 
     const handleEnterGameId = async () => {
