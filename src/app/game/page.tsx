@@ -68,11 +68,17 @@ const GamePage = () => {
         setGameStarted(false);
         const timeTaken = TIME;
         try {
-            const { error } = await supabase.from('game_winners')
+            const { data, error } = await supabase.from('game_winners').select('attempts').eq('playerid', localStorage.getItem('snakesAndLaddersGameId')).single();
+            if (error) {
+                console.error('❌ Supabase select error (loss):', error.message);
+            }
+
+            await supabase.from('game_winners')
                 .update({
                     profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
                     hasWon: false,
-                    time_taken: timeTaken
+                    time_taken: timeTaken,
+                    attempts: data ? data.attempts + 1 : 1
                 })
                 .eq('playerid', localStorage.getItem('snakesAndLaddersGameId'));
 
@@ -182,11 +188,18 @@ const GamePage = () => {
         setShowDiceRollButton(false);
 
         try {
-            const { error } = await supabase.from('game_winners')
+            const { data , error } = await supabase.from('game_winners').select('*').eq('playerid', localStorage.getItem('snakesAndLaddersGameId'));
+            const player = data ? data[0] : null;
+
+
+
+
+             await supabase.from('game_winners')
                 .update({
                     profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
                     hasWon: true,
-                    time_taken: timeTaken
+                    time_taken: Math.min(timeTaken, player.time_taken), // Cap at 3 minutes
+                    attempts: player ? player.attempts + 1 : 1
                 })
                 .eq('playerid', localStorage.getItem('snakesAndLaddersGameId'));
 

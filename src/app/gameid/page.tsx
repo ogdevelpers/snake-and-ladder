@@ -54,18 +54,18 @@ const GameIdPage = () => {
         try {
             const { data, error } = await supabase
                 .from('game_winners')
-                .select('playerid')
+                .select('*')
                 .eq('playerid', trimmedId);
 
             if (error && error.code !== 'PGRST116') {
                 console.error('Supabase query error:', error.message);
                 return { isValid: false, errorMessage: 'Error checking Game ID.' };
-            }
+            } 
 
-            if (data && data.length > 0) {
+            if (data && data.length > 0 && data?.[0].attempts === 3) {
                 return {
                     isValid: false,
-                    errorMessage: 'You have already played the game with this ID. Multiple entries are not allowed.'
+                    errorMessage: 'You have already played the game 3 times with this ID. Further attempts are not allowed.'
                 };
             }
 
