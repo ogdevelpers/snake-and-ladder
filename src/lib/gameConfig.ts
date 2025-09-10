@@ -34,7 +34,7 @@ export const questionCells = starClimbs.map(s => s.start);
 export const hospitalQuestions = [
   {
     "number": 1,
-    "start": 7,
+    "start": 4,
     "question": "What does MICE stand for in the hospitality industry?",
     "options": [
       "Metrics, Improvements, Core, Events",
@@ -338,7 +338,7 @@ export const hospitalQuestions = [
 export const otherQuestions = [
   {
     "number": 1,
-    "start": 7,
+    "start": 4,
     "question": "Which of the following ranks in the Top 10 most stressful jobs according to a Forbes study?",
     "options": [
       "Nuclear Scientist",
