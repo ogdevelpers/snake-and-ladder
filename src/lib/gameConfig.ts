@@ -59,7 +59,7 @@ export const hospitalQuestions = [
   {
     "number": 3,
     "start": 10,
-    "question": "Which of the following is a reason planners may reject an RFP resoponse?",
+    "question": "Which of the following is a reason planners may reject an RFP response?",
     "options": [
       "Too many venue options",
       "Delayed or incomplete responses from hotels",
