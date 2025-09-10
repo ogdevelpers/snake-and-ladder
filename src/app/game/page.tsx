@@ -193,14 +193,14 @@ const GamePage = () => {
             const { data , error } = await supabase.from('game_winners').select('*').eq('playerid', localStorage.getItem('snakesAndLaddersGameId'));
             const player = data ? data[0] : null;
 
-
+            console.log({player})
 
 
              await supabase.from('game_winners')
                 .update({
                     profiletype: localStorage.getItem('snakesAndLaddersGameProfile'),
                     hasWon: true,
-                    time_taken: Math.min(timeTaken, player.time_taken),
+                    time_taken: Math.min(timeTaken, player.time_taken || TIME),
                     attempts: player ? player.attempts + 1 : 1
                 })
                 .eq('playerid', localStorage.getItem('snakesAndLaddersGameId'));
