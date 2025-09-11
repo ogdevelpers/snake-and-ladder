@@ -67,6 +67,11 @@ const GameIdPage = () => {
                     isValid: false,
                     errorMessage: 'You have already played the game 3 times with this ID. Further attempts are not allowed.'
                 };
+            } else if (data && data.length>0 && data?.[0].attempts<3){
+                return {
+                    isValid: true, 
+                    errorMessage: ''
+                }
             }
 
             // If not found, insert new playerId
