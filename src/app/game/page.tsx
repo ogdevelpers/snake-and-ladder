@@ -297,7 +297,7 @@ const GamePage = () => {
         <div className="game-screen-main">
             <div className="game-header">
                 <div className="game-home-logo">
-                    <LogoGame src={"/game_logo.png"} />
+                    <LogoGame src={"/img/SBI FILE_Game_Snake_Ladder Final-15.png"} />
                 </div>
             </div>
 

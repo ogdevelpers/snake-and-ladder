@@ -12,20 +12,7 @@ const HomePage = () => {
 
     return (
         <div className="screen home-screen">
-            <section className="home-title">
-                <div className="home-logo">
-                    <Logo src={"/land_logo.png"}/>
-                </div> 
-            </section>
-
             <section className="home-hero">
-                <div className="home-image-container">
-                    <img
-                        src="/snake_landing_banner.png"
-                        alt="Snakes and Ladders Graphics"
-                        className="home-image"
-                    />
-                </div>
                 <div className="landing-btn">
                     <Button
                         // onClick={() => router.push('/gameid')}
@@ -35,9 +22,6 @@ const HomePage = () => {
                         Let&apos;s Go
                     </Button>
                 </div>
-            </section>
-            <section className="home-footer">
-                <Footer variant="default" />
             </section>
         </div>
     );
