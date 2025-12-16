@@ -339,302 +339,302 @@ export const otherQuestions = [
   {
     "number": 1,
     "start": 4,
-    "question": "Which of the following ranks in the Top 10 most stressful jobs according to a Forbes study?",
+    "question": "Which word means “difficult to understand due to extreme subtlety”?",
     "options": [
-      "Nuclear Scientist",
-      "Marine Engineer",
-      "Event Planner",
-      "Orthodontist"
+      "Lucid",
+      "Recondite",
+      "Tactile",
+      "Verbose"
     ],
-    "correctAnswer": "Event Planner"
+    "correctAnswer": "Recondite"
   },
   {
     "number": 2,
     "start": 7,
-    "question": "During which phase of the event lifecycle is iCapture most effectively utilised?",
+    "question": "Which is closest in meaning to 'perspicacious'?",
     "options": [
-      "Promotion",
-      "Post Event",
-      "Day of Event",
-      "Planning"
+      "Careless",
+      "Sharp-minded",
+      "Tolerant",
+      "Stubborn"
     ],
-    "correctAnswer": "Day of Event"
+    "correctAnswer": "Sharp-minded"
   },
   {
     "number": 3,
     "start": 10,
-    "question": "What is a hybrid event?",
+    "question": "Which word means 'sparkling brilliantly'?",
     "options": [
-      "An event that features both daytime and nighttime sessions",
-      "An event that combines in-person and virtual attendees",
-      "An event hosted simultaneously in two different cities",
-      "An event organised by multiple planners"
+      "Pellucid",
+      "Scintillant",
+      "Nebulous",
+      "Arid"
     ],
-    "correctAnswer": "An event that combines in-person and virtual attendees"
+    "correctAnswer": "Scintillant"
   },
   {
     "number": 4,
     "start": 12,
-    "question": "What does RFP stand for?",
+    "question": "“Extemporaneous” means—",
     "options": [
-      "Request for Pricing",
-      "Requirements for Proposal",
-      "Request for Proposal",
-      "Request for Participation"
+      "Performed without preparation",
+      "Very timely",
+      "Full of errors",
+      "Difficult to explain"
     ],
-    "correctAnswer": "Request for Proposal"
+    "correctAnswer": "Performed without preparation"
   },
   {
     "number": 5,
     "start": 18,
-    "question": "How does Cvent's online venue sourcing tool help event planners?",
+    "question": "Which describes 'extreme eagerness or enthusiasm'?",
     "options": [
-      "Helps in finding and comparing venues for their events",
-      "Provides automated venue decoration designs based on event themes",
-      "Manages venue staff scheduling and task assignments",
-      "Facilitates automated negotiation of venue rental contracts"
+      "Apathy",
+      "Lassitude",
+      "Ardour",
+      "Ennui"
     ],
-    "correctAnswer": "Helps in finding and comparing venues for their events"
+    "correctAnswer": "Ardour"
   },
   {
     "number": 6,
     "start": 25,
-    "question": "iCapture is...",
+    "question": "Which word means 'excessive praise'?",
     "options": [
-      "a new solution to shoot moments from mobile",
-      "used for AI-powered photography",
-      "a solution for capturing leads",
-      "a defence intelligence solution"
+      "Adulation",
+      "Derision",
+      "Candour",
+      "Tenacity"
     ],
-    "correctAnswer": "a solution for capturing leads"
+    "correctAnswer": "Adulation"
   },
   {
     "number": 7,
     "start": 30,
-    "question": "Which of the below activities are typically included in the post-event phase?",
+    "question": "“Fastidious” means—",
     "options": [
-      "Budget, venue sourcing, meeting request forms",
-      "Lead conversion, reporting, surveys",
-      "Virtual and hybrid event tools, onsite solutions, and mobile event app",
-      "Surveys, attendee hub, event registration"
+      "Careless",
+      "Hard to please",
+      "Talkative",
+      "Foolish"
     ],
-    "correctAnswer": "Lead conversion, reporting, surveys"
+    "correctAnswer": "Hard to please"
   },
   {
     "number": 8,
     "start": 31,
-    "question": "Which Cvent product helps book 1:1 meetings and appointments?",
+    "question": "Which word means 'short-lived'?",
     "options": [
-      "Attendee Hub",
-      "Jifflenow",
-      "Passkey",
-      "iCapture"
+      "Ephemeral",
+      "Indelible",
+      "Feral",
+      "Arcane"
     ],
-    "correctAnswer": "Jifflenow"
+    "correctAnswer": "Ephemeral"
   },
   {
     "number": 9,
     "start": 37,
-    "question": "What does MICE stand for in the hospitality industry?",
+    "question": "Which word means 'impossible to reform'?",
     "options": [
-      "Metrics, Improvements, Core, Events",
-      "Management, Innovation, Customer, Experience",
-      "Meetings, Incentives, Conferences, Exhibitions",
-      "Marketing, Information, Communication, Entertainment"
+      "Irascible",
+      "Incorrigible",
+      "Incendiary",
+      "Inveterate"
     ],
-    "correctAnswer": "Meetings, Incentives, Conferences, Exhibitions"
+    "correctAnswer": "Incorrigible"
   },
   {
     "number": 10,
     "start": 39,
-    "question": "How can event planners save time utilising Cvent's Event Diagramming Solution?",
+    "question": "Which word means 'showing deep respect'?",
     "options": [
-      "It's allows for invitees to register for an event",
-      "It helps to eliminate hours of back-and-forth spent on seating layout",
-      "It allows planners to communicate with speakers",
-      "It helps planners to collaborate with attendees"
+      "Reverent",
+      "Repugnant",
+      "Redundant",
+      "Recalcitrant"
     ],
-    "correctAnswer": "It helps to eliminate hours of back-and-forth spent on seating layout"
+    "correctAnswer": "Reverent"
   },
   {
     "number": 11,
     "start": 43,
-    "question": "In which technology category does Event Technology belong?",
+    "question": "Origin of 'philanthropy'?",
     "options": [
-      "SalesTech",
-      "HRTech",
-      "FinTech",
-      "MarTech"
+      "Greek",
+      "Latin",
+      "Old French",
+      "Arabic"
     ],
-    "correctAnswer": "MarTech"
+    "correctAnswer": "Greek"
   },
   {
     "number": 12,
     "start": 44,
-    "question": "Which of the following is a crucial element of effective event reporting?",
+    "question": "Root 'phil' means—",
     "options": [
-      "Session insights, attendee tracking, and registration analysis for actionable feedback",
-      "Compiling speaker profiles and audience demographics",
-      "Reviewing catering preferences and vendor ratings",
-      "Documenting event themes and entertainment quality"
+      "Fear",
+      "Breath",
+      "Love",
+      "Flesh"
     ],
-    "correctAnswer": "Session insights, attendee tracking, and registration analysis for actionable feedback"
+    "correctAnswer": "Love"
   },
   {
     "number": 13,
     "start": 48,
-    "question": "Which Cvent tool is best suited for managing hotel room blocks?",
+    "question": "Root 'spir' relates to—",
     "options": [
-      "Cvent Attendee Hub",
-      "Cvent Business Transient",
-      "Cvent Event Diagramming",
-      "Cvent Passkey"
+      "Water",
+      "Earth",
+      "Breath",
+      "Movement"
     ],
-    "correctAnswer": "Cvent Passkey"
+    "correctAnswer": "Breath"
   },
   {
     "number": 14,
     "start": 51,
-    "question": "Global Meetings Industry Day (GMID) is celebrated annually on",
+    "question": "Literal meaning of 'nostalgia'?",
     "options": [
-      "03-Sep",
-      "15-May",
-      "06-Aug",
-      "03-Apr"
+      "Return to pain",
+      "Homecoming pain",
+      "Light longing",
+      "Childhood longing"
     ],
-    "correctAnswer": "03-Apr"
+    "correctAnswer": "Homecoming pain"
   },
   {
     "number": 15,
     "start": 57,
-    "question": "CVB stands for…",
+    "question": "Prefix 'proto-' means—",
     "options": [
-      "Central Venue Booking",
-      "Community Volunteer Bureau",
-      "Convention and Visitors Bureau",
-      "Corporate Vision Board"
+      "First",
+      "Last",
+      "Middle",
+      "Beyond"
     ],
-    "correctAnswer": "Convention and Visitors Bureau"
+    "correctAnswer": "First"
   },
   {
     "number": 16,
     "start": 61,
-    "question": "What is the primary function of an event website?",
+    "question": "Root meaning of 'ubiquitous'—",
     "options": [
-      "To assist planners in diagramming their venues",
-      "To provide comprehensive history of the event organisation",
-      "To serve as a virtual venue for events",
-      "To facilitate event registration"
+      "Scattered",
+      "Everywhere",
+      "Rare",
+      "Distant"
     ],
-    "correctAnswer": "To facilitate event registration"
+    "correctAnswer": "Everywhere"
   },
   {
     "number": 17,
     "start": 69,
-    "question": "Which Cvent tool is best suited for managing hotel room blocks?",
+    "question": "Correct Oxford spelling—",
     "options": [
-      "Cvent Attendee Hub",
-      "Cvent Business Transient",
-      "Cvent Event Diagramming",
-      "Cvent Passkey"
+      "Realize",
+      "Realise",
+      "Realiese",
+      "Reallise"
     ],
-    "correctAnswer": "Cvent Passkey"
+    "correctAnswer": "Realise"
   },
   {
     "number": 18,
     "start": 71,
-    "question": "Cvent provides solutions for which type of events?",
+    "question": "Plural of 'phenomenon'?",
     "options": [
-      "In-person, virtual, and hybrid events",
-      "Only virtual events",
-      "Only hybrid events",
-      "Only in-person events"
+      "Phenomenons",
+      "Phenomenaes",
+      "Phenomena",
+      "Phenomeni"
     ],
-    "correctAnswer": "In-person, virtual, and hybrid events"
+    "correctAnswer": "Phenomena"
   },
   {
     "number": 19,
     "start": 77,
-    "question": "Which of the following is the primary objective of an event mobile app?",
+    "question": "Correct double-l form—",
     "options": [
-      "Improving event networking",
-      "Increasing attendee engagement",
-      "Enhancing the onsite experience",
-      "All of the above"
+      "Traveller",
+      "Traveler",
+      "Travellor",
+      "Travellar"
     ],
-    "correctAnswer": "All of the above"
+    "correctAnswer": "Traveller"
   },
   {
     "number": 20,
     "start": 79,
-    "question": "Event planners use venue diagramming tools to…",
+    "question": "Cacophony' means—",
     "options": [
-      "Design and organise the layout of event spaces",
-      "Streamline attendee registration",
-      "Facilitate event ticket sales",
-      "Host virtual events"
+      "Pleasant melody",
+      "Loud discordant noise",
+      "Whispers",
+      "Repetition"
     ],
-    "correctAnswer": "Design and organise the layout of event spaces"
+    "correctAnswer": "Loud discordant noise"
   },
   {
     "number": 21,
     "start": 85,
-    "question": "Which Cvent tool is used for sourcing venues and managing RFPs (Requests for Proposals)?",
+    "question": "Correct derived form of 'provoke'—",
     "options": [
-      "Cvent Analytics",
-      "Cvent CRM",
-      "Cvent Supplier Network",
-      "Cvent Social Media Suite"
+      "Provokation",
+      "Provocation",
+      "Provecation",
+      "Provvacation"
     ],
-    "correctAnswer": "Cvent Supplier Network"
+    "correctAnswer": "Provocation"
   },
   {
     "number": 22,
     "start": 87,
-    "question": "What are the main benefits of using Cvent's Event Budget Management Tool for planners?",
+    "question": "Correct plural of 'criterion'?",
     "options": [
-      "Helps compare costs",
-      "Enables tracking of all catering expenses",
-      "Provides spending estimates and monitors expenses throughout the event",
-      "Supports collaboration with vendors"
+      "Criteria",
+      "Criterias",
+      "Criterions",
+      "Criteriae"
     ],
-    "correctAnswer": "Provides spending estimates and monitors expenses throughout the event"
+    "correctAnswer": "Criteria"
   },
   {
     "number": 23,
     "start": 91,
-    "question": "What is one advantage of using RFID badges at events?",
+    "question": "Plural of 'alumnus'?",
     "options": [
-      "They enhance the event's visual appeal",
-      "They facilitate tracking attendee movement and capturing networking data",
-      "They lower electricity expenses",
-      "They enhance the quality of speaker presentations"
+      "Alumnae",
+      "Alumni",
+      "Alumnis",
+      "Alumnuses"
     ],
-    "correctAnswer": "They facilitate tracking attendee movement and capturing networking data"
+    "correctAnswer": "Alumni"
   },
   {
     "number": 24,
     "start": 96,
-    "question": "What is the primary purpose of 'Incentives' in the MICE industry?",
+    "question": "Correct spelling—",
     "options": [
-      "To organise exhibitions",
-      "To hold training sessions",
-      "To reward employees for performance",
-      "To conduct business negotiations"
+      "Conscientious",
+      "Concientious",
+      "Conscentious",
+      "Consciencious"
     ],
-    "correctAnswer": "To reward employees for performance"
+    "correctAnswer": "Conscientious"
   },
   {
     "number": 25,
     "start": 99,
-    "question": "Which Cvent product allows you to print sustainable event badges?",
+    "question": "Identify the subjunctive—",
     "options": [
-      "Cvent Event Diagramming",
-      "Cvent OnArrival",
-      "Cvent Supplier Network",
-      "Cvent Passkey"
+      "If I was taller…",
+      "If I were taller…",
+      "If I am taller…",
+      "If I would be taller…"
     ],
-    "correctAnswer": "Cvent OnArrival"
+    "correctAnswer": "If I were taller…"
   }
 ];
 
