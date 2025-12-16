@@ -40,7 +40,7 @@ const GamePage = () => {
     const [modalConfirmAction, setModalConfirmAction] = useState<(() => void) | null>(null);
     const [selectedColor, setSelectedColor] = useState('#EF4444'); // Default color
     const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
-    const [questions, setQuestions] = useState(hospitalQuestions);
+    const [questions, setQuestions] = useState(otherQuestions);
     const boardRef = useRef<HTMLDivElement>(null);
     const cellRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
@@ -57,10 +57,8 @@ const GamePage = () => {
         }
         if (storedProfile) {
             setSelectedProfile(storedProfile);
-            if (storedProfile !== 'Hospitality Professional') {
-                setQuestions(otherQuestions);
-            }
         }
+        setQuestions(otherQuestions);
         setGameStarted(true);
     }, []);
 
